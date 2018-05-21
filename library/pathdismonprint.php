@@ -657,14 +657,14 @@ if ($print_specdesc != ""){
 //   $print .= print_psi_combat();
 //}
 //$print .= "Class Specials: " . $print_class_special . "\n";
-
-if (is_page(203) or is_page(1947)){
-  }else{
+// display buiff alwats as ins stats 29/04/18
+//if (is_page(203) or is_page(1947)){
+//  }else{
    if ($print_buff != ""){
      $print .=  "Buffing spells pre-cast: \n" . $print_buff;
      $htmlp .=  "<b>Buffing spells pre-cast:</b></BR>" . $htmlp_buff . "</BR>";
    }
-}
+//}
 
 
 //}else{

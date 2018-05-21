@@ -3,21 +3,38 @@
 *
 *	Functions for Monster generator
 *
-*
+*				Important!!!! 
+*				Any variables set when this file is loaded (not in functions) 
+*				needs to be added to the query_var 'dg_vars' to make them avaiable
+*				to Dingle Games /library/ code.
 *
 */
 
 $ddmonsterFunctions = "Y";
-
-$current_user = wp_get_current_user();
-$wp_user = $current_user->user_login;
-
 
 if(dgHasUserPaid() == 1){
    $paid_user = "Y";
 }else{
    $paid_user = "";
 }
+
+$args = array(
+								'paid_user' => $paid_user,		/* PAUL - All code using this var should be replaced with a called to dgHasUserPaid() */
+								'ddmonsterFunctions' => $ddmonsterFunctions,
+							);
+set_query_var( 'dg_vars', $args);
+
+
+
+$current_user = wp_get_current_user();
+$wp_user = $current_user->user_login;
+
+
+
+
+
+
+
 if (isSet($_COOKIE['dd_user_id'])){
    $user_id = $_COOKIE['dd_user_id'];
 }

@@ -11,12 +11,6 @@
  $ddpost = $url . $domain;
 ?>
 
-
-<h1>Pathfinder RPG NPC Generator</h1>
-
-<p class="small">For a quick walk through of how to get the best out of the NPC generator, <a href="http://www.screencast.com/t/iN4nCLVvWnn">watch the screencast</a>.
-</p>
-
 <div id="monsterGenerator" >
 
 <?php
@@ -325,7 +319,6 @@ if ($paid_user == "Y"){
 //    }
 ?>
 </div>
-
 
 
 

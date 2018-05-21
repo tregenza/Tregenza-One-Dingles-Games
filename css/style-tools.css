@@ -1,0 +1,830 @@
+/*
+
+Additional CSS for Dingle's Games Tools 
+
+*/
+
+
+
+/** Utility Classes   **/
+.tools-content .lightBorder {
+	border: 1px solid #bbbbbb;	
+	padding: 0.5em;
+	margin: 1em;
+}
+.tools-content .justifyText {
+	text-align: justify;	
+}
+
+.tools-content .rightText {
+	text-align: right;	
+}
+
+.tools-content .leftText {
+	text-align: left;	
+}
+.tools-content .greyText {
+	color: #888888 ! important;
+}
+
+.tools-content .posAbsolute {
+	position: absolute;	
+}
+.tools-content .indent15 {
+	position: absolute;
+	left: 15%;	
+}
+.tools-content .indent40 {
+	position: absolute;
+	left: 40%;	
+}
+.tools-content .indent60 {
+	position: absolute;
+	left: 60%;
+}
+
+.tools-content .indent15 select, .tools-content .indent15 input, .tools-content .indent40 input, .tools-content .indent40 input {
+	padding: 0em;
+	margin: 0em;	
+}
+.tools-content .width2em {
+	width: 2em;	
+}
+.tools-content .width4em {
+	width: 4em;	
+}
+.tools-content .width8em {
+	width: 8em;	
+}
+.tools-content .small {
+	font-size: 0.8em;	
+}
+
+.tools-content .noBorder {
+	border: none ! important;	
+}
+
+.tools-content .errorText {
+	color: red;	
+}
+
+.tools-content table tr.oddRow {
+}
+.tools-content table tr.evenRow {
+	background-color: #cccccc;
+}
+.tools-content option.validOption {
+	color: black ! important;
+}
+.tools-content option.invalidOption {
+	color: red ! important;
+}
+
+/* Forms & Buttons  */ 
+ 
+.tools-content input.button {
+		border: 2px outset #dddddd;
+		margin: auto;
+		background-color: #dddddd;
+}
+.tools-content input.text {
+	border: 0px solid black;
+	background-color: #dddddd;
+}
+
+.tools-content input.radio {
+		width: 4em;
+		background: none;
+		margin: 0em;
+		padding: 0em;
+		border: none;
+		
+}
+
+.tools-content label {
+	border: 1px solid #dddddd;
+	margin: 0.5em 0em; 	
+	font-size: 110%;
+	font-weight: bold;
+	padding: 0.2em;
+}
+
+
+
+.tools-content label#monsterTypeLabel {
+	padding: 0.5em 0.25em;
+	display: block;
+	font-size: 1.25em;
+	border: none;
+}
+/*
+.tools-content #monsterTypeLabel select {
+	width: 15em;
+	margin-left: 3em;
+ }
+*/
+
+
+/*
+*	CSS Specific to the Monster Generator
+*/
+
+
+
+
+#monsterGenerator .error {
+	text-align: center;
+	border: 1px solid red;
+	margin: 2em auto;
+	padding: 1em;
+	width: 50%;
+}
+
+#monsterGenerator .table {
+	
+}
+
+#monsterGenerator .tableRow {
+	clear: both;
+	border-top: 1px solid black;
+	padding: 0.2em;
+}
+#monsterGenerator .tableCell {
+	float: left;
+	margin: 0.5em auto;
+}
+
+#monsterGenerator .tableCellWidth30 {
+	width: 30%;
+	margin-left: 2%;
+}
+#monsterGenerator .tableCellWidth20 {
+	width: 20%;
+	margin-left: 2%;
+}
+#monsterGenerator .tableCellWidth40 {
+	margin-left: 2%;
+	width: 10em;
+	margin-bottom: 0.25em;
+}
+
+#monsterGenerator .table h4 {
+	font-weight: bold;
+	text-align: center;
+}
+
+/* Psuedo classes for inputs */
+
+
+#monsterClassSelection {
+	clear: both;
+	width: 100%;
+	padding: 0.25em;
+	position: relative;
+	margin: 1em 0em;
+/*        font-family: 'Happy Monkey', cursive; */
+}
+
+#monsterClassSelection h5 {
+
+}
+
+#monsterClassSelection .classSelect {
+	width: 100%;
+/*	font-family: 'Happy Monkey', cursive; */
+}
+
+#monsterClassSelection .levelInput {
+	width: 3em;
+/*	font-family: 'Happy Monkey', cursive;  */
+}
+#monsterClassSelection .focusSelect {
+	width: 100%;
+/*	font-family: 'Happy Monkey', cursive;  */
+}
+
+#generateMonster {
+	clear: both;
+	margin-top: 1em;
+}
+#generateMonster2 {
+	clear: both;
+	margin-top: 1em;
+	float: right;
+}
+
+
+/***************************************/
+/*    .stats is the main structure      */
+/***************************************/
+.tools-content ul.stats {
+	margin: 1em 0.2em;
+	font-size: 1em;
+	page-break-before: auto;
+	page-break-after: auto;
+}
+.tools-content li.stats {
+	font-size: 1em;
+	border-top: 1px solid #CCCCCC;
+	clear: both;
+	margin-bottom: 1em;
+	position: relative;
+}
+.tools-content li.stats p {
+	margin: 0em;
+	padding: 0.3em;
+	font-size: 1em;
+}
+
+.tools-content li.stats ul {
+	margin: 0.2em 0.2em 0.5em 0em;
+	padding: 0px;	
+}
+.tools-content li.stats ul li {
+	margin: 0.2em 0.2em 0.5em 0em;
+	padding: 0px;	
+}
+
+
+/******************************************/
+/* Utility classes used multiple times    */
+/******************************************/
+
+
+.tools-content .bigBox {
+	padding: 0em;
+	margin: 0em;
+}
+
+.tools-content ul.bigBoxRight {
+	float: right;
+/*	width: 8em; */
+	margin: 1em 0em;
+	padding: 0em;
+}
+.tools-content li.bigBoxRightContent {
+	border: 1px solid #CCCCCC;
+/*	width: 100%;*/
+	font-size: 1em;
+	padding: 0em;
+	margin: 0em;
+}
+
+.tools-content li.bigBoxRightContent p.boxValue {
+	float: right;
+}
+
+
+.tools-content ul.bigBoxLeft {
+	margin: 1em 0em;
+	padding: 0em;
+}
+.tools-content li.bigBoxLeftContent {
+/*	width: 100%; */
+	clear: left;
+	font-size: 1em;
+}
+
+.tools-content .box {
+	display: block;
+	padding: 0em;
+	margin: 0.5em 0em 0em 0em;
+	position: relative;
+}
+.tools-content h4.label {
+	font-size: 1em;
+	color: #888888;
+	margin: 0em;
+	padding: 0em;
+	border-bottom: 2px solid #888888;
+	font-weight: normal;
+	display: inline;
+/*	font-family: 'Happy Monkey', cursive;  */
+}
+.tools-content h5.label {
+	font-weight: bold;
+	font-size: 0.8em;
+	color: black;
+	font-family: 'Happy Monkey', cursive;
+}
+
+.tools-content h4.boxLabel {
+	font-size: 1em;
+/*	color: #888888; */
+	margin: 0.1em 0em 0.1em 0.1em;
+	padding: 0.1em 0.3em 0em 0em;
+	border-bottom: 2px solid #888888;
+	width: 100%;
+/*	font-family: 'Happy Monkey', cursive;  */
+
+}
+
+.tools-content .box p.boxLabel {
+	font-size: 1em;
+/*	color: #888888;*/
+	margin: 0.1em 0em 0.1em 0em ! important;
+	padding: 0.1em 0em 0em 0em  ! important;
+	border-bottom: 2px solid #888888;
+	font-family: 'Happy Monkey', cursive;
+}
+.tools-content .box p.boxValue {
+	color: #000000;
+	margin: 0.1em 0em 0.1em 0.1em;
+	padding: 0.1em 0em 0.1em 0em;
+	font-weight: bold;
+	font-size: 1em;
+	text-align: right;
+}
+.tools-content .box p.boxValue input {
+	margin: 0.1em 0em 0.1em 0.1em;
+	padding: 0.1em 0em 0.1em 0em;
+	text-align: right;
+}
+.tools-content .box p.boxValue select {
+	margin: 0.1em 0em 0.1em 0.1em;
+	padding: 0.1em 0em 0.1em 0em;
+	text-align: left;
+}
+.tools-content .box ul.small {
+	line-height: 130%;
+}
+
+.tools-content .box .boxDetail {
+	color: #888888;
+	padding: 0.3em 0em;
+	text-align: left;
+	font-size: 0.8em;	
+}
+.tools-content .box ul.boxDetail {
+	clear: both;
+}
+.tools-content .box ul.boxDetail li {
+	font-size: 1em;
+}
+
+.tools-content .box p.boxDetail {
+
+}
+
+.tools-content .leftBorder { 
+	border-top: none ! important;
+	border-bottom: none ! important;
+	border-right: none ! important;
+	border-left: 1px solid #cccccc ! important;
+	padding-left: 0.5em;
+}
+
+.tools-content form {
+	position: relative;
+}
+.tools-content select  {
+	margin-bottom: 0.25em;
+	margin-left: 0.25em;
+}
+.tools-content select:focus  {
+}
+.tools-content input {
+	margin-bottom: 0.25em;
+	margin-left: 0.25em;
+}
+.tools-content input:focus {
+	color: red;
+}
+
+
+.tools-content .bigBoxColumns {
+	width: 100%;
+	clear: both;	
+	padding: 0em;
+	margin: 0em;
+	overflow: auto;
+}
+
+.tools-content .bigBoxColumn3 {
+	float: left;
+	width: 33%;
+	margin-right: 0em;
+	margin-bottom: 0.5em;
+	margin-left: 0em;
+ 	padding: 0em;
+ }
+
+
+
+.tools-content .bigBoxColumn3 ul {
+	margin: 0em;
+	padding: 0em
+}
+.tools-content .bigBoxColumn3 ul li {
+	font-size: 0.8em;
+	clear: both;
+	margin: 0em;
+	padding: 0em;
+}
+.tools-content .bigBoxColumn3 ul li select {
+	font-size: 1em;
+	width: 18em; 
+	margin: 0em;
+	padding: 0em;
+}
+
+.tools-content .bigBoxColumn2 {
+	float: left;
+	width: 44%;
+	margin: 0em 1em 0em 0em;
+	padding: 0em 0em 0em 0em;
+}
+.tools-content .bigBoxColumns .rightColWrapper {
+	padding-left: 1em;
+	position: relative;
+}
+
+.tools-content .bigBoxColumns p.colLabel {
+	font-size: 1em;
+	color: #888888;
+	margin: 0.1em 0em 0.1em 0.1em;                                          
+	padding: 0.1em 0.3em 0em 0em;
+	float: left;
+	border-bottom: 2px solid #888888;
+	font-family: 'Happy Monkey', cursive;
+}
+
+.tools-content p.bigBoxLabel {
+	text-align:  center;
+	font-size: 1em;
+	margin: 0.1em 0em 0.1em 0em ! important;
+	padding: 0.1em 0em 0em 0em  ! important;
+	border-bottom: 2px solid #888888;
+	font-family: 'Happy Monkey', cursive;
+}
+table.tools-content .specialaTable {
+        width: 100%;
+}
+table.tools-content  .specialaTable .thbig th {
+        float: left;
+        width: 30%;
+        color: red;
+        margin: 0em 1em 0em 0em;
+	padding: 0em 0em 0em 0em;
+}
+table.tools-content  specialaTable .thsmall th {
+        float: left;
+        width: 15%;
+        color: black;
+        margin: 0em 1em 0em 0em;
+	padding: 0em 0em 0em 0em;
+}
+.tools-content .specialqTable {
+        width: 100%;
+	position: relative;
+}
+
+/*******************************************/
+/* Section specific formatting              */
+/******************************************/
+
+.tools-content h3.statsHeader {
+	font-size: 1.2em;
+	text-align: center;
+	font-weight: bold;
+}
+.tools-content p.statsHeader  {
+	text-align: center;
+}
+
+
+
+.tools-content li.combatBox {
+}
+
+
+
+.tools-content ul.attacks {
+	margin: 0.5em 0em;
+	padding: 0.5em 0em 0em 0em;
+}
+.tools-content li.attack {
+	clear: left;
+	padding: 0em 0em;
+	margin: 0em 0em ;
+	font-size: 1em;
+	border-top: 1px solid #cccccc;
+	width: 90%;
+	font-family: 'Happy Monkey', cursive;
+}
+.tools-content li.attack span {
+	font-size: 0.8em;
+}
+.tools-content .attackWeapon {
+	font-weight: bold;
+	color: #000000;
+	width: 50%;
+	display: block;
+	float: left;
+}
+.tools-content .attackToHit {
+	font-weight: normal;
+	color: #000000;
+	width: 10%;
+	display: block;
+	float: left;
+	text-align: right;
+}
+.tools-content .attackDamage {
+	font-weight: normal;
+	color: #000000;
+	width: 30%;
+	display: block;
+	float: right;
+	text-align: right;
+}
+.tools-content .attackAdditional {
+	font-weight: 100;
+	color: #CCCCCC;
+	font-size: 0.8em;
+	display: block;
+	clear: left;
+	width: 100%;
+}
+
+
+.tools-content ul.specialAbilities {
+	margin: 0.5em 0em;
+	padding: 0.5em 0em 0em 0em;
+}
+.tools-content li.specialAbility {
+	clear: left;
+	padding: 0.3em 0em 0.1em 0em;
+	margin: 0.1em 0em 0.1em 0em;
+	font-size: 1em;
+	border-top: 1px solid #cccccc;
+}
+
+.tools-content  > li.specialAbility:first-child {
+	border-top: none ! important;
+}
+
+
+.tools-content li.stats p.tactics {
+	font-size: 0.8em;
+}
+
+.tools-content li.coreStats {
+	margin: 1em 0em 0em 0em;
+	border-top: 1px solid #CCCCCC;
+	clear: both;
+}
+.tools-content .coreStatsLine {
+	margin: 1em auto;
+	display: block;
+}
+.tools-content .coreStat {
+	width: 60%;
+	height: 3em;
+}
+.tools-content .coreStat p.boxValue {
+	clear: both;
+}
+.tools-content .coreStat p.boxDetail {
+	color: #888888;
+}
+.tools-content .minorStat {
+	margin: 0em 1em 0em 0em;
+	width: 20%;
+	float: left;
+	font-size: 0.8em;
+}
+.tools-content .minorStat p.boxValue {
+	margin-left: 1em;
+}
+
+
+.tools-content ul li p.featName {
+	margin: 0em;
+	padding: 0em;
+	float: left;
+	width: 95%;
+	font-size: 1em;
+}
+
+.tools-content  #helpFeat {
+	width: 30em;	
+}
+.tools-content  table.skills {
+	border: none;	
+	font-size: 0.8em;
+}
+.tools-content table.skills tr {
+	border: none; 
+}
+.tools-content table.skills th {
+	border: none;	
+	font-weight: bold;
+	padding: 0.25em;
+	text-align: center;
+}
+.tools-content table.skills td {
+	border: none;	
+	text-align: center;
+}
+.tools-content table.skills tr.skillHeadings {
+	border-bottom: 1px solid black;	
+}
+.tools-content table.skills td.skillName {
+	border: none;	
+	width: 20em;
+	margin: 0em;
+	padding: 0em;
+	text-align: left;
+}
+
+
+.tools-content table.skills  td.skillTotal {
+	border-right: 1px solid black;
+	width: 10em;
+	
+}
+.tools-content table.skills  td.skillRank {	
+	width: 10em;
+}
+.tools-content table.skills  td.skillStatBonus {	
+	width: 10em;
+}
+.tools-content table.skills  td.skillMiscBonus {	
+	width: 10em;
+}
+
+.tools-content table.classSpecials {
+	border: none;	
+	font-size: 0.8em;
+	margin-bottom: 1em;
+}
+.tools-content table.classSpecials tr.classSpecialHeading th {
+	font-weight: bold;
+}
+.tools-content table.classSpecials tr.classSpecialHeading th.classSpecialDesc {
+	font-weight: bold;
+	text-align: center;
+	vertical-align: bottom;
+}
+.tools-content table.classSpecials tr.classSpecialHeading th.classSpecialValue {
+	font-weight: bold;
+	text-align: center;
+	vertical-align: bottom;
+}
+.tools-content table.classSpecials td.classSpecialName {
+	width: 20em;
+	margin-right: 1em;
+	vertical-align: top;
+}
+.tools-content table.classSpecials td.classSpecialDesc {
+	width: 28em;
+	margin-right: 1em;
+	vertical-align: top;
+}
+.tools-content table.classSpecials td.classSpecialValue {
+	vertical-align: top;
+	width: 3em;
+	margin-right: 1em;
+	text-align: center;
+}
+
+.tools-content ul.skills {
+}
+.tools-content ul.skills li.skill {
+	clear: both;
+	font-size: 0.8em;
+}
+.tools-content ul.skills li.skill p {
+	margin: 0em;
+	padding: 0em;
+}
+.tools-content p.skillName {
+	float: left;
+	width: 15em;
+	margin: 0em;
+	padding: 0em;
+}
+.tools-content p.skillBuildUp {
+	float: left;
+	margin: 0em;
+	padding: 0em;
+	font-weight: bold;
+	color: #CCCCCC;
+	font-size: 0.8em;
+	width: 8em;
+}
+.tools-content span.skillRanks {
+	padding-right: 1em;
+}
+.tools-content span.skillStatBonus {
+	padding-right: 1em;
+}
+.tools-content .skillFeatBonus {
+	padding-right: 1em;
+}
+.tools-content .skillMagicBonus {
+	padding-right: 1em;
+}
+.tools-content p.skillTotal {
+	float: left;
+	font-weight: bold;
+	color: black;
+	float: left;
+	width: 2em;
+}
+.tools-content p.skillAdditional {
+	font-weight: normal;
+	color: #CCCCCC;
+	font-size: 0.8em;
+	width: 10em;
+	width: 12em;
+	float: right;
+}
+
+.tools-content ul.spells {
+}
+.tools-content li.spells {
+}
+.tools-content ul.spellList {
+	float: left;
+	margin-right: 2em;
+}
+.tools-content ul.spellList h5.spellListTitle {
+	font-weight: bold;
+}
+.tools-content ul.spellList li {
+}
+.tools-content li.stats p.spellListNotes {
+	font-size: 0.8em;
+	color: #CCCCCC;
+	padding: 0.1em;
+	margin: 0.1em;
+}
+
+.tools-content ul.magicItemsList {
+}
+.tools-content ul.magicItemsList li {
+	clear: both;
+}
+.tools-content ul.magicItemsList li p.item {
+	float: left;
+	width: 15em;
+	margin: 0em;
+	padding: 0em;
+}
+.tools-content ul.magicItemsList li p.itemNotes {
+	font-size: 0.8em;
+	color: #CCCCCC;
+	padding: 0.1em;
+	margin: 0.1em;
+}
+
+.tools-content .equipment {
+	border: 2px solid #CCCCCC;
+
+}
+.tools-content ul.currancyList {
+}
+.tools-content ul.currancyList li {
+	float: left;
+	width: 8em;
+	border: 1px solid #CCCCCC;
+	margin: 0.2em 0.2em 0.2em 0em;
+}
+.tools-content p.currancyName {
+	font-weight: bold;
+	color: #CCCCCC;
+}
+.tools-content p.currancyAmount {
+	padding: 0.3em 5em 0.3em 2em;
+}
+
+
+.tools-content ul.equipmentList {
+	float: left;
+	margin-right: 2em;
+}
+
+.tools-content ul.equipmentList li {
+}
+
+.tools-content ul.notes {
+}
+.tools-content ul.notes li.note {
+}
+.tools-content ul.notes li.note p{
+}
+.tools-content .desc {
+    color: black;
+    padding: 3px;
+    border: 5px solid black;
+    font-family: arial, verdana, ms sans serif;
+    font-size: 14pt;
+}
+.tools-content .spelldesc {
+    font-size: 10pt;
+}
+
+
+

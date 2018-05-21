@@ -3989,6 +3989,7 @@ while ($count < 12){
        }
        if ($count > 2){
           $bonus +=  weapgroup($weapon);
+          $bonus += $bonus_dam_spec;
        }
        if ($count == 3){
           $bonus += $magic_damage_s1;
