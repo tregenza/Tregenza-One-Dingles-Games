@@ -4,7 +4,118 @@ Additional CSS for Dingle's Games Tools
 
 */
 
+/***  CSS for Toolpages ***/
 
+/* NOTE To PAUL : The CSS for the Toolpages is a complete bodge to work around the 
+																	broken / outdated HTMl the code generates. It is heavily dependent
+																	on the existing page layout and any alterations to the HTML may have
+																	unexpected results.
+*/
+
+
+/*  Basic general layout stuff */
+body.page-template-toolpagev2 form {
+}
+
+/* ID elements appearing on one or more pages */
+#monsterClassSelection {
+	margin: 1em 0em;
+
+	flex: 0 0 100%;
+
+	flex-flow: column nowrap;
+
+}
+#monsterClassSelection > div:nth-of-type(1) {
+	/* intro text */
+	display: block;
+}
+
+#monsterClassSelection > div {
+	flex: 0 0 100%;
+	margin: 0.25rem 0;
+
+	display: flex;
+	flex-flow: row nowrap;
+}
+
+#monsterClassSelection > div > div {
+		flex: 0 0 10rem;
+}
+
+#monsterClassSelection > div:nth-of-type(10) {
+		/* initial stats */
+		flex: 0 0 100%;
+		
+		display: block;
+		width: 100%;
+}
+#monsterClassSelection > div:nth-of-type(10) > div:nth-of-type(1) {
+		display: block;
+}
+#monsterClassSelection > div:nth-of-type(10) > div:nth-of-type(2) {
+		display: block;
+		
+}
+#monsterClassSelection > div:nth-of-type(10) > div:nth-of-type(2) > p {
+		display: block;		
+		width: 100%;
+}
+#monsterClassSelection > div:nth-of-type(10) > div:nth-of-type(2) > p > input {
+		box-shadow: none;
+		display: inline-block;
+		width: 1rem;
+}
+
+/*** Page specific layout ***/
+
+/* 260 - Pathfinder RPG NPC Generator */
+body.page-id-260 form > div > p {
+		margin: 1rem 0 0 0;
+		width: 100%;
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: center;
+		align-content: space-around;
+		align-items: stretch;
+}
+
+body.page-id-260 form > div > p:nth-of-type(1) {
+		/* Monster Selection */
+		
+}
+body.page-id-260 form > div > p:nth-of-type(1) > input[type="button"] {
+		/* Monster Selection letter buttons */
+	margin: 0.5rem;
+	width: 2rem;
+	height: 2rem;
+	flex: 0 0 auto;
+	min-width: 0;
+
+}
+body.page-id-260 #monsterTypeLabel {
+		/* Monster Selection monster type */
+		flex: 0 0 100%;
+		max-width: 100%;
+		text-align: center;		
+}
+body.page-id-260 #monsterTypeLabel > select[name="mon_name"] {
+		margin: 1.5rem;
+}
+
+body.page-id-260 #generateMonster2 {
+		/* Gen Monster Button */
+		margin: 0.5rem;
+}
+
+body.page-id-260 #monsterTypeLabel > select[name="mon_tem"], body.page-id-260 #monsterTypeLabel > select[name="mon_tem2"] { 
+		margin: 0.25rem 1.5rem;
+}
+
+
+body.page-id-260 #monsterClassSelection {
+
+}
 
 /** Utility Classes   **/
 .tools-content .lightBorder {
@@ -140,78 +251,7 @@ Additional CSS for Dingle's Games Tools
 	width: 50%;
 }
 
-#monsterGenerator .table {
-	
-}
 
-#monsterGenerator .tableRow {
-	clear: both;
-	border-top: 1px solid black;
-	padding: 0.2em;
-}
-#monsterGenerator .tableCell {
-	float: left;
-	margin: 0.5em auto;
-}
-
-#monsterGenerator .tableCellWidth30 {
-	width: 30%;
-	margin-left: 2%;
-}
-#monsterGenerator .tableCellWidth20 {
-	width: 20%;
-	margin-left: 2%;
-}
-#monsterGenerator .tableCellWidth40 {
-	margin-left: 2%;
-	width: 10em;
-	margin-bottom: 0.25em;
-}
-
-#monsterGenerator .table h4 {
-	font-weight: bold;
-	text-align: center;
-}
-
-/* Psuedo classes for inputs */
-
-
-#monsterClassSelection {
-	clear: both;
-	width: 100%;
-	padding: 0.25em;
-	position: relative;
-	margin: 1em 0em;
-/*        font-family: 'Happy Monkey', cursive; */
-}
-
-#monsterClassSelection h5 {
-
-}
-
-#monsterClassSelection .classSelect {
-	width: 100%;
-/*	font-family: 'Happy Monkey', cursive; */
-}
-
-#monsterClassSelection .levelInput {
-	width: 3em;
-/*	font-family: 'Happy Monkey', cursive;  */
-}
-#monsterClassSelection .focusSelect {
-	width: 100%;
-/*	font-family: 'Happy Monkey', cursive;  */
-}
-
-#generateMonster {
-	clear: both;
-	margin-top: 1em;
-}
-#generateMonster2 {
-	clear: both;
-	margin-top: 1em;
-	float: right;
-}
 
 
 /***************************************/
@@ -825,6 +865,5 @@ table.tools-content  specialaTable .thsmall th {
 .tools-content .spelldesc {
     font-size: 10pt;
 }
-
 
 

@@ -12,7 +12,7 @@ function load_scripts() {
 */
 /** ------ Load Additional Style Sheets ------ **/
 function custom_style_sheet() {
-	wp_enqueue_style( 'custom-styling', get_stylesheet_directory_uri() . 'css/style-tools.css' );
+	wp_enqueue_style( 'custom-styling', get_stylesheet_directory_uri() . '/css/style-tools.css' );
 }
 add_action('wp_enqueue_scripts', 'custom_style_sheet');
 
