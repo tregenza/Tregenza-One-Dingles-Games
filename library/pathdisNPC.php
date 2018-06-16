@@ -6861,7 +6861,7 @@ if ($new_animal_comp_level > 0){
 
 //echo "domain $domain_11 / $domain_12 / $domain_13 ";
 //require_once ( "ddDisplayNPCForm.php" );
-		require_once(locate_template('library/ddDisplayNPCForm.php'));
+		require_once(locate_template('library/dddisplayNPCForm.php'));
 
 ?>
 /* Redundent??? handled by theme ??? */
