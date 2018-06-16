@@ -104,6 +104,10 @@ function getDBLink() {
 			/* Chris Local Development */
 			$sqlPW = "6d6rpg";
 			break;
+		case "dinglesgames.default.paulsingeton.uk0.bigv.io":
+			/* Chris Local Development */
+			$sqlPW = "8jXXgB=L5z";
+			break;
 	}
 	
 	$connect = mysqli_connect($sqlHost,$sqlAcc,$sqlPW,$sqlDB) ;
