@@ -5,6 +5,24 @@
 //require $includePathLocal."/ddmonsterFunctions.php";
 
 // require "./ddInit.php";
+
+/* CT TEMP  - Added to stop undef errors */
+$savemon_sub = "";
+$savemon_name = "";
+$htmlp = "";
+$html = "";
+$temp_type2 = "";
+$ctit_txt_p = "";
+$htmlp_secondary_attacks_s = "";
+$spell_html_print_s = "";
+$class1_level = "";
+$class2_level = "";
+$mon_alignment = "";
+$mon_aligment = "";					/*  typo or correct name ? */
+$tem_type2 = "";
+$savemon_camp = "";
+/* end */
+
 if (IsSet($_SESSION['smon_name'])){
    $mon_name     = $_SESSION['smon_name'];
    $class1_tp    = $_SESSION['sclass1_tp'];
@@ -22,9 +40,7 @@ if (IsSet($_SESSION['smon_name'])){
    $mon_temp2     = $_SESSION['smon_template2'];
 //   echo "user = $user" ;
 }
-//else{
-//   echo   '<P><A HREF="ddselmon.php">Monster Generator</A></P>';
-//}
+
 $savemon_camp_s = $savemon_camp;
 $savemon_sub_s = $savemon_sub;
 $savemon_name_s = $savemon_name;
@@ -50,9 +66,7 @@ if (is_page(1947)){
 
 
 $header = '<div style="border-top:1px solid rgb(0, 0, 0);border-bottom:1px solid rgb(0, 0, 0);margin-top:6px;margin-bottom:6px;width:100%"><font size="3">';
-//$htmlp. = '<p><font size="1" face="arial">';
-// $print = $mon_print;
-//$htmlp .= "<p><class='htmlPrint'>";
+
 if ($savemon_camp != "" or $savemon_sub != ""){
    $print = "Name " . $savemon_name . " (" . $savemon_camp . "/" . $savemon_sub . ")" .  "\n";
    $htmlp .=  "</BR></BR><b>Name</b> " . $savemon_name . " (" . $savemon_camp . "/" . $savemon_sub . ")" .  "\n";
@@ -177,7 +191,9 @@ if ($tem_type != "" and ((($mon_type == 'Animal' or $mon_type == 'Vermin') and $
       $htmlp .= $mon_alignment .  " " . $mon_size . " " . $mon_type . " ($tem_type)" . $print_sub . "</BR>";
    }
 }else{
-   if ($tem_type2 != "" and ((($mon_type == 'Animal' or $mon_type == 'Vermin') and $tem_type2 == 'Magical beast') or $tem_type2 != 'Magical beast')){
+echo $mon_aligment;
+
+   if ($tem_type2 != "" and ((($mon_type == 'Animal' or $mon_type == 'Vermin') and $tem_type2 == 'Magical beast') or $tem_type2 != 'Magical beast')){ 
        $htmlp .= $mon_alignment .  " " . $mon_size . " " . $mon_type . " ($tem_type $tem_type2)" . $print_sub . "</BR>";
    }else{
       $htmlp .= $mon_alignment .  " " . $mon_size . " " . $mon_type . $print_sub . "</BR>";
@@ -552,7 +568,7 @@ if ($local == "paulds-1.vm.bytemark.co.uk"){
 ?>
 <?
 // require_once $includePath."/header.php";
-
+/*
 ?>
 		<!-- Define Local CSS -->
 		<LINK href="./local.css" rel="stylesheet" type="text/css" media="all">
@@ -560,6 +576,7 @@ if ($local == "paulds-1.vm.bytemark.co.uk"){
 		<LINK href="./style-statsBlock.css" rel="stylesheet" type="text/css" media="all">
 		<!-- END CSS Set Up -->
 <?
+*/
 /*
 <STYLE type="text/css">
 <!--
@@ -670,7 +687,6 @@ $rows = $line_count + $line_len + 1;
 <?
 //include 'paypal4.php';
 ?>
-
 
 
 

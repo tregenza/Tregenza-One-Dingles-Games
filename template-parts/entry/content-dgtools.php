@@ -4,7 +4,7 @@
 		/* Dingles Games code has a lot of hardcoded style attributes in the HTML.
 					This is shit and makes applying CSS much harder.
 				So this code uses an output bufer (ob_start / ob_end) to scrub the styles by 
-				 renaming style sttributes as stylex . 
+				 renaming style attributes as stylex . 
 
 				This is a shit way of doing it as the real solution is to scrub all styles from the original code.
 */

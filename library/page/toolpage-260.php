@@ -21,24 +21,20 @@
    	    $focus1 = "focus1";
 		$focus2 = "focus1";
 
-		include(locate_template('library/pathselectNPC.php'));
+		require_once(locate_template('library/pathselectNPC.php'));
 
 	} else {
 
 		// Vetted Monster so load the Display Monster page
 		if (isset($_POST["print_ind"]) && $_POST["print_ind"] == "Plain Text Version"){
-               //pds 23/11/2010       require( $workingPath."/dddismonprint.php");
-			include(locate_template('library/pathdismonprint.php'));
+			require_once(locate_template('library/pathdismonprint.php'));
 		}else{
     		if (isset($_POST["print_ind"]) && $_POST["print_ind"] == "Short Text Version"){
-            	include(locate_template('library/shortdismonprint.php'));
+            require_once(locate_template('library/shortdismonprint.php'));
 			}else{
-				include(locate_template('library/pathdisNPC.php'));
+				require_once(locate_template('library/pathdisNPC.php'));
 			}
 		}
 	}
 
 ?>
-
-
-

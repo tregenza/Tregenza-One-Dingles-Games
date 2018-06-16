@@ -52,6 +52,7 @@ function populateHelp() {
 
 
  //  echo $select;
+/* OLD CODE CT - 13/6/18
    echo "<script>" . "\n";
    $result = mysqli_query($link, $select) ;
    $feat_name_old = "";
@@ -97,6 +98,67 @@ function populateHelp() {
       }  
    }
    echo "</script>" . "\n";
+
+*/
+
+/* New - CT */	
+			$scriptOutput = "";
+   $result = mysqli_query($link, $select) ;
+   $feat_name_old = "";
+   $count = 0;
+   while ($row = mysqli_fetch_array($result)){
+      $count +=1;
+      $feat_name = $row['feat_name'];
+      if ($feat_name != ""){
+        $feat_desc = $row['feat_desc'];
+        $feat_desc = str_replace("\n","\\n", $feat_desc);
+        $feat_desc = str_replace("\r","\\n", $feat_desc);
+        $feat_desc = str_replace('"'," ", $feat_desc);
+
+        $feat_type = $row['featattr_type'];
+        $feat_id = $row['featattr_id'];
+        $feat_rfeat = $row['featattr_rfeat'];
+        $feat_no = $row['featattr_no'];
+        $feattype_desc = $row['feattype_desc'];
+        if ($feat_type == "RMONTP" or $feat_type == "RCLASS"){
+           $feat_id = "";
+        }
+        if ($feat_name_old != $feat_name){
+          if ($feat_name_old != ""){
+             $scriptOutput .= "var $feat_name_v =" . '"' . $$feat_name_v . '"' . ";" . "\n";
+          }
+          $feat_name_v = str_replace(" ", "_",$feat_name);
+          $feat_name_v = str_replace(",", "_",$feat_name_v);
+          $feat_name_v = str_replace("'", "_",$feat_name_v);
+          $feat_name_v = str_replace("(", "_",$feat_name_v);
+          $feat_name_v = str_replace("-", "_",$feat_name_v);
+          $feat_name_v = str_replace("+", "_",$feat_name_v);
+          $feat_name_v = str_replace("*", "_",$feat_name_v);
+          $feat_name_v = str_replace(")", "_",$feat_name_v) ."_h";
+          global $$feat_name_v;
+          $$feat_name_v = $feat_name ." " . $feat_desc . "\\n";
+          $feat_name_old = $feat_name;
+        }
+        $$feat_name_v .=  " " . $feattype_desc . " " .  $feat_id . " " . $feat_rfeat ." " . $feat_no . "\\n";
+        if ($count == 10){
+           $count = 1;
+        }
+      }  
+   }
+
+
+
+		/* Capture dynmically generated JS*/
+		$resultJS = 	wp_add_inline_script( 'dgJS', $scriptOutput);			/* add it to static JS loaded via the functions.php */
+	
+		if ( ! $resultJS ) {
+			error_log("Dynamic JS failed to load in ddmonsterFunctions.php");	
+			die;
+		}
+/* New - CT - END */
+
+
+
 }
 
 function check_feat($feat){
@@ -600,39 +662,41 @@ function monLetter($letter){
 	$html = '<LABEL id="monsterTypeLabel">Monster <SELECT NAME="mon_name" id="mon_name" >';
 //        $html = '<TABLE ><TR><TH><b>Monster</b></TH><TH><b>Template</b></TH></TR>' .
 //                '<TR><TD><SELECT NAME="mon_name" >';
-	$select = "SELECT mon_key_1, mon_name ,mon_size , mon_type ,mon_hd ,mon_hp ,".
-	                 "mon_init ,mon_speed ,mon_ac_flat , mon_ac ," .
-	                 "mon_base_att ,mon_full_att ,mon_space ,mon_reach ,".
-	                 "mon_cr ,mon_str ,mon_dex ,mon_con ,mon_int ," .
-	                 "mon_wis ,mon_chr ,mon_desc,mon_sv_fort, mon_sv_reflex,  mon_sv_will, " .
-	                 "mon_armour, mon_shield from monster2 where ((mon_template <> 'T' and mon_template <>'AC') or mon_template is NULL) and (mon_key_1 = '$key_1' or mon_key_1 = '$wp_user') " .
-                         " and (mon_delete <> 'Y' or mon_delete is NULL) and mon_name like '" . $letter . "%'  order by mon_name";
-   //     echo $select;
+
+	$select = "SELECT mon_key_1, mon_name ,mon_size , mon_type ,mon_hd ,mon_hp ,";
+	$select .= "mon_init ,mon_speed ,mon_ac_flat , mon_ac ,";
+	$select .= "mon_base_att ,mon_full_att ,mon_space ,mon_reach ,";
+	$select .= "mon_cr ,mon_str ,mon_dex ,mon_con ,mon_int ," ;
+	$select .= "mon_wis ,mon_chr ,mon_desc,mon_sv_fort, mon_sv_reflex,  mon_sv_will, " ;
+	$select .= 	"mon_armour, mon_shield from monster2 where ((mon_template <> 'T' and mon_template <>'AC') or mon_template is NULL) and (mon_key_1 = '$key_1' or mon_key_1 = '$wp_user') ";
+	$select .= " and (mon_delete <> 'Y' or mon_delete is NULL) and mon_name like '" . $letter . "%'  order by mon_name";
 
 	$link = getDBLink();
 	$result = mysqli_query($link, $select) ;
 
-	while ($row = mysqli_fetch_array($result)) {
-
-		$mon_sel = $row['mon_name'] ;
-		$mon_hd  = $row['mon_hd'] ;
-        $mon_key_1 = $row['mon_key_1'];
-/***
-*			Change by Chris:
-*			$currentlySelected not defined	
-*
-* 	OLD CODE
-		if ($mon_sel == $currentlySelected)     {
-			$sel = " SELECTED" ;
-		} else {
-			$sel = "" ;
-        }
-*  END OLD CODE */
-/* NEW CODE */
-		$sel = "" ;
-/* END NEW CODE */
-        $html .= '<OPTION VALUE="' .$mon_sel. '" '.$sel.' >'.$mon_sel.'</OPTION>';
-	}
+	if ( $result ) {	
+			while ($row = mysqli_fetch_array($result)) {
+		
+				$mon_sel = $row['mon_name'] ;
+				$mon_hd  = $row['mon_hd'] ;
+		        $mon_key_1 = $row['mon_key_1'];
+		/***
+		*			Change by Chris:
+		*			$currentlySelected not defined	
+		*
+		* 	OLD CODE
+				if ($mon_sel == $currentlySelected)     {
+					$sel = " SELECTED" ;
+				} else {
+					$sel = "" ;
+		        }
+		*  END OLD CODE */
+		/* NEW CODE */
+				$sel = "" ;
+		/* END NEW CODE */
+		       $html .= '<OPTION VALUE="' .$mon_sel. '" '.$sel.' >'.$mon_sel.'</OPTION>';
+			}
+	}			
 	mysqli_close($link);
 //	echo $html_C  . "</BR>"  ;
 //        echo "C = " .  $$html_C;
@@ -801,6 +865,8 @@ function getDomainSelectionHTML($currentlySelected) {
 	$html = "";
 	$select = "SELECT spellcl_id from spellcl Where spellcl_domain = 'Y' ORDER BY spellcl_id";
 	$link = getDBLink();
+
+
 	$result = mysqli_query($link, $select) ;
 	while ($row = mysqli_fetch_array($result)) {
 
@@ -4577,9 +4643,28 @@ function disAttr2($attr,$selected){
 
     $attrn = "attr_" . $attr ;
     $old_attrn = $attrn . "_old";
-    echo "\n<script>\n";
-    echo "var $old_attrn = $selected \n";
-    echo "\n</script>\n";
+
+
+// OLD CODE CT - 13/6/18
+//    echo "\n<script>\n";
+//    echo "var $old_attrn = $selected \n";
+//    echo "\n</script>\n";
+
+/* New - CT */
+		/* Capture dynmically generated JS*/
+		ob_start();
+		echo "\n/* ddmonsterFunctions */\n";
+  echo "var $old_attrn = $selected; \n";
+		$dynamicJS = ob_get_clean();
+		$resultJS = 	wp_add_inline_script( 'dgJS', $dynamicJS);			/* add it to static JS loaded via the functions.php */
+	
+		if ( ! $resultJS ) {
+			error_log("Dynamic JS failed to load in ddmonsterFunctions.php");	
+			die;
+		}
+/* New - CT - END */
+
+
    $name = "mon_" . strtolower($attr);
    $html = $attr . "</TD><TD><SELECT class='width4em' NAME='$name' onchange="
             . '"calcattr(this,'
@@ -7040,19 +7125,23 @@ global $save_key_old;
 if ($save_key_old != ""){
 
 echo <<<END
+<div class="buttonBlock">
 <INPUT class="button noPrint" TYPE="submit" ID="print_ind11" style="display: none"  NAME="print_ind" VALUE="Recalculate" style="height: 28px; width: 90px" />
 <INPUT class="button noPrint" TYPE="submit" ID="print_ind12" style="display: none"  NAME="print_ind" VALUE="Plain Text Version" style="height: 28px; width: 140px"/>
 <INPUT class="button noPrint" TYPE="submit" ID="print_ind13" style="display: none"  NAME="print_ind" VALUE="Short Text Version" style="height: 28px; width: 140px"/>
 <INPUT class="button noPrint" TYPE="submit" ID="print_ind14" style="display: none"  NAME="print_ind" VALUE="Save" style="height: 28px; width: 50px"/>
 <INPUT class="button noPrint" TYPE="submit" ID="print_ind15" style="display: none"  NAME="print_ind" VALUE="New Save" style="height: 28px; width: 77px"/>
+</div>
 END;
 
 }else{
 echo <<<END
+<div class="buttonBlock">
 <INPUT class="button noPrint" TYPE="submit" ID="print_ind1" style="display: none" NAME="print_ind" VALUE="Recalculate" style="height: 28px; width: 150px"/>
 <INPUT class="button noPrint" TYPE="submit" ID="print_ind2" style="display: none" NAME="print_ind"  VALUE="Plain Text Version" style="height: 28px; width: 150px"/>
 <INPUT class="button noPrint" TYPE="submit" ID="print_ind3" style="display: none" NAME="print_ind"  VALUE="Short Text Version" style="height: 28px; width: 180px"/>
 <INPUT class="button noPrint" TYPE="submit" ID="print_ind4" style="display: none" NAME="print_ind" VALUE="Save" style="height: 28px; width: 80px"/>
+</div>
 END;
 
 }
@@ -7063,19 +7152,23 @@ global $save_key_old;
 if ($save_key_old != ""){
 
 echo <<<END
+<div class="buttonBlock">
 <INPUT class="button noPrint" TYPE="submit"  NAME="print_ind" VALUE="Recalculate" style="height: 28px; width: 90px" />
 <INPUT class="button noPrint" TYPE="submit"  NAME="print_ind" VALUE="Plain Text Version" style="height: 28px; width: 140px"/>
 <INPUT class="button noPrint" TYPE="submit"  NAME="print_ind" VALUE="Short Text Version" style="height: 28px; width: 140px"/>
 <INPUT class="button noPrint" TYPE="submit"  NAME="print_ind" VALUE="Save" style="height: 28px; width: 50px"/>
 <INPUT class="button noPrint" TYPE="submit"  NAME="print_ind" VALUE="New Save" style="height: 28px; width: 80px"/>
+</div>
 END;
 
 }else{
 echo <<<END
+<div class="buttonBlock">
 <INPUT class="button noPrint" TYPE="submit"  NAME="print_ind" VALUE="Recalculate" style="height: 28px; width: 150px"/>
 <INPUT class="button noPrint" TYPE="submit"  NAME="print_ind"  VALUE="Plain Text Version" style="height: 28px; width: 150px"/>
 <INPUT class="button noPrint" TYPE="submit"  NAME="print_ind"  VALUE="Short Text Version" style="height: 28px; width: 150px"/>
 <INPUT class="button noPrint" TYPE="submit"  NAME="print_ind" VALUE="Save" style="height: 28px; width: 100px"/>
+</div>
 END;
 
 }
@@ -7181,27 +7274,6 @@ function add_BR ($html){
    $html = str_replace(chr(155),"</BR>",$html);
    return($html);
 }
-function print_ind($print_ind){
-    global $key_1;
-    if ($print_ind == "Plain Text Version"){
-      //pds 23/11/2010       require( $workingPath."/dddismonprint.php");
-             $require ="/pathdismonprint.php";
-      }else{
-           if ($print_ind == "Short Text Version"){
-                $require ="/shortdismonprint.php";
-          }else{
-	//				require ($workingPath."/dddismon.php");
-	      if ($key_1 == "dd35"){
-                  $require  = "/dddisNPC.php";
-              }else{
-                  $require  = "/pathdisNPC.php";
-              }
-         }
-      }
-      return ($require);
-}
-
-
 
 
 

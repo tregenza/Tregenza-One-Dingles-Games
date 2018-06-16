@@ -5,7 +5,7 @@
 *
 **/
 ?>
-<script>
+
 var req;
 var test;
 
@@ -286,5 +286,3 @@ function changeInputType(oldObject, oType) {
 window.onload = function() {
     print_unhide();
 }
-
-</script>

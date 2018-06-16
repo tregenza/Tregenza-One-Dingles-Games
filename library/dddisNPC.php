@@ -5328,6 +5328,7 @@ if ($print_ind == "Plain Text Version"){
 }
 
 ?>
+/*
 <script>
 if(typeof(urchinTracker)!='function')document.write('<sc'+'ript src="'+
 'http'+(document.location.protocol=='https:'?'s://ssl':'://www')+
@@ -5339,8 +5340,7 @@ _uacct = 'UA-6999444-1';
 urchinTracker("/1656209821/goal");
 } catch (err) { }
 </script>
-
-
+*/
 
 
 

@@ -22,6 +22,27 @@ if ($local == "paulds-1.vm.bytemark.co.uk"){
    $location_self =  'http://' . $local . '/dddismon.php';
 }
 
+$current_user = wp_get_current_user();
+$wp_user = $current_user->user_login;
+
+
+/*  Variable defs added by CT as hack to get round error messages during development */
+$mon_int_bonus_orig = 0;
+$mon_int_bonus_skill = 0;
+$mon_con_bonus = 0;
+$mon_wis_bonus = 0;
+$mon_dex_bonus = 0;
+$mon_chr_bonus = 0;
+$magic_ac = 0;
+$magic_ac_dodge = 0;
+$magic_ac_deflect = 0;
+$mon_str_bonus = 0;
+$bonus_dam_spec = 0;
+$gen_feats = 0;
+$mon_int_bonus = 0;
+$classm_spat = 0;
+$feat_weaptr = 0;
+/* END CT  */
 
 
 $key_1 = "path";
@@ -44,7 +65,7 @@ $mon_size_u = "";
 $size_changed_sel = "";
 $animal_companion = "";
 $zombie_tem = "";
-$tem_base_att = "";
+$tem_base_att = 0;
 $class1_att = "";
 $class1_lev_att = "";
 $class1_spat = "";
@@ -57,102 +78,102 @@ $count2 = 0;
 $class1_hd = "";
 $class2_hd = "";
 $class3_hd = "";
-$temCR = "";
+$temCR = 0;
 $total_level_old = "";
 $attr_spent = "";
 $tem_die = "";
 $magic_hps = "";
 $tough_hp = "";
-$class1_fort_sv = "";
-$class2_fort_sv = "";
-$class3_fort_sv = "";
-$tem_fort_sv = "";
-$class1_will_sv = "";
-$class2_will_sv = "";
-$class3_will_sv = "";
-$tem_will_sv = "";
-$class1_reflex_sv = "";
-$class2_reflex_sv = "";
-$class3_reflex_sv = "";
-$tem_reflex_sv = "";
-$class1_skill_points = "";
-$class2_skill_points = "";
-$class3_skill_points = "";
-$total_skill_points_old = "";
-$mon_skill_points = "";
-$mon_skill_points_save = "";
-$attnum1 = "";
-$attnum2 = "";
-$attnum3 = "";
-$attnum4 = "";
-$attnum5 = "";
+$class1_fort_sv = 0;
+$class2_fort_sv = 0;
+$class3_fort_sv =0;
+$tem_fort_sv = 0;
+$class1_will_sv = 0;
+$class2_will_sv = 0;
+$class3_will_sv = 0;
+$tem_will_sv = 0;
+$class1_reflex_sv = 0;
+$class2_reflex_sv = 0;
+$class3_reflex_sv = 0;
+$tem_reflex_sv = 0;
+$class1_skill_points = 0;
+$class2_skill_points = 0;
+$class3_skill_points = 0;
+$total_skill_points_old = 0;
+$mon_skill_points = 0;
+$mon_skill_points_save = 0;
+$attnum1 = 0;
+$attnum2 = 0;
+$attnum3 = 0;
+$attnum4 = 0;
+$attnum5 = 0;
 $class2_attack = "";
 $class3_attack = "";
 $int_ac = "";
-$feat_ac_bonus = "";
-$magic_armour_touch = "";
-$str_bonus = "";
-$feat_grapple = "";
-$feat_attall = "";
-$single_attack = "";
-$flurry_att = "";
-$no_attacks = "";
-$exattap = "";
-$flurry_no = "";
-$feat_size = "";
-$crit_mod = "";
-$crit_mod_r = "";
+$feat_ac_bonus = 0;
+$magic_armour_touch = 0;
+$str_bonus = 0;
+$feat_grapple = 0;
+$feat_attall = 0;
+$single_attack = 0;
+$flurry_att = 0;
+$no_attacks = 0;
+$exattap = 0;
+$flurry_no = 0;
+$feat_size = 0;
+$crit_mod = 0;
+$crit_mod_r = 0;
 $temp_weapons_flag = "";
-$mon_weap_r = "";
-$crit_mod = "";
-$crit_mod_r = "";
-$orig_monweap_dam_s1 = "";
-$weap_dam_s1 = "";
-$weap_dam2_s1 = "";
-$monweap_dambase_no_s1 = "";
-$magic_damage_s1 = "";
-$magic_tohit_s1 = "";
-$orig_monweap_dam_s2 = "";
-$weap_dam_s2 = "";
-$mon_weap_s2 = "";
-$orig_monweap_dam_s3 = "";
-$weap_dam_s3 = "";
-$weap_dam_s3 = "";
-$orig_monweap_dam_s4 = "";
-$weap_dam_s4 = "";
-$weap_dam_s4 = "";
-$orig_monweap_dam_s5 = "";
-$weap_dam_s5 = "";
-$weap_dam_s5 = "";
-$orig_monweap_dam_s6 = "";
-$weap_dam_s6 = "";
-$weap_dam_s6 = "";
-$orig_monweap_dam_s7 = "";
-$weap_dam_s7 = "";
-$weap_dam_s7 = "";
-$orig_monweap_dam_s8 = "";
-$weap_dam_s8 = "";
-$weap_dam_s8 = "";
-$orig_monweap_dam_s9 = "";
-$weap_dam_s9 = "";
-$weap_dam_s9 = "";
-$orig_monweap_dam_s10 = "";
-$weap_dam_s10 = "";
-$weap_dam_s10 = "";
-$spec_init = "";
-$mon_weap_s3  = "";
-$mon_weap_s4  = "";
-$mon_weap_s5  = "";
-$mon_weap_s5  = "";
-$mon_weap_s6 = "";
-$mon_weap_s7 = "";
-$mon_weap_s8 = "";
-$mon_weap_s9 = "";
-$mon_weap_s10 = "";
-$class2_damage = "";
-$class1_cr_mult = "";
-$class2_cr_mult = "";
-$tem_cr = "";
+$mon_weap_r = 0;
+$crit_mod = 0;
+$crit_mod_r = 0;
+$orig_monweap_dam_s1 = 0;
+$weap_dam_s1 = 0;
+$weap_dam2_s1 = 0;
+$monweap_dambase_no_s1 = 0;
+$magic_damage_s1 = 0;
+$magic_tohit_s1 = 0;
+$orig_monweap_dam_s2 = 0;
+$weap_dam_s2 = 0;
+$mon_weap_s2 = 0;
+$orig_monweap_dam_s3 = 0;
+$weap_dam_s3 = 0;
+$weap_dam_s3 = 0;
+$orig_monweap_dam_s4 = 0;
+$weap_dam_s4 = 0;
+$weap_dam_s4 = 0;
+$orig_monweap_dam_s5 = 0;
+$weap_dam_s5 = 0;
+$weap_dam_s5 = 0;
+$orig_monweap_dam_s6 = 0;
+$weap_dam_s6 = 0;
+$weap_dam_s6 = 0;
+$orig_monweap_dam_s7 = 0;
+$weap_dam_s7 = 0;
+$weap_dam_s7 = 0;
+$orig_monweap_dam_s8 = 0;
+$weap_dam_s8 = 0;
+$weap_dam_s8 = 0;
+$orig_monweap_dam_s9 = 0;
+$weap_dam_s9 = 0;
+$weap_dam_s9 = 0;
+$orig_monweap_dam_s10 = 0;
+$weap_dam_s10 = 0;
+$weap_dam_s10 = 0;
+$spec_init = 0;
+$mon_weap_s3  = 0;
+$mon_weap_s4  = 0;
+$mon_weap_s5  = 0;
+$mon_weap_s5  = 0;
+$mon_weap_s6 = 0;
+$mon_weap_s7 = 0;
+$mon_weap_s8 = 0;
+$mon_weap_s9 = 0;
+$mon_weap_s10 = 0;
+$class2_damage = 0;
+$class1_cr_mult = 0;
+$class2_cr_mult = 0;
+$tem_cr = 0;
 $color = "";
 $armour_1 = "";
 $armour_2 = "";
@@ -221,20 +242,20 @@ $text = "";
 $skill_changed = "";
 $bold = "";
 $ebold = "";
-$class1_psi_pts  = "";
-$class2_psi_pts  = "";
-$class3_psi_pts  = "";
-$psi_points = "";
-$class1_psi_cmb = "";
-$class2_psi_cmb = "";
-$class3_psi_cmb = "";
+$class1_psi_pts  = 0;
+$class2_psi_pts  = 0;
+$class3_psi_pts  = 0;
+$psi_points = 0;
+$class1_psi_cmb = 0;
+$class2_psi_cmb = 0;
+$class3_psi_cmb = 0;
 $total_spent = "";
 $print_ind = "";
 $tem_type = "";
-$ac_profane = "";
-$ac_dodge =  "";
-$ac_luck = "";
-$ac_insight = "";
+$ac_profane = 0;
+$ac_dodge =  0;
+$ac_luck = 0;
+$ac_insight = 0;
 $skillErrorsHTML = "";
 $attrErrorsHTML = "";
 $class3_tp = "";
@@ -311,26 +332,26 @@ $tem_ac_luck = 0;
 $tem_ac_dodge = 0;
 $size_ac_mod = 0;
 $simpSecAdj = 0;
-$flurry_bonus = "";
-$sec_adj = "";
-$rang_adg = "";
-$feat_agilem = "";
-$CMDLtArm = "";
-$CMDMdArm = "";
-$CMDHvArm = "";
-$feat_dct = "";
-$chrdexcmd  = "";
-$feat_multiw = "";
-$rang_adj = "";
-$tohit_feat_p = "";
-$feat_exatta11 = "";
-$feat_exatta12 = "";
-$bonus_dam_close = "";
-$dam_feat_p = "";
-$crit_mod2 = "";
-$feat_dslice = "";
-$feat_atth2 = "";
-$feat_armtp  = "";
+$flurry_bonus = 0;
+$sec_adj = 0;
+$rang_adg = 0;
+$feat_agilem = 0;
+$CMDLtArm = 0;
+$CMDMdArm = 0;
+$CMDHvArm = 0;
+$feat_dct = 0;
+$chrdexcmd  = 0;
+$feat_multiw = 0;
+$rang_adj = 0;
+$tohit_feat_p = 0;
+$feat_exatta11 = 0;
+$feat_exatta12 = 0;
+$bonus_dam_close = 0;
+$dam_feat_p = 0;
+$crit_mod2 = 0;
+$feat_dslice = 0;
+$feat_atth2 = 0;
+$feat_armtp  = 0;
 $speedmednorm = "";
 $monk_level_dam = "";
 $weretemp = "";
@@ -356,19 +377,19 @@ $spec_fort_sv = 0;
 $spec_will_sv = 0;
 $spec_reflex_sv = 0;
 $flurry_of_blows = "";
-$feat_armch = "";
-$magic_ac_insight = "";
-$magic_ac_profane = "";
-$magic_ac_luck = "";
-$feat_defshield = "";
-$prim_adj = "";
-$marSecAdj = "";
-$simpSecAdj = "";
-$exSecAdj = "";
-$feat_multi = "";
-$old_animal_comp_level = "";
-$feat_acrobat = "";
-$feat_armch = "";
+$feat_armch = 0;
+$magic_ac_insight = 0;
+$magic_ac_profane = 0;
+$magic_ac_luck = 0;
+$feat_defshield = 0;
+$prim_adj = 0;
+$marSecAdj = 0;
+$simpSecAdj = 0;
+$exSecAdj = 0;
+$feat_multi = 0;
+$old_animal_comp_level = 0;
+$feat_acrobat = 0;
+$feat_armch = 0;
 $path2 = "";
 $count_ranged = "";
 $feat_atth2_used = "";
@@ -551,7 +572,12 @@ if (IsSet($_SESSION['smon_name']) or $_POST['savemon_key'] != ""){
 	$montype_att = $row['montype_att'];
 
 */
+
 	extract($row, EXTR_OVERWRITE);
+
+	/*  Cast to int any vars which are varchar in the DB but hod numerics */
+	$mon_cr = (int)$mon_cr;
+	$mon_ac_flat = (int)$mon_ac_flat;
 	$mon_speed_fly_save = $mon_speed_fly;
 //	echo $montype_skillp;
         $mon_skillp = $montype_skillp;
@@ -566,7 +592,7 @@ if (IsSet($_SESSION['smon_name']) or $_POST['savemon_key'] != ""){
    $mon_hd_original = $mon_hd;
   }else{
    $len = strlen($mon_hd);
-   $mon_hd_original = substr($mon_hd,0,($d));
+   $mon_hd_original = (int)substr($mon_hd,0,($d));
   }
    $mon_size_original = $mon_size;
    $total_level = $class1_level + $class2_level + $class3_level;
@@ -1431,13 +1457,13 @@ $dodge = 0;
 
 
 // check magic items
-$magic_tohit_p = "";
-$magic_damage_p = "";
-$magic_tohit_r = "";
-$magic_damage_r = "";
+$magic_tohit_p = 0;
+$magic_damage_p = 0;
+$magic_tohit_r = 0;
+$magic_damage_r = 0;
 $feat_inert_arm = 0;
 $feat_attu = $feat_attud = 0;
-$magic_will_sv = $magic_fort_sv = $magic_reflex_sv  = "0" ;
+$magic_will_sv = $magic_fort_sv = $magic_reflex_sv  = 0 ;
 $magic_speed = 0;
 $mon_nat_armour_ft = 0;
 $magic_shield = 0;
@@ -1497,8 +1523,8 @@ if ($d == FALSE){
   $mon_level = $mon_hd;
 }else{
   $len = strlen($mon_hd);
-  $mon_level = substr($mon_hd,0,($d));
-  $mon_die = substr($mon_hd,$d,$len);
+  $mon_level = (int)substr($mon_hd,0,($d));
+  $mon_die = (int)substr($mon_hd,$d,$len);
 }
 // half dragons increase HD by one catagory
 // echo "override = " .    $tem_hd_override;
@@ -1698,11 +1724,12 @@ $mon_base_att_x = $$mon_base_att_v;
 If ($mon_level != "1"){
     $slash = strpos($mon_base_att_x,"/");
     if ($slash){
-      $mon_base_att =  substr($mon_base_att_x,0,$slash);
+      $mon_base_att =  (int)substr($mon_base_att_x,0,$slash);
    }else{
-      $mon_base_att = $mon_base_att_x;
+      $mon_base_att = (int)$mon_base_att_x;
    }
 }
+
 $mon_base_att += $tem_base_att;
 
 //echo "</BR> " . $mon_base_att_orig . "slash " . $slash;
@@ -1750,6 +1777,8 @@ if ($mon_level > 0){
 }else{
    $mon_skill_points_total = 0;
 }
+
+
 if ($mon_hd_original > 0){
   $mon_skill_points = (($mon_level )  * $mon_skill_b) - (($mon_hd_original ) * $mon_skill_b_orig);
 }else{
@@ -1899,15 +1928,15 @@ $link = getDBLink();
 //  include 'includes/dd_db_conn.txt';
   $result = mysqli_query($link, $select) ;
   $row = mysqli_fetch_array($result);
-  $class1_lev_savg = $row['lev_savg'] ;
-  $class1_lev_savp = $row['lev_savp'] ;
-  $class1_lev_attg = $row['lev_attg'] ;
-  $class1_lev_atta = $row['lev_atta'] ;
-  $class1_lev_attp = $row['lev_attp'] ;
-  $class1_lev_sjlr = $row['lev_sklr'] ;
-  $class1_lev_sklx = $row['lev_sklx'] ;
-  $class1_lev_feat = $row['lev_feat'] ;
-  $class1_lev_abil = $row['lev_abil'] ;
+  $class1_lev_savg = (int)$row['lev_savg'] ;
+  $class1_lev_savp = (int)$row['lev_savp'] ;
+  $class1_lev_attg = (int)$row['lev_attg'] ;
+  $class1_lev_atta = (int)$row['lev_atta'] ;
+  $class1_lev_attp = (int)$row['lev_attp'] ;
+  $class1_lev_sjlr = (int)$row['lev_sklr'] ;
+  $class1_lev_sklx = (int)$row['lev_sklx'] ;
+  $class1_lev_feat = (int)$row['lev_feat'] ;
+  $class1_lev_abil = (int)$row['lev_abil'] ;
   if ($zombie_tem === 0 ){
       $class1_will = 'G';
       $class1_fort = 'P';
@@ -2004,15 +2033,15 @@ if ($class2_tp != ""){
 
   $result = mysqli_query($link, $select) ;
   $row = mysqli_fetch_array($result);
-  $class2_lev_savg = $row['lev_savg'] ;
-  $class2_lev_savp = $row['lev_savp'] ;
-  $class2_lev_attg = $row['lev_attg'] ;
-  $class2_lev_attp = $row['lev_attp'] ;
-  $class2_lev_atta = $row['lev_atta'] ;
-  $class2_lev_sjlr = $row['lev_sklr'] ;
-  $class2_lev_sklx = $row['lev_sklx'] ;
-  $class2_lev_feat = $row['lev_feat'] ;
-  $class2_lev_abil = $row['lev_abil'] ;
+  $class2_lev_savg = (int)$row['lev_savg'] ;
+  $class2_lev_savp = (int)$row['lev_savp'] ;
+  $class2_lev_attg = (int)$row['lev_attg'] ;
+  $class2_lev_attp = (int)$row['lev_attp'] ;
+  $class2_lev_atta = (int)$row['lev_atta'] ;
+  $class2_lev_sjlr = (int)$row['lev_sklr'] ;
+  $class2_lev_sklx = (int)$row['lev_sklx'] ;
+  $class2_lev_feat = (int)$row['lev_feat'] ;
+  $class2_lev_abil = (int)$row['lev_abil'] ;
   if ($zombie == "Y"){
     $class2_lev_feat= 0;
   }
@@ -2268,6 +2297,7 @@ if ($mon_temp != ""){
 if ($mon_temp2 != ""){
       $x = temCR($mon_temp2);
 }
+
 $mon_cr += $temCR;
 
 //echo "total level old = " . $total_level_old;
@@ -2306,26 +2336,26 @@ $total_hd = strtolower($total_hd);
 //
 // Calculate average HPs
 //
-$mon_hp_lev =  (1 + substr($mon_die,1,2)) / 2;
+$mon_hp_lev =  (1 + (int)substr($mon_die,1,2)) / 2;
 $mon_hps    = $mon_level * $mon_hp_lev;
 if ($elite == "Y" and $class1_level == 0 and $mon_level > 0){
    $mon_hps = substr($mon_die,1,2) + (($mon_level -1 )* $mon_hp_lev);
 }
 
-$tem_hp_lev =  (1 + substr($tem_die,1,2)) / 2;
+$tem_hp_lev =  (1 + (int)substr($tem_die,1,2)) / 2;
 $tem_hps    = $tem_level * $tem_hp_lev;
 
-$class1_hp_lev = (1 + substr($class1_die,1,2)) / 2;
+$class1_hp_lev = (1 + (int)substr($class1_die,1,2)) / 2;
 if ($class1_level > 0 and ($class1_cr_mult == 1 or $elite == "Y")){
-   $class1_hps =  substr($class1_die,1,2) + (($class1_level -1) * $class1_hp_lev );
+   $class1_hps =  (int)substr($class1_die,1,2) + (($class1_level -1) * $class1_hp_lev );
 }else{
   $class1_hps =  $class1_level * $class1_hp_lev;
 }
 
 $class1_hps += $class1_level ;
-$class2_hp_lev = (1 + substr($class2_die,1,2)) / 2;
+$class2_hp_lev = (1 + (int)substr($class2_die,1,2)) / 2;
 $class2_hps =  ($class2_level * $class2_hp_lev);
-$class3_hp_lev = (1 + substr($class3_die,1,2)) / 2;
+$class3_hp_lev = (1 + (int)substr($class3_die,1,2)) / 2;
 $class3_hps =  ($class3_level * $class3_hp_lev);
 $total_hps   = round(($mon_hps + $class1_hps + $class2_hps + $class3_hps + $tem_hps + $total_con_bonus -0.5) ,0);
 //mythic template bonus adds mon hit die to total hps for each mythic template
@@ -2384,6 +2414,7 @@ if ($toughness > 0){
 //
 //Saving Throws
 //
+
 $total_fort_sv = $mon_fort_sv + $class1_fort_sv + $class2_fort_sv + $class3_fort_sv + $mon_con_bonus + $magic_fort_sv + $tem_fort_sv + $spec_fort_sv;
 $total_will_sv = $mon_will_sv + $class1_will_sv + $class2_will_sv + $class3_will_sv + $mon_wis_bonus + $magic_will_sv + $tem_will_sv + $spec_will_sv;
 $total_reflex_sv = $mon_reflex_sv + $class1_reflex_sv + $class2_reflex_sv + $class3_reflex_sv + $mon_dex_bonus + $magic_reflex_sv + $tem_reflex_sv + $spec_reflex_sv;
@@ -2603,7 +2634,7 @@ $result = mysqli_query($link, $select);
 if (mysqli_num_rows($result) > 0){
    $row = mysqli_fetch_array($result);
 //    echo"here";
-    $size_ac_mod    = $row['size_ac_mod'];
+    $size_ac_mod    = (int)$row['size_ac_mod'];
     $size_grapple   = $row['size_grapple'];
     $size_hide      = $row['size_hide'];
     $size_sq        = $row['size_sq'];
@@ -2630,7 +2661,7 @@ if (mysqli_num_rows($result) > 0){
      $count = $count + 1;
      if ($count == 1){
        $armour_bonus = $row['armour_bonus_path'];
-       $armour_dex =   $row['armour_dex'];
+       $armour_dex =   (int)$row['armour_dex'];
        $armour_check = $row['armour_check'];
        $armour_spell = $row['armour_spell'];
        $armour_s30   = $row['armour_s30'];
@@ -2641,8 +2672,8 @@ if (mysqli_num_rows($result) > 0){
        $armour_climb = $row['armour_climb'];
        $armour_cost =  $row['armour_cost'];
      }else{
-       $shield_bonus = $row['armour_bonus_path'];
-       $shield_dex =   $row['armour_dex'];
+       $shield_bonus = (int)$row['armour_bonus_path'];
+       $shield_dex =   (int)$row['armour_dex'];
        $shield_check = $row['armour_check'];
        $shield_spell = $row['armour_spell'];
        $shield_s30   = $row['armour_s30'];
@@ -2735,7 +2766,8 @@ while ($level_c  < 3){
       $len = strlen($string);
       $string = substr($string,($pos +1),$len);
          }
-    $$attnum_v = $$attnum_v + $$att_v;
+
+    $$attnum_v = $$attnum_v . $$att_v;
 //    echo $att_v . " = ".  $$att_v . "***" ;
   }
 }
@@ -3105,7 +3137,6 @@ if ($armour_dex > $shield_dex){
    $max_dex = $armour_dex;
 }
 
-
 $max_dex = $max_dex + $feat_armch + $chrdexac;
 if ($max_dex < $mon_dex_bonus ){
    $dex_bonus = $max_dex;
@@ -3202,6 +3233,7 @@ if ($magic_ac_dodge != ""){
    $ac_dodge += $magic_ac_dodge;
 }
 //echo "feat ac bonus $feat_ac_bonus ac_dodge $ac_dodge";
+
 $mon_ac = $mon_ac_flat + $size_ac_mod + $dex_bonus + $armour_bonus + $shield_bonus + $monk_bonus + $mon_nat_armour_ft +
            $magic_armour + $magic_shield + $feat_ac_bonus  + $int_ac_bonus + $ac_deflect + $ac_insight + $ac_profane +  $ac_luck + $ac_dodge;
 $ac_desc = "";
@@ -3338,6 +3370,8 @@ $ac_flat = $mon_ac_flat + $size_ac_mod + $armour_bonus + $shield_bonus + $monk_b
 if ($ac_flat > $mon_ac){
   $ac_flat = $mon_ac;
 }
+
+
 $ac_touch = 10 + $size_ac_mod + $monk_bonus + $dex_bonus + $magic_armour_touch + $defshield + $int_ac_bonus + $ac_deflect +
                 $ac_insight + $ac_luck + $ac_dodge +  $ac_profane ;
 //
@@ -5440,21 +5474,21 @@ $reduce_feat1_r = "reduce_feats_". $class1_tp;
 if (isset($$reduce_feat1_r)){
    $reduce_feat1 =  $$reduce_feat1_r;
 }else{
-   $reduce_feat1 = "";
+   $reduce_feat1 = 0;
 }
 
 $reduce_feat2_r = "reduce_feats_". $class2_tp;
 if (isset($$reduce_feat2_r)){
    $reduce_feat2 =  $$reduce_feat2_r;
 }else{
-   $reduce_feat2 = "";
+   $reduce_feat2 = 0;
 }
 
 $reduce_feat3_r = "reduce_feats_". $class3_tp;
 if (isset($$reduce_feat3_r)){
    $reduce_feat3 =  $$reduce_feat3_r;
 }else{
-   $reduce_feat3 = "";
+   $reduce_feat3 = 0;
 }
 
 //echo "</BR>reduce_feat1 = $reduce_feat1</BR>";
@@ -5973,10 +6007,9 @@ $link = getDBLink();
 $skillsHTML = "";
 $select = "SELECT  skillt_user , skillt_skill , skillt_rank , skillt_atr, skillt_atr_bonus, ".
                  "skillt_misc_bonus , skillt_xskill, skillt_armour_ch, skillt_untrained from skilltemp where skillt_user = '$user'";
-
-$result = mysqli_query($link, $select) ;
+$resultSkill = mysqli_query($link, $select) ;
 $count = 0;
-while ($row = mysqli_fetch_array($result)) {
+while ($row = mysqli_fetch_array($resultSkill)) {
     $count = $count + 1;
     $skillv = "skill_" . $count;
     $$skillv = $row['skillt_skill'] ;
@@ -6230,9 +6263,25 @@ while ($row = mysqli_fetch_array($result)) {
 	}
 	$skillsHTML .= '</TD>';
 
-        echo "\n<script>\n";
-        echo "var $old_skilln = $rank \n";
-        echo "\n</script>\n";
+// OLD CODE CT - 13/6/18
+//        echo "\n<script>\n";
+//        echo "var $old_skilln = $rank \n";
+//        echo "\n</script>\n";
+
+/* New - CT */
+		/* Capture dynmically generated JS*/
+		ob_start();
+		echo "\n/* pathdisNPC */\n";
+		echo "var $old_skilln = $rank; \n";
+		$dynamicJS = ob_get_clean();
+		$resultJS = 	wp_add_inline_script( 'dgJS', $dynamicJS);			/* add it to static JS loaded via the functions.php */
+	
+		if ( ! $resultJS ) {
+			error_log("Dynamic JS failed to load in pathdisNPC.php");	
+			die;
+		}
+/* New - CT - END */
+
 
         $skillsHTML2 .= "<SELECT class='width4em' NAME='$skilln'  onchange="
             . '"calcskill(this,'
@@ -6356,9 +6405,27 @@ $skillsHTML3 .= '<TD class="skillTotal">'.$mod.'</TD>';
 $skillsHTML3 .= '<TD class="skillRank">';
 $skilln = "skill_1_rank";
 $old_skilln = "skill_1_rank_old";
-echo "\n<script>\n";
-echo "var $old_skilln = $rank \n";
-echo "\n</script>\n";
+
+// OLD CODE CT - 13/6/18
+//echo "\n<script>\n";
+//echo "var $old_skilln = $rank \n";
+//echo "\n</script>\n";
+
+/* New - CT */
+		/* Capture dynmically generated JS*/
+		ob_start();
+		echo "\n/* pathdisNPC */\n";
+		echo "var $old_skilln = $rank; \n";
+		$dynamicJS = ob_get_clean();
+		$resultJS = 	wp_add_inline_script( 'dgJS', $dynamicJS);			/* add it to static JS loaded via the functions.php */
+	
+		if ( ! $resultJS ) {
+			error_log("Dynamic JS failed to load in pathdisNPC.php");	
+			die;
+		}
+/* New - CT - END */
+
+
 $skillsHTML3 .= "<SELECT class='width4em' NAME='$skilln'  onchange="
             . '"calcskill(this,'
             . "$old_skilln, "
@@ -6785,7 +6852,7 @@ if ($feat_weaptr != ""){
 $h = populateHelp();
 
 
-require ( "ddDisplayMonsterJS.php" );
+// require_once ( "ddDisplayMonsterJS.php" );			/* Now loaded via functions.php */
 // reset the level for animal companions
 if ($new_animal_comp_level > 0){
     $class1_level = $old_animal_comp_level;
@@ -6793,9 +6860,11 @@ if ($new_animal_comp_level > 0){
 //echo $class1_level;
 
 //echo "domain $domain_11 / $domain_12 / $domain_13 ";
-require ( "ddDisplayNPCForm.php" );
+require_once ( "ddDisplayNPCForm.php" );
 
 ?>
+/* Redundent??? handled by theme ??? */
+/*
 <script>
 if(typeof(urchinTracker)!='function')document.write('<sc'+'ript src="'+
 'http'+(document.location.protocol=='https:'?'s://ssl':'://www')+
@@ -6807,8 +6876,4 @@ _uacct = 'UA-6999444-1';
 urchinTracker("/1656209821/goal");
 } catch (err) { }
 </script>
-
-
-
-
-
+*/

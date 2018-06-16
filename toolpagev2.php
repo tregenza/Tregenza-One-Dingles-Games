@@ -16,10 +16,29 @@ Page specific content can be found in the library/page subdirectory and is named
 ?>
  
 <?php 
+		/* Load up some standard tools functions */
+	require_once(locate_template('library/ddmonsterFunctions.php'));	
 
-	require_once(locate_template('library/ddmonsterFunctions.php'));	/* Load up some standard tools functions */
+	/* Load the DG javascript. 
+				Note this is called via the wp_footer action so that all releveant 
+				page parts are loaded. And it depends on the static JS loaded via functions.php 
+	*/
+	function loadDynamicJS() {
+		/* Load dynamically generated JS */
+		/* Capture dynmically generated JS*/
+		ob_start();
+		include locate_template('library/ddmonsterJS.php');
+		$dynamicJS = ob_get_clean();
+		$result = 	wp_add_inline_script( 'dgJS', $dynamicJS);			/* add it to static JS loaded via the functions.php */
+	
+		if ( ! $result ) {
+			error_log("Dynamic JS failed to load in Tools Page v2 Template");	
+			die;
+		}
+	}
+	add_action('wp_footer', 'loadDynamicJS');
+	
 ?>
-
 
 <?php
 /*
@@ -59,6 +78,4 @@ set_query_var( 'to_template', $args);
 <?php 
 		get_template_part('/template-parts/footer/footer'); 
 ?>
-
-
 

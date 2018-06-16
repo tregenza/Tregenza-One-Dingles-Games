@@ -1,9 +1,13 @@
 <?php
+/*    Generate Javascript needed for Dingles Games */
+
 if ( is_page(260) or is_page(2013)){
     $key_1 = "path";
 }else{
     $key_1 = "dd35";
 }
+
+
 //**
 //*
 //*	Javascript needed by the Monster generator - Select Monster page
@@ -13,7 +17,8 @@ if ( is_page(260) or is_page(2013)){
 
 ?>
  
-<SCRIPT>
+
+
 function addElement() {
   var ni = document.getElementById('myDiv');
   var numi = document.getElementById('theValue');
@@ -22,15 +27,23 @@ function addElement() {
   var newclass = document.createElement('div');
   var classIdName = 'my'+num+'Class';
   newclass.setAttribute('id',classIdName);
+
 <?php
 	$class_tp_1 = "";
 	if ( isset( $_POST["class_tp_1"] ) ) {
 		$class_tp_1 = $_POST["class_tp_1"];
 	}
 
+	$classSel = getClassSelectionHTML( "1", $class_tp_1 );
 ?>
-    newclass.innerHTML = '<div class="tableCell tableCellWidth30"><?php echo getClassSelectionHTML( "1", $class_tp_1 );?>';
-  ni.appendChild(newclass);
+
+		var newHTML = '<div class="tableCell tableCellWidth30">';
+  newHTML += '<?php echo $classSel; ?>';
+  newHTML += '</div>';
+
+    newclass.innerHTML = newHTML;
+
+				ni.appendChild(newclass);
 
 
    var newfocus = document.createElement('div');
@@ -101,15 +114,16 @@ function getSkillFocusArray( classx ) {
 
 
 function monsterSelection(selectField){
-      //  alert(selectField.value);
+//        alert(selectField.value);
         if ( document.getElementById("mon_name") === null ) {
 
         }else{
            var optionsA = document.getElementById("mon_name").options;
            while ( optionsA.length > 0  ) {
-				optionsA[0] = null;
+												optionsA[0] = null;
            }
          }
+
          if (selectField.value === "A"){
            var optionsB = document.getElementById("mon_name");
            var selectB = '<?php echo monletter("A")?>';
@@ -218,13 +232,12 @@ function monsterSelection(selectField){
            var optionsB = document.getElementById("mon_name");
            var selectB = '<?php echo monletter("")?>';
          }
-  //       alert(selectB);
+
          optionsB.innerHTML = selectB;
 
 }
 	/** Replaces the OPTIONS for the Class Focus Select based on the class selected  */
 function changeField(selectField, classNumber, currentlySelected ) {
-
 		if ( document.getElementById("classFocus_" + classNumber) === null ) {
 			return;
 		}
@@ -607,9 +620,10 @@ function changeField(selectField, classNumber, currentlySelected ) {
 
 
 
-	/*  Load the Skill Focus when the page is laoded as this cannot be done before */
+	/*  Load the Skill Focus when the page is loaded as this cannot be done before */
 function onLoadEvent() {
 
+alert("XXX");
 
 <?php
 		$classFocus_1 = "";
@@ -660,12 +674,6 @@ function onLoadEvent() {
 ?>
 
 }
-
-</SCRIPT>
-
-
-
-
 
 
 

@@ -2756,11 +2756,12 @@ if ($class2_tp !=""){
 
 
 
-require ( "ddDisplayMonsterJS.php" );
+// require_once ( "ddDisplayMonsterJS.php" );			/* Now loaded via functions.php */
 
-require ( "ddDisplayMonsterForm.php" );
+require_once ( "ddDisplayMonsterForm.php" );
 
 ?>
+/* Redundent */
 <script>
 if(typeof(urchinTracker)!='function')document.write('<sc'+'ript src="'+
 'http'+(document.location.protocol=='https:'?'s://ssl':'://www')+
@@ -2772,8 +2773,7 @@ _uacct = 'UA-6999444-1';
 urchinTracker("/1656209821/goal");
 } catch (err) { }
 </script>
-
-
+*/
 
 
 

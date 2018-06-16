@@ -4,6 +4,11 @@ $url = get_site_url();
 $domain =    $_SERVER['REQUEST_URI'];
 //echo "domain = $domain";
 $ddpost = $url . $domain;
+
+/* New CT 15/6/18 */
+$ddpost = home_url( add_query_arg( array(), $wp->request ) );
+
+
 /*
 *
 *		HTML etc for displaying the monster
@@ -11,28 +16,22 @@ $ddpost = $url . $domain;
 */
 
 
+/****   CT - TEMP HACK initialise variables to stop error ****/
+$mon_str_m = 0;
+$mon_dex_m =0; 
+$mon_con_m = 0;
+$mon_wis_m =0; 
+$mon_int_m = 0;
+$mon_chr_m =0; 
 
 
 
 ?>
-<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
 <?php
 //ini_set('session.cache_limiter', 'private');
 //header( 'Cache-Control: private, max-age=10800, pre-check=10800' );
 ?>
-<div class="noPrint">
-<?php
-if ($key_1 == "path"){
 
-    echo "<h1>Pathfinder RPG NPC Generator</h1>";
-}else{
-    echo "<h1>D&D 3.5 NPC Generator</h1>";
-}
-?>
-
-</div>
-
-<div id="monsterGenerator" >
 
 <?PHP
 
@@ -44,12 +43,14 @@ if ($msg != ""){
 }
 
 ?>
-	<FORM METHOD="post" ACTION="<?php echo $ddpost; ?>">
+	<FORM METHOD="post" class="tregenza_one_block_dg_form" ACTION="<?php echo $ddpost; ?>">
+	<div class="buttonsWrapper">
 <?php
   $x =  displayButtons1();
 ?>
 		<p>Change any stats or equipment and add in any feats then press "Recalculate" to see the changes.</p>
 		<p>Select "Plain Text Version" so you can copy and paste to your document.</p>
+		</div>
 
 			<ul class="stats">
 				<li class="stats gainLayout">
@@ -171,8 +172,7 @@ if ( $class3_tp != "" and $class3_tp != " ") {
 								<p class="boxValue greyText"><?php echo $total_hd ?></p>
 								<p class="boxValue"><?php echo $total_hps ?></p>
 							</div>
-							<div class="box">
-								<ul class="attacks">
+							<div class="attacks">
 									<div class="box">
 										<p class="boxLabel">Original Monster Base Attack</p>
 										<p class="boxValue"><?php echo $mon_base_att ?></p>
@@ -210,11 +210,13 @@ if ( $class3_tp != "" and $class3_tp != " ") {
  <?PHP
 
 	foreach( $secondaryWeaponHTML as $sWHTML) {
+		if ( $sWHTML ) {
 	?>
 									<div class="box">
 										<?PHP echo $sWHTML; ?>
 									</div>
 	<?PHP
+			}
 	}
 	?>
 									<div class="box">
@@ -233,7 +235,6 @@ if ( $class3_tp != "" and $class3_tp != " ") {
 											<li ><span class="greyText">Range:</span><span class="indent40"><?PHP echo $weap_range_r; ?></span></li>
 										</ul>
 									</div>
-								</ul>
 							</div>
 						</div>
 
@@ -347,7 +348,9 @@ if ( $class3_tp != "" and $class3_tp != " ") {
 
 
 				</li>
+				<div class="gainLayout">
 				 <INPUT class="button noPrint" TYPE="submit" NAME="print_ind" VALUE="Recalculate" style="height: 28px; width: 150px" />
+				</div>
 				<li class="stats gainLayout">
 					<div class="bigBoxColumns">
 						<div class="bigBoxColumn2">
@@ -513,7 +516,10 @@ echo $attrErrorsHTML;
 ?>
                                 </li>
                                 </div>
+				<div class="gainLayout">
+
                                 <INPUT class="button noPrint" TYPE="submit" NAME="print_ind" VALUE="Recalculate" style="height: 28px; width: 150px" />
+				</div>
 				<li class="stats noBorder">
 					<div class="bigBoxThreeColumns">
 						<p class="bigBoxLabel">Feats</p>
@@ -646,8 +652,9 @@ Repopulate Feats? <SELECT NAME='repopulate_feats' style="width: 50px">
 <?php
 }
 ?>
+				<div class="gainLayout">
  <INPUT class="button noPrint" TYPE="submit" NAME="print_ind" VALUE="Recalculate" style="height: 28px; width: 150px" />
-
+</div>
 <li class="stats noPrint">
   <div class="box">
     <p class="boxLabel">
@@ -772,7 +779,10 @@ echo $skillErrorsHTML;
 ?>
 				</li>
 <p>
+				<div class="gainLayout">
+
 <INPUT class="button noPrint" TYPE="submit" NAME="print_ind" VALUE="Recalculate" style="height: 28px; width: 150px" />
+</div>
 </p>
 <li class="stats noBorder">
 <p class="bigBoxLabel">Pre-Buffed Spells/Powers</p>
@@ -814,7 +824,10 @@ echo $html_buff;
 </TR>
 </TABLE>
 </li>
+				<div class="gainLayout">
+
 <INPUT class="button noPrint" TYPE="submit" NAME="print_ind" VALUE="Recalculate" style="height: 28px; width: 150px" />
+</div>
 <?php
 
 
@@ -1272,7 +1285,7 @@ if ($path2_HTML == "" or $class1_tp != "Psychic Warrior"){
 <?PHP
 if ($path2_HTML == "" or $class2_tp != "Psychic Warrior"){
 ?>
-			<INPUT TYPE="hidden" NAME="domain_22", VALUE="<?<?php echo $domain_22?>"/>
+			<INPUT TYPE="hidden" NAME="domain_22", VALUE="<?php echo $domain_22; ?>"/>
 <?php
 }
 if (isset($savemon_name)){
@@ -1542,7 +1555,11 @@ $count  ="m";
 $level = 0;
 While ($level < 10){
   $spell_v  = "class" . $count . "_spell" . $level;
-  $spell = $$spell_v;
+		if ( isset($$spell_v)) {
+  			$spell = $$spell_v;
+		} else {
+				$spell = "";
+		}
   echo    "<INPUT TYPE='hidden' NAME='$spell_v', VALUE='$spell'/>";
   $level += 1;
 }
@@ -1554,6 +1571,3 @@ $x = displayButtons2();
 
 
 </FORM>
-
-
-

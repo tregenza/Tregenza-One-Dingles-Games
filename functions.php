@@ -4,12 +4,21 @@
 */
 
 
-/* ---------- Load standard Javascript ----------- */
-/*add_action( 'wp_enqueue_scripts', 'load_scripts' );
-function load_scripts() {
- 	wp_enqueue_script( 'dgUtility', get_template_directory_uri() .'/utility.js' );
+/* ---------- Load Dingle Games Javascript ----------- */
+function load_dg_scripts() {
+		/* Load any static JS in the footer */
+	if ( is_page_template('toolpagev2.php') ) {
+		/* Note: Loads the scripts on any page using the toolpage template, not just relevant ones */
+		/* Note Also:  At time of writing, static.js is empty but must be included as
+																the inline script is linked to it via the wp_add_inline_script function */
+	 	wp_enqueue_script( 'dgDisplayMonsterJS', get_stylesheet_directory_uri() .'/library/ddDisplayMonsterJS.php', null, null, true );
+	 	wp_enqueue_script( 'dgJS', get_stylesheet_directory_uri() .'/library/static.js', null, null, true );
+
+	}
 }
-*/
+add_action( 'wp_enqueue_scripts', 'load_dg_scripts' );
+
+
 /** ------ Load Additional Style Sheets ------ **/
 function custom_style_sheet() {
 	wp_enqueue_style( 'custom-styling', get_stylesheet_directory_uri() . '/css/style-tools.css' );
@@ -79,11 +88,40 @@ function tools_cookie() {
 
 /* ---------- Dingles Games database connection function ----------- */
 function getDBLink() {
-	/* Chris Local Test */
- 	return mysqli_connect('localhost','rootdd','','dd') ;
+
+	$connect = false;
+
+	$host = gethostname();
+	$ip = gethostbyname($host);
+	$sqlAcc = "rootdd";
+	$sqlPW = "";
+	$sqlDB = "dd";
+	$sqlHost = "localhost";
+
+	/* Quick and dirty way to split be CT's development / Dingle's Test and Dingles Live environments */
+	switch ($host) {
+		case "ChrisMacPro.local":
+			/* Chris Local Development */
+			$sqlPW = "6d6rpg";
+			break;
+	}
+	
+	$connect = mysqli_connect($sqlHost,$sqlAcc,$sqlPW,$sqlDB) ;
 	
 	/*  Test.dinglesgames */
-// 	return mysqli_connect('localhost','rootdd','8jXXgB=L5z','dd') ;
+//	$connect = mysqli_connect('localhost','rootdd','8jXXgB=L5z','dd') ;
+
+	if (!$connect || is_bool($connect) || $connect->connect_error) {
+		error_log("Error: Unable to connect to MySQL");
+		error_log("Host ".$host." IP ".$ip);
+		error_log("Error No ".var_export(mysqli_connect_errno(),1));
+		error_log("Error Message ".var_export(mysqli_connect_error(),1));
+		echo "<br/>ERROR - Database connection problem</br>";
+
+		die;
+	}
+
+	return $connect;
 }
 
 

@@ -9,6 +9,12 @@
  $domain =    $_SERVER['REQUEST_URI'];
  //echo "domain = $domain";
  $ddpost = $url . $domain;
+
+/**Chris Test Version **/
+	$current_url = home_url(add_query_arg(array(),$wp->request));
+ $ddpost = $current_url;
+
+
 ?>
 
 <div id="monsterGenerator" >
