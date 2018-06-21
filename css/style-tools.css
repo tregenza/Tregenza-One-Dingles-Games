@@ -4,6 +4,14 @@ Additional CSS for Dingle's Games Tools
 
 */
 
+.advert {
+	min-height: 5rem;
+	width: 100%;
+	background-color: #aaaaaa;
+}
+
+
+
 /***  CSS for Toolpages ***/
 
 /* NOTE To PAUL : The CSS for the Toolpages is a complete bodge to work around the 
@@ -385,5 +393,4 @@ body.page-id-260 #monsterTypeLabel > select[name="mon_tem"], body.page-id-260 #m
 body.page-id-260 #monsterClassSelection {
 
 }
-
 

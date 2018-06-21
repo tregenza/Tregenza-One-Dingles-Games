@@ -1,4 +1,4 @@
-<!---- Template Parts / Entry / Comments - dg-tools --->
+<!- Template Parts / Entry / Comments - dg-tools ->
 <?php
 /*
 		DG comments template. Only show on initial tools pages (monster selection etc) not the results 
@@ -8,7 +8,7 @@
 		return;
 }
 
-/*  ---- Everything below here is a copy of the standard tregenza-one comments template */
+/*  - Everything below here is a copy of the standard tregenza-one comments template */
 
 	/* Define Callback function for handling individual templates */
 function format_comment($comment, $args, $depth) {

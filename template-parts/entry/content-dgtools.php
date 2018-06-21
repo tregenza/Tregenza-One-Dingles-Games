@@ -1,4 +1,4 @@
-<!---- Template Parts / Entry / Content - Dingles Games Tools --->
+<!- Template Parts / Entry / Content - Dingles Games Tools ->
 <?php
 		
 		/* Dingles Games code has a lot of hardcoded style attributes in the HTML.
@@ -17,12 +17,12 @@
 
 ?>
 
-<!---- Content DG - the_content --->
+<!- Content DG - the_content ->
 <div class="tregenza_one_block tregenza_one_block_content" itemprop="articleBody">
 	<?php 
 		the_content(); 
 	?>
-	<!---- Content DG - Page ID specific content --->
+	<!- Content DG - Page ID specific content ->
 	<?php 
 		/*  Get Dingle Games custom variables set in ddmonsterFunction.php */
 		$args = get_query_var('dg_vars');
