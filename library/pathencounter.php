@@ -1,3 +1,5 @@
+<?php
+/*
 <STYLE>
 table {
 	border: 1px black solid;
@@ -27,6 +29,8 @@ td {
 	Left: 200px;
 }
 </STYLE>
+*/
+?>
 <?PHP
 //  Edit Saves
 //
@@ -59,18 +63,16 @@ $monster_temp = trim($monster_temp);
 $class = trim($class);
 $current_user = wp_get_current_user();
 $wp_user = $current_user->user_login;
-$user_id = $_COOKIE['dd_user_id'];
-$url = get_site_url();
-//echo "url = $url";
-$domain =    $_SERVER['REQUEST_URI'];
-//echo "domain = $domain";
-$ddpost = $url . $domain;
+
+if (isset($_COOKIE['dd_user_id']) ){
+	$user_id = $_COOKIE['dd_user_id'];
+}
+
+$ddpost = getDgFormPostUrl();
+
+
 ?>
-<div class="noPrint">
-	<h1>Pathfinder RPG Encounter Generator</h1>
-</div>
-<FORM METHOD="post" ACTION="<?php echo $ddpost; ?>">
-<div>
+<FORM class="tregenza_one_dg_form" METHOD="post" ACTION="<?php echo $ddpost; ?>">
 <?php
 
 //$select = "select distinct savemon_terain from savemon order by savemon_terain";
@@ -106,7 +108,7 @@ $select = "select distinct montype from montype2 where mon_key_1 = 'path'  order
 $link = getDBLink();
 $result = mysqli_query($link, $select) ;
 $save_count = 0;
-$html = '<LABEL>Type <SELECT NAME="type" >';
+$html = '<LABEL>Monster Type <SELECT NAME="type" >';
 $type_sel = "All";
 if ($type_sel == $type){
 	$sel = " SELECTED" ;
@@ -165,6 +167,7 @@ while ($sub < 40){
 }
 $html .= '</SELECT></LABEL>';
 echo $html;
+
 $link = getDBLink();
 /*
 $select = "select savemon_key, savemon_mon_name, savemon_mon_temp from savemon";
@@ -190,23 +193,20 @@ while ($row = mysqli_fetch_array($result)) {
 }
 */
 ?>
-</div>
-<TD><INPUT class="button noPrint" TYPE="submit" NAME="Fetch" VALUE="Fetch Encounters" style="height: 28px; width: 200px" /></TD>
-<div><STRONG> <BR></<BR>
-To edit the encounters press the left hand box, to view the encounters in print format press the right hand box
-<BR></BR>
-</STRONG>
-</div>
-<div>
-<TABLE>
-<TR>
-<TH><STRONG>Edit</STRONG></TH>
-<TH><STRONG>Terrain</STRONG></TH>
-<TH><STRONG>CR</STRONG></TH>
-<TH><STRONG>GP Magic</STRONG></TH>
-<TH><STRONG>Description</STRONG></TH>
-<TH><STRONG>View</STRONG></TH>
-</TR>
+<INPUT class="button noPrint" TYPE="submit" NAME="Fetch" VALUE="Fetch Encounters" style="height: 28px; width: 200px" />
+
+
+<?php
+	/* Edit to hide results until user selects something - CT 21/6/18 */
+		
+	if ( isset($_POST['Fetch']) && $_POST['Fetch'] !== "" ) {
+	
+?> 
+
+
+
+<h3>Matching Encounters</h3>
+<div class="formResults">
 <?php
 if ($wp_user != ""){
 //   echo "wp user " . $wp_user;
@@ -372,14 +372,22 @@ while ($row = mysqli_fetch_array($result)) {
    $$save_key_r = $save_sel;
    if ($mon_ok == "Y"){
 echo <<<EOF
-<TR>
-<TD><INPUT class="button noPrint" TYPE="submit" NAME="edit_ind" VALUE="$save_countx" style="height: 28px; width: 50px" /></TD>
-<TD>$savemon_terain</TD>
-<TD>$savemon_cr</TD>
-<TD>$total_spent</TD>
-<TD>$desc</TD>
-<TD><INPUT class="button noPrint" TYPE="submit" NAME="print_indx" VALUE="$save_countx" style="height: 28px; width: 100px"/></TD>
-</TR>
+<div class="formResultsRow">
+<dl>
+<dt>Description</dt>
+<dd>$desc</dd>
+<dt>Terrain</dt>
+<dd>$savemon_terain</dd>
+<dt>CR</dt>
+<dd>$savemon_cr</dd>
+<dt>GP Magic</dt>
+<dd>$total_spent</dd>
+</dl>
+<p>
+<button class="noPrint" TYPE="submit" NAME="print_indx" VALUE="$save_countx" >View</button>
+<button class="noPrint" TYPE="submit" NAME="edit_ind" VALUE="$save_countx" >Edit</button>
+</p>
+</div>
 <INPUT TYPE="hidden" NAME="$save_key_r", VALUE="$savemon_key"/>
 EOF;
    }
@@ -391,14 +399,15 @@ echo <<<EOF
 EOF;
 
 ?>
-</TABLE>
+</div>
 <?php
 if ($save_countx == 0){
-  echo "<STRONG><BR></BR>No Encounter Found<BR></BR></STRONG>";
+  echo "<STRONG>No Encounters Found</STRONG>";
 }
 ?>
-</div>
+<?php
+
+	}		/* End of if to hide encounters before criteria selected */
+?>
+
 </FORM>
-
-
-

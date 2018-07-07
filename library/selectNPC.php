@@ -15,7 +15,7 @@ if (isset($paid_user)){
 }else{
    $paid_user = "";
 }
-echo "paid_user = $paid_user";
+//echo "paid_user = $paid_user";
 /*
 *
 *		Select Monster Form
@@ -23,18 +23,10 @@ echo "paid_user = $paid_user";
 */
 
 ?>
-
-
-
 	<div id="monsterGenerator" >
-
 <?php
-        $url = get_site_url();
-  //      echo "url = $url";
-        $domain =    $_SERVER['REQUEST_URI'];
-  //      echo "domain = $domain";
-        $ddpost =  $url . $domain;
-        echo $ddpost;
+        $ddpost =  getDgFormPostURL();
+//        echo $ddpost;
 	/** Handle unset variables ***/
 	if (!isset( $msg ) ) {
 		$msg = "";
@@ -52,27 +44,24 @@ echo "paid_user = $paid_user";
 	if ($msg != ""){
 	  echo "<div class=\"error\">$msg</div>" ;
 	}
- //       <FORM METHOD="post" ACTION="<?php echo $baseDomain.$urlPATH; ?>">
 
 ?>
-       <FORM METHOD="post" ACTION="<?php echo $ddpost ?>">
-		<div>
+       <FORM class="tregenza_one_dg_form" METHOD="post" ACTION="<?php echo $ddpost ?>">
+		<div class="monsterTypeSelection">
 		<?php
             echo "<p>";
             echo "Monster Selection by Letter: " ;
+            echo "</p>";
             echo monsterLetters();
             $buttonHTML = "<INPUT class='button' id='generateMonster' TYPE='submit' VALUE='Generate Monster'/>" ;
 			echo getMonsterSelectionHTML($mon_name );
 		?>
-			<INPUT class="button" id="generateMonster2" TYPE="submit" VALUE="Generate Monster" tabindex=8 /
-			<?php
-                        echo "</p>";
-                        echo "<p>";
-	                echo getTemplateSelectionHTML($mon_tem );
-	                echo "</p>";
-	                echo "<p>";
-	                echo getTemplateSelection2HTML($mon_tem2 );
-	                echo "</p>";
+        </div>
+			<INPUT class="button" id="generateMonster2" TYPE="submit" VALUE="Generate Monster" tabindex=8 />
+        <div class="monsterTemplateSelection">
+<?php
+	     echo getTemplateSelectionHTML($mon_tem );
+	     echo getTemplateSelection2HTML($mon_tem2 );
              ?>
                 </div>
 

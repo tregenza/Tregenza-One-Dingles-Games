@@ -708,12 +708,14 @@ function monLetter($letter){
 } 
 function monsterLetters(){
   $letters = " ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-	$html = "";
+	$html = "<div class='monsterLetters'>";
 
   for ($count = 0; $count <= 26; $count++){
      $letter = substr($letters,$count,1);
      $html .= '<INPUT NAME="submit" TYPE=Button Value = "' . $letter . '" style= "width: 20px" onClick=monsterSelection(this)>';
   }
+
+		$html .= "</div>";
   return $html;
 
 }

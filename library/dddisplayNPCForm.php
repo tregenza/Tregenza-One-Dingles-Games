@@ -43,7 +43,7 @@ if ($msg != ""){
 }
 
 ?>
-	<FORM METHOD="post" class="tregenza_one_block_dg_form" ACTION="<?php echo $ddpost; ?>">
+	<FORM METHOD="post" class="tregenza_one_dg_form" ACTION="<?php echo $ddpost; ?>">
 	<div class="buttonsWrapper">
 <?php
   $x =  displayButtons1();

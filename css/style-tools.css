@@ -11,7 +11,6 @@ Additional CSS for Dingle's Games Tools
 }
 
 
-
 /***  CSS for Toolpages ***/
 
 /* NOTE To PAUL : The CSS for the Toolpages is a complete bodge to work around the 
@@ -30,6 +29,15 @@ body.page-template-toolpagev2 .tregenza_one_block_entrydate {
 	display: none;
 }
 body.page-template-toolpagev2 .tregenza_one_block_entryauthor {
+	display: none;
+}
+body.page-template-toolpagev2 .tregenza_one_block_entrylinks {
+	display: none;
+}
+body.page-template-toolpagev2 .tregenza_one_block_entrycategory {
+	display: none;
+}
+body.page-template-toolpagev2 .tregenza_one_block_entrytags {
 	display: none;
 }
 
@@ -93,37 +101,37 @@ body.page-template-toolpagev2 form {
 /**** DG Tools Form Layout ****/
 
 /* DG Form Formating */
-.tregenza_one_block_dg_form {	
+.tregenza_one_dg_form {	
 	font-size: 1rem;
 }
 
-.tregenza_one_block_dg_form  ul {	
+.tregenza_one_dg_form  ul {	
 	padding: 0;
 	margin: 0;	
 }
 
-body.page-template-toolpagev2-php .tregenza_one_block_dg_form  ul  li {	 /* Extra specifity needed to override css elsewhere */
+body.page-template-toolpagev2-php .tregenza_one_dg_form  ul  li {	 /* Extra specifity needed to override css elsewhere */
 	list-style-type: none;	
 	padding: 0;
 	margin: 0;	
 }
 
 
-.tregenza_one_block_dg_form .greyText {	
+.tregenza_one_dg_form .greyText {	
 		font-weight: 300;
 		color: #777777;
 }
 
-.tregenza_one_block_dg_form   select {	
+.tregenza_one_dg_form   select {	
 	width: 10rem;
 	font-size: 1rem;
 }
-.tregenza_one_block_dg_form  input[type=text] {	
-	width: 3rem;
+.tregenza_one_dg_form  input[type=text] {	
+/*	width: 3rem; */
 	min-width: 3rem;
 }
 
-.tregenza_one_block_dg_form  .statsHeader {	
+.tregenza_one_dg_form  .statsHeader {	
 	background-color: #111111;
 	color: #ffffff;
 	line-height: 2rem;
@@ -131,7 +139,7 @@ body.page-template-toolpagev2-php .tregenza_one_block_dg_form  ul  li {	 /* Extr
 }
 
 
-.tregenza_one_block_dg_form  p.boxLabel , .tregenza_one_block_dg_form p.bigBoxLabel {	
+.tregenza_one_dg_form  p.boxLabel , .tregenza_one_dg_form p.bigBoxLabel {	
 	font-weight: 300;
 	font-style: italic;
 	padding-bottom: 0.1rem;
@@ -139,40 +147,40 @@ body.page-template-toolpagev2-php .tregenza_one_block_dg_form  ul  li {	 /* Extr
 	border-bottom: #777777 1px solid;
 
 }
-.tregenza_one_block_dg_form  p.boxValue {	
+.tregenza_one_dg_form  p.boxValue {	
 	text-align: right;
 }
 
-.tregenza_one_block_dg_form  p.boxValue > input {	
+.tregenza_one_dg_form  p.boxValue > input {	
 	display: inline-block;
 }
-.tregenza_one_block_dg_form  p.boxValue + * {	
+.tregenza_one_dg_form  p.boxValue + * {	
 	margin-top: 0.5rem;
 }
-.tregenza_one_block_dg_form  .boxDetail p {	
+.tregenza_one_dg_form  .boxDetail p {	
 		font-size: 1rem;
 		color: #777777;
 		line-height: auto;
 		margin: 0;
 		padding: 0;
 }
-.tregenza_one_block_dg_form  .small li {	
+.tregenza_one_dg_form  .small li {	
 		font-size: 1rem;
 		line-height: normal;
 		margin: 0;
 		padding: 0 0 0.25rem 0;
 		border-bottom: #aaaaaa 1px solid;
 }
-.tregenza_one_block_dg_form  .small li:last-of-type  {	
+.tregenza_one_dg_form  .small li:last-of-type  {	
 	border-bottom: none;
 }
 	
-.tregenza_one_block_dg_form  .box span select {	
+.tregenza_one_dg_form  .box span select {	
 	font-size: 0.75rem;
 	display: inline-block;
 	width: 8rem;
 }
-.tregenza_one_block_dg_form  .box span input[type=text] {	
+.tregenza_one_dg_form  .box span input[type=text] {	
 	font-size: 0.75rem;
 	line-height: normal;
 	padding: 0 2px;
@@ -180,55 +188,101 @@ body.page-template-toolpagev2-php .tregenza_one_block_dg_form  ul  li {	 /* Extr
 }
 
 
-.tregenza_one_block_dg_form  ul.stats > li > ul {	
+.tregenza_one_dg_form  ul.stats > li > ul {	
 /*	border-bottom: 1px solid #aaaaaa; */
 	padding-bottom: 0.5rem;
 	margin-bottom: 0.5rem;
 }
 
 
-.tregenza_one_block_dg_form  li > span:first-of-type  {	
+.tregenza_one_dg_form  li > span:first-of-type  {	
 	display: inline-block;
 	width: 8rem;
 }
 
-.tregenza_one_block_dg_form  li > span:first-of-type + span {	
+.tregenza_one_dg_form  li > span:first-of-type + span {	
 	font-weight: bold;
 }
 
-.tregenza_one_block_dg_form  ul.specialAbility > li.specialAbility:not(:last-child) {
+.tregenza_one_dg_form  ul.specialAbility > li.specialAbility:not(:last-child) {
 	border-bottom: 1px solid #aaaaaa;	
 }	
-.tregenza_one_block_dg_form  ul.specialAbility > li > ul > li {
+.tregenza_one_dg_form  ul.specialAbility > li > ul > li {
 	font-size: 0.75rem;
 	font-weight: 700;
 }
-.tregenza_one_block_dg_form  ul.specialAbility > li > ul > li.greyText {
+.tregenza_one_dg_form  ul.specialAbility > li > ul > li.greyText {
 	font-weight: 300;
 }
 
-.tregenza_one_block_dg_form table  {
+.tregenza_one_dg_form table  {
 }
 
-.tregenza_one_block_dg_form table .width4em {
+.tregenza_one_dg_form table .width4em {
 	width: 3rem;
 }
-.tregenza_one_block_dg_form table .width40em {
+.tregenza_one_dg_form table .width40em {
 	width: 10rem;
 }
-.tregenza_one_block_dg_form table select { 
+.tregenza_one_dg_form table select { 
 	margin-left: 2rem;
 }
 
 
-.tregenza_one_block_dg_form p#total_skill input{
+.tregenza_one_dg_form p#total_skill input{
 	display: inline-block;
 	margin-left: 2rem;
 }
 
+.tregenza_one_dg_form .monsterLetters {
+		margin: 1rem 0 0 0;
+		width: 100%;
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: center;
+		align-content: space-around;
+		align-items: stretch;
+}
+
+.tregenza_one_dg_form .monsterLetters input[type="button"] {
+		/* Monster Selection letter buttons */
+	margin: 0.5rem;
+	width: 2rem;
+	height: 2rem;
+	flex: 0 0 auto;
+	min-width: 0;
+}
+
+.tregenza_one_dg_form .monsterTypeSelection > input {
+	margin: 0.5rem auto;
+}
+.tregenza_one_dg_form .monsterTypeSelection .monsterTemplateSelection {
+	margin-top: 0.5rem;
+	width: 100%;
+}
+
+
+.tregenza_one_dg_form #monsterTypeLabel {
+		/* Monster Selection monster type */
+		flex: 0 0 100%;
+		max-width: 100%;
+		text-align: center;		
+}
+.tregenza_one_dg_form #monsterTypeLabel > select[name="mon_name"] {
+		margin: 1.5rem;
+}
+
+
+.tregenza_one_dg_form #monsterTypeLabel > select[name="mon_tem"], .tregenza_one_dg_form #monsterTypeLabel > select[name="mon_tem2"] { 
+		margin: 0.25rem 1.5rem;
+}
+
+
+
+
 
 /* DG Form Structure */
-.tregenza_one_block_dg_form .buttonsWrapper{	
+.tregenza_one_dg_form .buttonsWrapper{	
 	margin-bottom: 1rem;
 
 	border: 1px solid #aaaaaa;
@@ -238,7 +292,7 @@ body.page-template-toolpagev2-php .tregenza_one_block_dg_form  ul  li {	 /* Extr
 
 }
 
-.tregenza_one_block_dg_form .buttonsWrapper .buttonBlock {	
+.tregenza_one_dg_form .buttonsWrapper .buttonBlock {	
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: center;
@@ -246,7 +300,7 @@ body.page-template-toolpagev2-php .tregenza_one_block_dg_form  ul  li {	 /* Extr
 	align-content: center;
 	
 }
-.tregenza_one_block_dg_form .stats > .buttonBlock {
+.tregenza_one_dg_form .stats > .buttonBlock {
 	width: 100%;
 
 	margin-bottom: 1rem;
@@ -265,20 +319,20 @@ body.page-template-toolpagev2-php .tregenza_one_block_dg_form  ul  li {	 /* Extr
 }
 
 
-.tregenza_one_block_dg_form   .stats {	
+.tregenza_one_dg_form   .stats {	
 	/* Standard Stat Box wrapper  */
 	margin-top: 1rem; 
 	padding: 0.25rem;
 }
 
-.tregenza_one_block_dg_form  .gainLayout {	
+.tregenza_one_dg_form  .gainLayout {	
 		/* Full width block */
 		width: 100%;
 		max-width: 100%;
 		margin-top: 1.25rem;
 }
 
-.tregenza_one_block_dg_form .bigBoxColumns, .tregenza_one_block_dg_form .bigBoxThreeColumns  {	
+.tregenza_one_dg_form .bigBoxColumns, .tregenza_one_dg_form .bigBoxThreeColumns  {	
 		/* Full width, contains sub columns */
 		width: 100%;
 		max-width: 100%;
@@ -290,7 +344,7 @@ body.page-template-toolpagev2-php .tregenza_one_block_dg_form  ul  li {	 /* Extr
 	align-content: flex-start;	
 }
 
-.tregenza_one_block_dg_form .bigBoxColumn2, .tregenza_one_block_dg_form .bigBoxColumn3 {	
+.tregenza_one_dg_form .bigBoxColumn2, .tregenza_one_dg_form .bigBoxColumn3 {	
 	/* Sub-column */
 
 	display: flex;
@@ -301,25 +355,25 @@ body.page-template-toolpagev2-php .tregenza_one_block_dg_form  ul  li {	 /* Extr
 }
 
 
-.tregenza_one_block_dg_form .bigBoxColumn2 {	
+.tregenza_one_dg_form .bigBoxColumn2 {	
 	min-width: 18rem;
 
 	margin-right: 1rem;
 }
 
-.tregenza_one_block_dg_form .bigBoxColumn3 { 
+.tregenza_one_dg_form .bigBoxColumn3 { 
 	min-width: 10rem;
 
 	margin-right: 1rem;
 
 }
 
-.tregenza_one_block_dg_form .bigBoxColumns > *:not(.bigBoxColumn2), .tregenza_one_block_dg_form .bigBoxThreeColumns > *:not(.bigBoxColumn3)  {	
+.tregenza_one_dg_form .bigBoxColumns > *:not(.bigBoxColumn2), .tregenza_one_dg_form .bigBoxThreeColumns > *:not(.bigBoxColumn3)  {	
 	/* anything other than a propely classed column, display at full width */
 	width: 100%;
 
 }
-.tregenza_one_block_dg_form   .box {	
+.tregenza_one_dg_form   .box {	
 	/* Standard Box */
 	min-width: 16rem;
 	margin-top: 1rem; 
@@ -333,64 +387,99 @@ body.page-template-toolpagev2-php .tregenza_one_block_dg_form  ul  li {	 /* Extr
 
 }
 
-.tregenza_one_block_dg_form   .box:empty {	
+.tregenza_one_dg_form   .box:empty {	
 	display: none;
 }
 
-.tregenza_one_block_dg_form   ul.stats > input[type="submit"] {
+.tregenza_one_dg_form   ul.stats > input[type="submit"] {
 	/* Button (generaly reculcuate) without box wrapper */
 	margin: 1.25rem auto 0 auto;
 }	
 
 
+/*  Form Results */
+.formResults  {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	align-items: stretch;
+	align-content: center;
+}
+
+.formResults .formResultsRow {
+	width: 100%;
+	max-width: 16rem;
+	margin: 0.5rem;
+	padding: 0.5rem;
+
+	background-color: #dddddd;
+
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: space-between;
+	align-items: stretch;
+	align-content: center;
+
+}
+
+.formResults .formResultsRow.maxRowWidth {
+	width: 100%;
+}
+
 
 /*** Page specific layout ***/
 
 /* 260 - Pathfinder RPG NPC Generator */
-body.page-id-260 form > div > p {
-		margin: 1rem 0 0 0;
-		width: 100%;
-		display: flex;
-		flex-flow: row wrap;
-		justify-content: center;
-		align-content: space-around;
-		align-items: stretch;
+
+/* 203 - DND Encounter  Generator */
+body.page-id-203 .tregenza_one_dg_form input[type="submit"] {
+		flex: 0 0 2rem;			/* not needed in Firefox but chrome goes weird without this */
+}
+body.page-id-203 .tregenza_one_dg_form select[name="cr_min"] {	
+	width:	3rem;
+}
+body.page-id-203 .tregenza_one_dg_form select[name="cr_max"] {	
+	width:	3rem;
 }
 
-body.page-id-260 form > div > p:nth-of-type(1) {
-		/* Monster Selection */
-		
+body.page-id-203 .formResults .formResultsRow dl dt {
+	width: 5rem;
 }
-body.page-id-260 form > div > p:nth-of-type(1) > input[type="button"] {
-		/* Monster Selection letter buttons */
-	margin: 0.5rem;
-	width: 2rem;
-	height: 2rem;
-	flex: 0 0 auto;
-	min-width: 0;
-
+body.page-id-203 .formResults .formResultsRow dl dd {
+	width: 10rem;
 }
-body.page-id-260 #monsterTypeLabel {
-		/* Monster Selection monster type */
-		flex: 0 0 100%;
-		max-width: 100%;
-		text-align: center;		
+body.page-id-203 .formResults .formResultsRow p  {
+	text-align: center;
+	align-self: flex-bottom;
 }
-body.page-id-260 #monsterTypeLabel > select[name="mon_name"] {
-		margin: 1.5rem;
+body.page-id-203 .formResults .formResultsRow p button  {
+	margin-top: 0.5rem;
+	width: 4rem;
 }
 
-body.page-id-260 #generateMonster2 {
-		/* Gen Monster Button */
-		margin: 0.5rem;
+/* 1947 - Pathfinder Encounter  Generator */
+
+body.page-id-1947 .tregenza_one_dg_form input[type="submit"] {
+		flex: 0 0 2rem;			/* not needed in Firefox but chrome goes weird without this */
+}
+body.page-id-1947 .tregenza_one_dg_form select[name="cr_min"] {	
+	width:	3rem;
+}
+body.page-id-1947 .tregenza_one_dg_form select[name="cr_max"] {	
+	width:	3rem;
 }
 
-body.page-id-260 #monsterTypeLabel > select[name="mon_tem"], body.page-id-260 #monsterTypeLabel > select[name="mon_tem2"] { 
-		margin: 0.25rem 1.5rem;
+body.page-id-1947 .formResults .formResultsRow dl dt {
+	width: 5rem;
 }
-
-
-body.page-id-260 #monsterClassSelection {
-
+body.page-id-1947 .formResults .formResultsRow dl dd {
+	width: 10rem;
 }
-
+body.page-id-1947 .formResults .formResultsRow p  {
+	text-align: center;
+	align-self: flex-bottom;
+}
+body.page-id-1947 .formResults .formResultsRow p button  {
+	margin-top: 0.5rem;
+	width: 4rem;
+}

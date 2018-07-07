@@ -128,6 +128,15 @@ function getDBLink() {
 	return $connect;
 }
 
+/*  Most DG forms post back to the same page. This function works out the URL*/
+function getDgFormPostURL() {
+	global $wp;
+
+	$current_url = home_url(add_query_arg(array(),$wp->request));
+
+	return $current_url;
+}
+
 
 /* --------- Dingles Games - Special functions for User management & Order Processing with Woocommerce ----------- */
 
@@ -286,6 +295,7 @@ function add_days_bought_NEW(){
 
 
 }
+
 /* Update Dingles Games tables with order information */
 function mysite_woocommerce_payment_complete( $order_id ) {
 	error_log( "----------------- ORDER ----------------- ");
@@ -294,7 +304,7 @@ function mysite_woocommerce_payment_complete( $order_id ) {
 
 	/* Get the order details */
 	$order = new WC_Order( $order_id );
-    $items = $order->get_items();
+	$items = $order->get_items();
 
 //	error_log( var_export($order, true));
 	
@@ -306,7 +316,7 @@ function mysite_woocommerce_payment_complete( $order_id ) {
 	 
 	    // Now you have access to (see above)...
 	 
-	    $sku = strtoupper($product->get_sku());
+		$sku = strtoupper($product->get_sku());
 		$result = false;
 		switch ($sku) {
 			case "SKU-L":
@@ -327,7 +337,7 @@ function mysite_woocommerce_payment_complete( $order_id ) {
 				break;
 			case "SKU-DB":
 				error_log("Day Brought");
-				$result = addUpdateMembershipDetails('DB');
+				$result =                          ('DB');
 				break;
 			default:
 				error_log("Non-Membership Product");

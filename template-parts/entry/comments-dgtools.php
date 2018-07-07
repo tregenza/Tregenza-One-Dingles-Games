@@ -147,7 +147,7 @@ if ( 'comments.php' == basename( $_SERVER['SCRIPT_FILENAME'] ) ) {
 		<h3 class="comments-title"><?php echo '<span class="ping-count">' . $ping_count . '</span> ' . ( $ping_count > 1 ? __( 'Trackbacks', 'blankslate' ) : __( 'Trackback', 'blankslate' ) ); ?></h3>
 		<ul>
 			<?php 
-				wp_list_comments( 'type=pings&callback=blankslate_custom_pings' ); 
+				wp_list_comments( 'type=pings' ); 
 			?>
 		</ul>
 	</section>

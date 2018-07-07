@@ -1,37 +1,11 @@
-<STYLE>
-table {
-	border: 1px black solid;
-        background-color: $background_blue;
-}
-th {
-	border: 1px black solid;
-        background-color: $background_blue;
-        color: black;
-}
-h {
-	border: 1px black solid;
-        background-color: $background_blue;
-        color: Black;
-}
-td {
-	border: 1px black solid;
-        color: black;
-        background-color: $background_grey;
-}
-.specialaTable {
-	position: relative;
-         float: left;
-}
-.specialqTable {
-	position: relative;
-	Left: 200px;
-}
-</STYLE>
 <?PHP
 //
 //
 //  Edit Saves
 //
+
+$postURL = getDgFormPostURL();
+
 if ($_POST) {
    $msg = "" ;
     foreach ($_POST  as $k => $v) {
@@ -71,37 +45,24 @@ if ($_POST) {
       $link = getDBLink();
       $result = mysqli_query($link, $update) ;
     }
+	mysqli_close($link);
 }
-mysqli_close($link)
-
-
-//require( $workingPath."/ddfix.php");
 ?>
+<div class="dg_dashboard">
 <div class="noPrint">
-	<h1>D&D 3.5 Saved NPCs</h1>
+	<h1>Saved NPCs</h1>
 </div>
-<FORM METHOD="post" ACTION="<?php echo $baseDomain.$urlPATH; ?>">
-<div><STRONG>
-To change the Campaign, area and name overtype the the grey areas in the corresponding boxes and the press the Update Campaign info button. Your saves will then be sorted
- into Campaign, Area and Name order.
- <BR></BR>
- Your Last created NPCs/Monsters cannot be altered as they will be overwritten by your next save. (You can, however, edit these and then save them).
- <BR></BR>Only montsters SAVED on the NPC/Monsters Generator can be changed.
-<BR></BR>Note: Only the first 250 saved monsters can have their campaign data changed. If you have more you will have to delete some saves.
-</STRONG>
+<FORM class="tregenza_one_dg_form" METHOD="post" ACTION="<?php echo $postURL; ?>">
+<div>
+<p>To change the Campaign, area and name overtype the the grey areas in the corresponding boxes and the press the Update Campaign info button. Your saves will then be sorted
+ into Campaign, Area and Name order.</p>
+<p>Your Last created NPCs/Monsters cannot be altered as they will be overwritten by your next save. (You can, however, edit these and then save them).</p>
+<p>Only monsters SAVED on the NPC/Monsters Generator can be changed.</p>
+<p>Note: Only the first 250 saved monsters can have their campaign data changed. If you have more you will have to delete some saves.</p>
 </div>
 <div>
-<TD><INPUT class="button noPrint" TYPE="submit" NAME="Update" VALUE="Update Campaign info." style="height: 28px; width: 200px" /></TD>
-<TABLE>
-<TR>
-<TH>Edit </TH>
-<TH>Campaign</TH>
-<TH>Area</TH>
-<TH>Name</TH>
-<TH>Desc</TH>
-<TH>Print</TH>
-<TH>Delete</TH>
-</TR>
+<INPUT class="button noPrint" TYPE="submit" NAME="Update" VALUE="Update Campaign info." style="" />
+<div class="formResults">
 <?
 if ($wp_user != ""){
 //   echo "wp user " . $wp_user;
@@ -169,42 +130,45 @@ while ($row = mysqli_fetch_array($result)) {
    $$name_r = $savemon_name;
    $save_key_r = "save_key_". $save_count;
    $$save_key_r = $save_sel;
+
+	if ($last != "Y"){
 echo <<<EOF
-<TR>
-<TD><INPUT class="button noPrint" TYPE="submit" NAME="edit_ind" VALUE="$save_count" style="height: 28px; width: 50px" /></TD>
-EOF;
-if ($last != "Y"){
-echo <<<EOF
-<TD><INPUT TYPE="text" NAME="$camp_r" VALUE="$savemon_camp" style="width: 100px"></TD>
-<TD><INPUT TYPE="text" NAME="$sub_r" VALUE="$savemon_sub" style="width: 100px"></TD>
-<TD><INPUT TYPE="text" NAME="$name_r" VALUE="$savemon_name" style="width: 100px"></TD>
-EOF;
-}else{
-echo <<<EOF
-<TD></TD>
-<TD></TD>
-<TD></TD>
-EOF;
-}
-echo <<<EOF
-<TD>$desc</TD>
-<TD><INPUT class="button noPrint" TYPE="submit" NAME="print_ind" VALUE="$save_count" style="height: 28px; width: 100px"/></TD>
-<TD><INPUT class="button noPrint" TYPE="submit" NAME="delete_ind" VALUE="$save_count" style="height: 28px; width: 50px" /></TD>
-</TR>
-<INPUT TYPE="hidden" NAME="$save_key_r", VALUE="$savemon_key"/>
+
+		<div class="formResultsRow">
+		<dl>
+		<dt>Description</dt>
+		<dd>$desc</dd>
+		<dt>Campaign</dt>
+		<dd><INPUT TYPE="text" NAME="$camp_r" VALUE="$savemon_camp"></dd>
+		<dt>Area</dt>
+		<dd><INPUT TYPE="text" NAME="$sub_r" VALUE="$savemon_sub" ></dd>
+		<dt>Name</dt>
+		<dd><INPUT TYPE="text" NAME="$name_r" VALUE="$savemon_name" ></dd>
+		<INPUT TYPE="hidden" NAME="$save_key_r", VALUE="$savemon_key"/>
+		</dl>
+		<p>
+		<button class="noPrint" TYPE="submit" NAME="edit_ind" VALUE="$save_count" >Edit</button>
+		<button class="noPrint" TYPE="submit" NAME="print_ind" VALUE="$save_count" >Print</button>
+		<button class="noPrint" onclick="if (!confirm('Delete NPC: Are You Sure?')) return false;" TYPE="submit" NAME="delete_ind" VALUE="$save_count" >Delete</button>
+		</p>
+		</div>
 EOF;
 
+	}else{
+	}
+	
 }
+
+echo "</div>";
+
 echo <<<EOF
-</TABLE>
 <INPUT TYPE="hidden" NAME="max_count", VALUE="$save_count"/>
 EOF;
 
 ?>
 
-<TD><INPUT class="button noPrint" TYPE="submit" NAME="Update" VALUE="Update Campaign info." style="height: 28px; width: 200px" /></TD>
+<INPUT class="button noPrint" TYPE="submit" NAME="Update" VALUE="Update Campaign info." />
 </div>
 </FORM>
-
-
+</div>
 

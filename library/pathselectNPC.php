@@ -4,16 +4,7 @@
 *		Select Monster Form
 *
 */
- $url = get_site_url();
- //echo "url = $url";
- $domain =    $_SERVER['REQUEST_URI'];
- //echo "domain = $domain";
- $ddpost = $url . $domain;
-
-/**Chris Test Version **/
-	$current_url = home_url(add_query_arg(array(),$wp->request));
- $ddpost = $current_url;
-
+$ddpost = getDgFormPostUrl();
 
 ?>
 
@@ -79,24 +70,22 @@
 
 
 ?>
-	<FORM METHOD="post" ACTION="<?php echo $ddpost; ?>">
-        <div>
+	<FORM class="tregenza_one_dg_form" METHOD="post" ACTION="<?php echo $ddpost; ?>">
+        <div class="monsterTypeSelection">
 <?php
              echo "<p>";
              echo "Monster Selection by Letter: " ;
+             echo "</p>";
              echo monsterLetters();
              $buttonHTML = "<INPUT class='button' id='generateMonster' TYPE='submit' VALUE='Generate Monster'/>" ;
              echo getMonsterSelectionHTML($mon_name );
 ?>
-               <INPUT class="button" id="generateMonster2" TYPE="submit" VALUE="Generate Monster" tabindex=8 /
+								</div>
+               <INPUT class="button" id="generateMonster2" TYPE="submit" VALUE="Generate Monster" tabindex=8 />
+        <div class="monsterTemplateSelection">
 <?php
-             echo "</p>";
-             echo "<p>";
 	     echo getTemplateSelectionHTML($mon_tem );
-	     echo "</p>";
-	     echo "<p>";
 	     echo getTemplateSelection2HTML($mon_tem2 );
-	     echo "</p>";
 ?>
         </div>
 	<div id="monsterClassSelection" class="table">
@@ -301,32 +290,6 @@ if ($paid_user == "Y"){
 </div>
 
 <?php
-
-//if ($paid_user != "Y"){
- // include 'paypal7.php';
-//}
-?>
-
-<div id="intro" class="lightBorder justify">
-    <p class="small">This tool is for DMs who are tired of spending an hour generating a monster or NPC only to see their players kill it in a few brief rounds of combat. Using this monster generator, a DM can create a 20th level Stone Giant fighter in a minute or two or 3rd level Drider cleric in just a few seconds.  Allowing you, the GM, to either experiment to find the right monster to really challenge your party or simply use the time you save creating monsters to write more adventures.</p>
-    <p class="small">The monster and NPC generators follows all the rules of Pathfinder Roleplaying game for creating monsters with classes and NPCs. So the monsters / NPC you create with this tool are just as good as the ones you would create by hand. The results can be printed out directly from the web page or use the plain text option to cut & paste the monster into your adventure.</p>
-    <p class="small">The tool is easy to use. Simply select the monster and optionally select its classes, levels and its skill focus. The focus controls how the monster's / NPCs skill points are used, ensuring that your monster / NPC has the right skills to terrorise your party.  Special attacks and class abilities are allocated automatically but the monster generator / NPC generator lets the GM select the feats. Monsters / NPCs also start with their default weapons and attacks but these can be changed, as can the monster's ability scores and size.</p>
-    <p class="small">Once you are happy with your changes press the RECALCLATE button to see how the changes effect the monster.</p>
-    <p class="small">The monster generator and NPC Generator are free to use and supplied "as is". If you have any questions or problems, please write to us: CONTACT (at) DinglesGames (dot) com.</p>
-    <p class="small">Pathfinder is a registered trademark of Paizo Publishing, LLC, and the Pathfinder Roleplaying Game and the Pathfinder Roleplaying Game Compatibility Logo are trademarks of Paizo Publishing, LLC, and are used under the Pathfinder Roleplaying Game Compatibility License. See http://paizo.com/pathfinderRPG/compatibility for more information on the compatibility license.</p>
-    <p class="small">Open Game License v 1.0a Copyright 2000, Wizards of the Coast, Inc.System Reference Document. Copyright 2000, Wizards of the Coast, Inc.; Authors Jonathan Tweet, Monte Cook, Skip Williams, based on material by E. Gary Gygax and Dave Arneson. Pathfinder RPG Core Rulebook. Copyright 2009, Paizo Publishing, LLC; Author: Jason Bulmahn, based on material by Jonathan Tweet, Monte Cook, and Skip Williams. The Book of Experimental Might. Copyright 2008, Monte J. Cook. All rights reserved. Tome of Horrors. Copyright 2002, Necromancer Games, Inc.; Authors: Scott Greene, with Clark Peterson, Erica Balsley, Kevin Baase, Casey Christofferson, Lance Hawvermale, Travis Hawvermale, Patrick Lawinger, and Bill Webb; Based on original content from TSR.</p>
-    <p class="small">Advanced Players Guide. Copyright 2010, Paizo Publishing, LLC; Author: Jason Bulmahn.</p>
-</div>
-<div class="lightBorder justify">
-<?php
-//   if (have_posts()) {
-//       the_post();
-//       comments_template();
-//    }
-?>
-</div>
-
-
 
 
 

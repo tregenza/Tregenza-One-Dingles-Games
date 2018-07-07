@@ -4,12 +4,66 @@
  Description:  Dingles Games  - A child theme of Tregenza-One
  Author:       Chris Tregenza
  Template:     Tregenza-One
-<<<<<<< HEAD
- Version:      0.5.2.3
-=======
- Version:      0.5.2.1
->>>>>>> c0235e29b18557b530aff0b889b3ed6bc45a4fa4
+ Version:      0.5.2.6
 
  GitHub Theme URI: https://github.com/tregenza/Tregenza-One-Dingles-Games/
 
 */
+?>
+/* Dingle Games WooCommerce changes */
+
+.woocommerce-breadcrumb {
+}
+
+/* Hide breadcrumbs */
+nav.woocommerce-breadcrumb {
+	display: none;
+}
+
+/* Hide unwanted text on my account dashboard */
+/* Annoyingly, the default page doesn't have a unique class but all other tabs do */
+body.woocommerce-account .woocommerce-MyAccount-content > * {
+	display: none;
+}
+body.woocommerce-account.woocommerce-orders .woocommerce-MyAccount-content > * {
+	display: block;
+} 
+body.woocommerce-account.woocommerce-edit-account .woocommerce-MyAccount-content > * {
+	display: block;
+} 
+body.woocommerce-account .woocommerce-MyAccount-content > div.dg_dashboard  {
+	display: block;
+}
+
+body.woocommerce-account .woocommerce-MyAccount-content > div.dg_dashboard > dl > * {
+	margin-top: 0.5rem;
+}
+
+body.woocommerce-account .tregenza_one_block_entry_links {
+	display: none;
+}
+
+body.woocommerce-account .tregenza_one_block_entry_date {
+	display: none;
+}
+body.woocommerce-account .tregenza_one_block_entry_author {
+	display: none;
+}
+body.woocommerce-account .tregenza_one_block_entry_category {
+	display: none;
+}
+body.woocommerce-account .tregenza_one_block_entry_tags {
+	display: none;
+}
+body.woocommerce-account .tregenza_one_block_entry_comments {
+	display: none;
+}
+
+
+/****   Product Page Tweeks ****/
+.tregenza_one_product_add_to_cart .quantity {
+/*		display: none !important;			/* Hide quantity because it is always = 1 */
+}
+.tregenza_one_product_tags, .tregenza_one_product_sku  {
+/*		display: none !important;  /* Not needed */
+}
