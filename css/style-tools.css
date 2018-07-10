@@ -373,23 +373,7 @@ body.page-template-toolpagev2-php .tregenza_one_dg_form  ul  li {	 /* Extra spec
 	width: 100%;
 
 }
-.tregenza_one_dg_form   .box {	
-	/* Standard Box */
-	min-width: 16rem;
-	margin-top: 1rem; 
-	padding: 0.25rem;
 
-	min-height: 5rem;
-
-	padding: 0.25rem;
-	background-color: #dddddd;
-	border-radius: 0.25rem;
-
-}
-
-.tregenza_one_dg_form   .box:empty {	
-	display: none;
-}
 
 .tregenza_one_dg_form   ul.stats > input[type="submit"] {
 	/* Button (generaly reculcuate) without box wrapper */

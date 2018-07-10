@@ -4,8 +4,8 @@
  Description:  Dingles Games  - A child theme of Tregenza-One
  Author:       Chris Tregenza
  Template:     Tregenza-One
- Version:      0.5.2.6
-
+ Version:      0.5.2.7
+ 
  GitHub Theme URI: https://github.com/tregenza/Tregenza-One-Dingles-Games/
 
 */
@@ -66,4 +66,22 @@ body.woocommerce-account .tregenza_one_block_entry_comments {
 }
 .tregenza_one_product_tags, .tregenza_one_product_sku  {
 /*		display: none !important;  /* Not needed */
+}
+
+/****   Registration Tweeks ****/
+
+/* Registration form on Membership page (not the my-account page) needs a tweeked layout */ 
+body:not(.woocommerce-account) #customer_login > div.col-1 > h2 {
+		display: none;  /* Hide unwanted login header */
+}
+body:not(.woocommerce-account) form.woocommerce-form-login {
+	display: none;				/*  Hide Login form  */
+}
+
+/* Rearrange order so errors are displayed by the registration form */
+body:not(.woocommerce-account) #customer_login {
+	order: 99;
+}
+body:not(.woocommerce-account) ul.woocommerce-error {
+	order: 98;
 }
