@@ -14,8 +14,16 @@ Page specific content can be found in the library/page subdirectory and is named
 
 */
 ?>
+<<<<<<< HEAD
+
+<?php
+        session_start();
+        ini_set('session.cache_limiter', 'private');
+        header( 'Cache-Control: private, max-age=10800, pre-check=10800' ); 
+=======
  
 <?php 
+>>>>>>> 65450b134015a9177e74559b90657752af789db3
 		/* Load up some standard tools functions */
 	require_once(locate_template('library/ddmonsterFunctions.php'));	
 

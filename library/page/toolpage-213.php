@@ -6,7 +6,11 @@
 
 */
 
+<<<<<<< HEAD
+     global $key_1, $user_id, $wp_user, $savemon_key;
+=======
 
+>>>>>>> 65450b134015a9177e74559b90657752af789db3
 
      if ($wp_user != "" and $paid_user == "Y"){
              if (!isset($_POST['mon_name'])){

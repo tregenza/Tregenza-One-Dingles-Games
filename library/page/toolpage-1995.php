@@ -5,7 +5,11 @@
 
 
 */
+<<<<<<< HEAD
+         global $wp_user, $paid_user;
+=======
 
+>>>>>>> 65450b134015a9177e74559b90657752af789db3
          if (isset($_POST["mon_name"])){
              $mon_name = $_POST["mon_name"];
          }else{

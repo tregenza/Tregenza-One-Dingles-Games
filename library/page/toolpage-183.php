@@ -5,7 +5,11 @@
 
 
 */
+<<<<<<< HEAD
+        global $key_1, $user_id, $wp_user, $savemon_key;
+=======
 
+>>>>>>> 65450b134015a9177e74559b90657752af789db3
 	
 	if ( !is_user_logged_in() ) {
 		/* USER Not Logged In */
