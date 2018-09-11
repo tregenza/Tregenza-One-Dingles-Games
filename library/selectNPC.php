@@ -1,9 +1,6 @@
 <?PHP
-<<<<<<< HEAD
 $count_new_x = 0;
 $save_count = 0;
-=======
->>>>>>> 65450b134015a9177e74559b90657752af789db3
 foreach ($_POST  as $k => $v) {
 //       $v = trim($v) ;
        $$k = $v ;

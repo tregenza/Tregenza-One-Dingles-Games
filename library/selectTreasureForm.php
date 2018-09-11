@@ -12,15 +12,9 @@ $ddpost = $url . $domain;
 ?>
 
 <FORM METHOD="post" ACTION="<?php echo $ddpost; ?>">
-<<<<<<< HEAD
 <p>
 <LABEL for="cr">
 Challenge Rating
-=======
-
-<LABEL for="cr">
-	  			Challenge Rating
->>>>>>> 65450b134015a9177e74559b90657752af789db3
 <SELECT NAME="cr" class="width4em">
 <?php
 
@@ -38,12 +32,8 @@ Challenge Rating
 		                            }
 ?>
 </SELECT>
-<<<<<<< HEAD
 </p>
 <p>
-=======
-
->>>>>>> 65450b134015a9177e74559b90657752af789db3
 Coins <SELECT NAME="coins" class="width6em">
 <?php
 if ($coins == "0"){
@@ -146,7 +136,6 @@ While ($count < 5){
 <?php
    $count = $count +1;
 }
-<<<<<<< HEAD
 
 ?>
 </p>
@@ -154,13 +143,6 @@ While ($count < 5){
 </BR>
 </BR>
 <p>Or select number and type of magic items (Useful for items for sale in towns)</p>
-=======
-?>
-</SELECT>  0
-</BR>
-</BR>
-Or select number and type of magic items (Useful for items for sale in towns)
->>>>>>> 65450b134015a9177e74559b90657752af789db3
 </BR>
 </BR>
 <?php
@@ -196,17 +178,10 @@ While ($count < 20){
    $count = $count +1;
 }
 ?>
-<<<<<<< HEAD
  <p>
 <INPUT class="button" id="generateTreasure" TYPE="submit" VALUE="Generate Treasure" tabindex=8 />
 </LABEL>
  </p>
-=======
-
-<INPUT class="button" id="generateTreasure" TYPE="submit" VALUE="Generate Treasure" tabindex=8 />
-</LABEL>
-
->>>>>>> 65450b134015a9177e74559b90657752af789db3
 
 <INPUT TYPE="hidden" NAME="count_new_x", VALUE="<?php echo $count_new_x?>"/>
 <INPUT TYPE="hidden" NAME="mon_hd", VALUE="<?php echo $mon_hd?>"/>
@@ -219,7 +194,6 @@ While ($count < 20){
 <?php
 if (isset($cr)){
 }else{
-<<<<<<< HEAD
   $cr = 0;
 }
 if ($cr != "" and $cr != 0){
@@ -233,21 +207,6 @@ if ($cr != "" and $cr != 0){
 	<p><?php echo $goods_desc; ?> </p>
 	<p>Total Value: <?php echo $goods_total;?></p>  </br>
 	<p><h5>Items</h5></p>
-=======
-  $cr = "";
-}
-if ($cr != "" and $cr != 0){
-?>
-	<h3>Treasure</h3>
-	<h5>Coins</h5>
-	<p><?php echo $coins_desc; ?></p>
-
-  	<h5>Goods</h5>
-  	<p><?php $goods_amount ." ". $goods_subtype; ?></p>
-	<p><?php echo $goods_desc; ?></p>
-	<p>Total Value: <?php echo $goods_total;?></p>
-	<h5>Items</h5>
->>>>>>> 65450b134015a9177e74559b90657752af789db3
 <?php
 	if (  $items_amount_total != "") {
 ?>
@@ -264,21 +223,13 @@ if ($cr != "" and $cr != 0){
         if (isset($$descv)){
         }else{
            $$descv = "";
-<<<<<<< HEAD
         }
-=======
-        }   
->>>>>>> 65450b134015a9177e74559b90657752af789db3
        $desc = $$descv;
        echo "<p>".$desc."</p>";
     }
   }
 ?>
-<<<<<<< HEAD
 
-=======
-	</p>
->>>>>>> 65450b134015a9177e74559b90657752af789db3
 <?php
 }
 
@@ -290,16 +241,4 @@ if ($cr != "" and $cr != 0){
 <?php
 //include ($workingPath."/paypal5.php");
 ?>
-<<<<<<< HEAD
 
-=======
-	<div class="lightBorder justify">
-		<?php if (have_posts()) {
-
-			the_post(); 
-		
-			comments_template(); 
-			
-		} ?>
-	</div>
->>>>>>> 65450b134015a9177e74559b90657752af789db3
