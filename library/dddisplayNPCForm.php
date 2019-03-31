@@ -300,20 +300,19 @@ if ( $class3_tp != "" and $class3_tp != " ") {
 							</div>
 							<div class="box" >
 								<p class="boxLabel">Speed:</p>
-								<p class="boxValue"><?php echo $speed_land ?></p>
-	<?PHP
-	if (($mon_speed_fly != "0" or $mon_speed_climb != "0" or $mon_speed_swim != "0" or $mon_speed_burrow != "0") and
-	    ($mon_speed_fly != "" or $mon_speed_climb != "" or $mon_speed_swim != "" or $mon_speed_burrow != "")) {
-	?>
+								<p class="boxValue"><?php echo $monSpeedArray['land'] ?></p>
 	 							<ul class="small">
-	 								<li ><span class="greyText">Fly:</span><span class="indent40"><?PHP echo $mon_speed_fly; ?></span></li>
-	 								<li ><span class="greyText">Swim:</span><span class="indent40"><?PHP echo $mon_speed_swim; ?></span></li>
-	 								<li ><span class="greyText">Climb:</span><span class="indent40"><?PHP echo $mon_speed_climb; ?></span></li>
-	 								<li ><span class="greyText">Burrow:</span><span class="indent40"><?PHP echo $mon_speed_burrow; ?></span></li>
-	 							</ul>
-
 	<?PHP
-	}
+								foreach ($monSpeedArray as $speedKey => $speedValue ) {
+										if ( $speedKey != 'base' && $speedKey != 'land' ) {
+												if ( $speedValue !== "" and $speedValue !== "0" ) {
+?>
+	 								<li ><span class="greyText"><?php echo ucFirst($speedKey); ?>:</span><span class="indent40"><?PHP echo $speedValue; ?></span></li>
+<?php
+												}
+										}
+								}
+
 	?>
 
 							</div>
@@ -1322,7 +1321,6 @@ if (!isset($magic_s1)){
 <INPUT TYPE="hidden" NAME="print_feat", VALUE="<?php echo $print_feat?>"/>
 <INPUT TYPE="hidden" NAME="flurry", VALUE="<?php echo $flurry?>"/>
 <INPUT TYPE="hidden" NAME="flurry_damage", VALUE="<?php echo $flurry_damage?>"/>
-<INPUT TYPE="hidden" NAME="print_secondary_attacks", VALUE="<?php echo $print_secondary_attacks?>"/>
 <INPUT TYPE="hidden" NAME="class1_skill_points", VALUE="<?php echo $class1_skill_points?>"/>
 <INPUT TYPE="hidden" NAME="class2_skill_points", VALUE="<?php echo $class2_skill_points?>"/>
 <INPUT TYPE="hidden" NAME="class3_skill_points", VALUE="<?php echo $class3_skill_points?>"/>
@@ -1339,7 +1337,6 @@ if (!isset($magic_s1)){
 <INPUT TYPE="hidden" NAME="single_ranged", VALUE="<?php echo $single_ranged?>"/>
 <INPUT TYPE="hidden" NAME="full_attack", VALUE="<?php echo $full_attack?>"/>
 <INPUT TYPE="hidden" NAME="ranged_attack", VALUE="<?php echo $ranged_attack?>"/>
-<INPUT TYPE="hidden" NAME="print_secondary_attacks", VALUE="<?php echo $print_secondary_attacks?>"/>
 <INPUT TYPE="hidden" NAME="total_fort_sv", VALUE="<?php echo $total_fort_sv?>"/>
 <INPUT TYPE="hidden" NAME="total_reflex_sv", VALUE="<?php echo $total_reflex_sv?>"/>
 <INPUT TYPE="hidden" NAME="total_will_sv", VALUE="<?php echo $total_will_sv?>"/>
@@ -1439,31 +1436,17 @@ if (!isset($magic_s1)){
 <INPUT TYPE="hidden" NAME="add_extra_attack", VALUE="<?php echo $add_extra_attack?>"/>
 <INPUT TYPE="hidden" NAME="htmlp_special_attacks", VALUE="<?php echo $htmlp_special_attacks?>"/>
 <INPUT TYPE="hidden" NAME="htmlp_special_qualities", VALUE="<?php echo $htmlp_special_qualities?>"/>
-<INPUT TYPE="hidden" NAME="htmlp_skill", VALUE="<?php echo $htmlp_skill?>"/>
-<INPUT TYPE="hidden" NAME="htmlp_feat", VALUE="<?php echo $htmlp_feat?>"/>
-<INPUT TYPE="hidden" NAME="htmlp_feat_s", VALUE="<?php echo $htmlp_feat_s?>"/>
+
+<INPUT TYPE="hidden" NAME="featsArray", VALUE="<?php echo urlencode(base64_encode(serialize($featsArray))); ?>"/>
+<INPUT TYPE="hidden" NAME="skillArray", VALUE="<?php echo urlencode(base64_encode(serialize($skillArray))); ?>"/>
+<INPUT TYPE="hidden" NAME="specialAbilitiesArray", VALUE="<?php echo urlencode(base64_encode(serialize($specialAbiltiesArray))); ?>"/>
+<INPUT TYPE="hidden" NAME="secondaryWeaponArray", VALUE="<?php echo urlencode(base64_encode(serialize($secondaryWeaponArray))); ?>"/>
+<INPUT TYPE="hidden" NAME="monSpeedArray", VALUE="<?php echo urlencode(base64_encode(serialize($monSpeedArray))); ?>"/>
+<INPUT TYPE="hidden" NAME="specialAttackArray", VALUE="<?php echo urlencode(base64_encode(serialize($specialAttackArray))); ?>"/>
+
+
 <INPUT TYPE="hidden" NAME="htmlp_def", VALUE="<?php echo $htmlp_def?>"/>
-<INPUT TYPE="hidden" NAME="htmlp_secondary_attacks", VALUE="<?php echo $htmlp_secondary_attacks?>"/>
-<INPUT TYPE="hidden" NAME="damage_s1", VALUE="<?php echo $damage_s1?>"/>
-<INPUT TYPE="hidden" NAME="damage_s2", VALUE="<?php echo $damage_s2?>"/>
-<INPUT TYPE="hidden" NAME="damage_s3", VALUE="<?php echo $damage_s3?>"/>
-<INPUT TYPE="hidden" NAME="damage_s4", VALUE="<?php echo $damage_s4?>"/>
-<INPUT TYPE="hidden" NAME="damage_s5", VALUE="<?php echo $damage_s5?>"/>
-<INPUT TYPE="hidden" NAME="damage_s6", VALUE="<?php echo $damage_s6?>"/>
-<INPUT TYPE="hidden" NAME="damage_s7", VALUE="<?php echo $damage_s7?>"/>
-<INPUT TYPE="hidden" NAME="damage_s8", VALUE="<?php echo $damage_s8?>"/>
-<INPUT TYPE="hidden" NAME="damage_s9", VALUE="<?php echo $damage_s9?>"/>
-<INPUT TYPE="hidden" NAME="damage_s10", VALUE="<?php echo $damage_s10?>"/>
-<INPUT TYPE="hidden" NAME="attack_s1", VALUE="<?php echo $attack_s1?>"/>
-<INPUT TYPE="hidden" NAME="attack_s2", VALUE="<?php echo $attack_s2?>"/>
-<INPUT TYPE="hidden" NAME="attack_s3", VALUE="<?php echo $attack_s3?>"/>
-<INPUT TYPE="hidden" NAME="attack_s4", VALUE="<?php echo $attack_s4?>"/>
-<INPUT TYPE="hidden" NAME="attack_s5", VALUE="<?php echo $attack_s5?>"/>
-<INPUT TYPE="hidden" NAME="attack_s6", VALUE="<?php echo $attack_s6?>"/>
-<INPUT TYPE="hidden" NAME="attack_s7", VALUE="<?php echo $attack_s7?>"/>
-<INPUT TYPE="hidden" NAME="attack_s8", VALUE="<?php echo $attack_s8?>"/>
-<INPUT TYPE="hidden" NAME="attack_s9", VALUE="<?php echo $attack_s9?>"/>
-<INPUT TYPE="hidden" NAME="attack_s10", VALUE="<?php echo $attack_s10?>"/>
+
 <INPUT TYPE="hidden" NAME="mon_name", VALUE="<?php echo $mon_name?>"/>
 <INPUT TYPE="hidden" NAME="class1_tp", VALUE="<?php echo $class1_tp?>"/>
 <INPUT TYPE="hidden" NAME="class1_focus", VALUE="<?php echo $class1_focus?>"/>
@@ -1519,7 +1502,7 @@ if (!isset($magic_s1)){
 <INPUT TYPE="hidden" NAME="resist_text", VALUE="<?php echo $resist_text?>"/>
 <INPUT TYPE="hidden" NAME="game", VALUE="<?php echo $game?>"/>
 <INPUT TYPE="hidden" NAME="user_id", VALUE="<?php echo $user_id?>"/>
-<INPUT TYPE="hidden" NAME="speed_land", VALUE="<?php echo $speed_land?>"/>
+
 <INPUT TYPE="hidden" NAME="magic_tohit_p", VALUE="<?php echo $magic_tohit_p?>"/>
 <INPUT TYPE="hidden" NAME="magic_damage_p", VALUE="<?php echo $magic_damage_p?>"/>
 <?PHP

@@ -16,8 +16,15 @@ Page specific content can be found in the library/page subdirectory and is named
 ?>
 
 <?php
-        session_start();
+
+/* HIDE WARNING MESSAGE WHILE IN WORDPRESS DEBUG MODE */
+/* Necessary because Dingles' tools has a shit load of them */
+if (WP_DEBUG && WP_DEBUG_DISPLAY) {
+	ini_set('error_reporting', E_ALL & ~E_STRICT & ~E_DEPRECATED & ~E_WARNING );
+}		
+
         ini_set('session.cache_limiter', 'private');
+        session_start();
         header( 'Cache-Control: private, max-age=10800, pre-check=10800' ); 
 
 		/* Load up some standard tools functions */
@@ -56,29 +63,33 @@ set_query_var( 'to_template', $args);
 
 ?>
 
- <!-- Page - get_header -->
+ <!-- Toolpage - get_header -->
 	<?php 
 	get_template_part('/template-parts/header/header', $args['template_type']); 
 	?>
- <!-- Page - get_sidebar -->
+ <!-- Toolpage - get_sidebar -->
 	<?php 
 	get_template_part('/template-parts/sidebar/secundus', $args['template_type']); 
 	?>
- <!-- Page - section -->
+
+ <!-- Toolpage - section -->
 <section id="content" role="main" class="tregenza-primus">
+<!---- Toolpage - Start Loop --->
 	<?php 
 		get_template_part( 'template-parts/loop/loop', $args['template_type'] );  
-
 	?>
-<!---- Page - Archive Navigation --->
+<!---- Toolpage - End Loop --->
+
+<!---- Toolpage - Archive Navigation --->
 	<?php get_template_part( '/template-parts/loop/nav', 'below', $args['template_type'] ); ?>
- <!-- Page - section END -->
+ <!-- Toolpage - section END -->
 </section>
-		 <!-- Page - get_sidebar -->
+
+		 <!-- Toolpage - get_sidebar -->
 			<?php 
 		get_template_part('/template-parts/sidebar/tertius', $args['template_type']); 
 			?>
- <!-- Page - get_footer -->
+ <!-- Toolpage - get_footer -->
 <?php 
 		get_template_part('/template-parts/footer/footer'); 
 ?>

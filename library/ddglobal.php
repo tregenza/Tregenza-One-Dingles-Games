@@ -1,4 +1,5 @@
 <?PHP
+
 //echo "in global";
 global $mon_str,$mon_dex,$mon_con,$mon_int,$mon_wis,$mon_chr,$mon_int_bonus_orig,$mon_int_bonus_skill,$mon_con_bonus,$mon_wis_bonus,$mon_dex_bonus,$mon_chr_bonus,$mon_str_bonus,$mon_int_bonus, $mon_str_bonus;
 global  $key_1;

@@ -2571,6 +2571,41 @@ function spells($class_no){
   // echo $HTML;
   return $HTML;
 }
+
+/* Wraps a span around text with optional classes */
+function wrapHTMLSpan($text, $additionalClasses = "") {
+		return '<span class="'.$additionalClasses.'">'.$text.'</span>';	
+} 
+
+/* Wraps the Bold / Highlight class span around text */
+function wrapHTMLHighlight($text, $additionalClasses = "") {
+		return wrapHTMLSpan($text, "dgNPCHighlight ".$additionalClasses);	
+} 
+
+function wrapHTMLLineHeader($text, $additionalClasses = "") {
+		return wrapHTMLSpan($text, "dgNPCHighlight dgNPCLineHeader ".$additionalClasses);	
+} 
+
+function wrapHTMLParaHeader($text, $additionalClasses = "") {
+		return wrapHTMLSpan($text, "dgNPCHighlight dgNPCLineHeader dgNPCParaHeader ".$additionalClasses);	
+} 
+
+function wrapHTMLValue($text, $additionalClasses = "") {
+		return wrapHTMLSpan($text, "dgNPCValue ".$additionalClasses);	
+} 
+
+/* Wraps a dgBlock DIV around text with optional additional classes */
+function wrapHTMLDGBlock($text, $additionalClasses = "") {
+		return wrapHTMLBlock($text, "dgBlock ".$additionalClasses);
+}
+
+/* Wraps a DIV around text with optional additional classes */
+function wrapHTMLBlock($text, $additionalClasses = "") {
+		return '<div class="'.$additionalClasses.'">'.$text.'</div>';
+}
+
+
+/** Now Junk ???? **/
 function printSpells($classNumber){   
   $class_v =  "class" . $classNumber . "_tp";
   global $$class_v;
@@ -2633,8 +2668,14 @@ function printSpells($classNumber){
   global $$name_v;
   $name = $$name_v;
   $print = $class . " \n Spells \n";
-  $html = "<b>" . $class . " Spells</b></BR>";
+
+		$html = "<!-- ddmosterFunctions printSpells Start -->";
+		$htmlBlock = "";
+
+  $html .= WrapHTMLBlock(wrapHTMLHighlight( $class . " Spells"), "dgSpells");
+
   $html_s = "<b>" . $class . " Spells: </b>";
+
   $spat_v = "class" . $classNumber . "_spat";
   $psi_v = "class" . $classNumber . "_psi";
 
@@ -2668,7 +2709,9 @@ function printSpells($classNumber){
   $stat_bonus = $$stat_bonus_v;
  // echo "class_spell_level $class_spell_level";
   $conc = $class_spell_level + $stat_bonus;
-  $html .= "<b>CL $class_spell_level Concentration $conc</b></BR>";
+
+  $html .= wrapHTMLBlock(wrapHTMLHighlight("CL $class_spell_level Concentration $conc"), "dgSpellLevel");
+
   $html_s .= "<b>CL $class_spell_level Concentration $conc</b> ";
   $print .= "CL $class_spell_level Concentration $conc         \n";
   $stat   = $$stat_v;
@@ -2700,14 +2743,20 @@ function printSpells($classNumber){
              }
 //             echo $spell_no_v . $spell_no;
              $print .= "Level $spell_level ($spell_no_dis) DC " . $dc;
-             $html .= "<b>Level $spell_level ($spell_no_dis) DC " . $dc . "</b>";
+
+             $htmlBlock .= wrapHTMLHighlight("Level $spell_level ($spell_no_dis) DC " . $dc , "dgSpellLevel");
+
              $html_s .= "<b>Level $spell_level ($spell_no_dis) DC " . $dc . "</b>";
              if ($spell_level > $max_level and $spat != ""){
                 $print .= "** Needs $spat of ". (10 + $spell_level) . " to cast **";
                 $html .= "** Needs $spat of ". (10 + $spell_level) . " to cast **";
              }
              $print .= "\n";
-             $html .= "</BR></div><div>";
+
+             $html .= wrapHTMLBlock($htmlBlock, "dgSpellDescription");
+												$htmlBlock = "";
+
+
              $html_s .= ": ";
              $print_level = "N";
       }
@@ -2794,20 +2843,39 @@ function printSpells($classNumber){
                 " X " . $spellt_count . "\n" .
                 "   "  . $spell_comp . " rng: " . $spell_range . " " . $spellrange_desc . " Cast time: " . $spell_cast_time . " Dur: " . $spell_duration . "\n" .
                 "   " . "SV ". $spell_save . " Area: " . $spell_area . " Book: " . $spell_book .  "\n";
-        $html .= $name. "(" . $spell_school. ")" . "[" . $spell_type1 . " " . $spell_type2 . " " . $spell_type3 . " " . $spell_type4 . "]" .
-                " X " . $spellt_count . "</BR></div><div>" .
-                "   "  . $spell_comp . " rng: " . $spell_range . " " . $spellrange_desc . " CT:" . $spell_cast_time . " Dur: " . $spell_duration . "</BR></div><div>" .
-                "   " . "SV ". $spell_save . " Area: " . $spell_area .  " Book: $spell_book </BR></div><div>";
+
+        $htmlBlock .= $name. "(" . $spell_school. ")" . "[" . $spell_type1 . " " . $spell_type2 . " " . $spell_type3 . " " . $spell_type4 . "]" .
+                " X " . $spellt_count;
+							$html .= wrapHTMLBlock($htmlBlock, "dgSpellCount");
+							$htmlBlock = "";
+
+
+        $htmlBlock .= $spell_comp . " rng: " . $spell_range . " " . $spellrange_desc . " CT:" . $spell_cast_time . " Dur: " . $spell_duration  ;
+							$html .= wrapHTMLBlock($htmlBlock, "dgSpellBasics");
+							$htmlBlock = "";
+
+        $htmlBlock .=  "SV ". $spell_save . " Area: " . $spell_area .  " Book: $spell_book";
+							$html .= wrapHTMLBlock($htmlBlock, "dgSpellAdditional");
+							$htmlBlock = "";
+
         if ($spell_psi_power_pts > 0 and $psi == "Y"){
             $print .= "   Power Points " . $spell_psi_power_pts . "\n";
-            $html .= "   Power Points " . $spell_psi_power_pts . "</BR></div><div>";
+
+ 				 	      $htmlBlock .= "   Power Points " . $spell_psi_power_pts;
+											$html .= wrapHTMLBlock($htmlBlock, "dgPsiPoints");
+											$htmlBlock = "";
+				
         }
         if ($spell_desc > "" and $spell_desc != "-"){
            $print .= "   Description: " . $spell_desc . "\n";
-           $html .= "   Description: <font class='spelldesc'>" . $spell_desc . "</font></BR></div><div>";
+
+ 				 	      $htmlBlock .= "   Description: " . $spell_desc ;
+											$html .= wrapHTMLBlock($htmlBlock, "dgspellDescription");
+											$htmlBlock = "";
+
         }
         $print .= "\n";
-        $html .= "</BR></div><div>";
+
         $html_s .= ", ";
       }
 
@@ -2826,8 +2894,12 @@ function printSpells($classNumber){
     $name = trim($$name_v);
   }
   $print .= "\n \n";
-  $html  .= "</BR></div><div>";
+//  $html  .= "</BR></div><div>";
 //  $html_s .= "</BR>";
+
+		$html .= "<!-- ddmonsterFunctions printSpells END -->";
+
+
   global  $spell_html_print, $spell_html_print_s ;
   $spell_html_print = $html;
   $spell_html_print_s = $html_s;
@@ -3407,6 +3479,8 @@ function magicAttr(){
 
 
 }
+
+/*  CT - See also the getMagicItems function which superceeds this piece of crap */
 function printMagic(){
    global $key_1, $mon_shield, $mon_armour, $mon_weap_p, $mon_weap_r, $mon_weap_s1;
 //   echo "magic key 1 = $key_1";
@@ -3603,6 +3677,147 @@ function printMagic(){
 //   echo "<p>print =  $print </p>";
    return $print;
 }
+
+/*  Returns the current NPCs magic item in an array for easy output */
+function getMagicItems(){
+   global $key_1, $total_gp;
+		global $mon_shield, $mon_armour, $mon_weap_p, $mon_weap_r, $mon_weap_s1;
+   global $user, $total_spent;
+
+		$magicItems = array();
+
+   $total_value = 0;
+
+   if ($key_1 == ""){
+       $key_1 = "dd35";
+   }
+
+			/* Get NPC's ??? magic items */
+   $select = "SELECT magicbody_id from magicbody order by magicbody_id";
+   $link = getDBLink();
+   $result = mysqli_query($link, $select);
+
+			$magicItems['Max Value'] = $total_gp;
+			$magicItems['Total Value'] = $total_gp;
+
+
+   while ($row = mysqli_fetch_array($result)){
+       $number = 1;
+       $max = 2;
+       $body = $row['magicbody_id'];
+
+						switch ($body) {
+							case "RING":
+          $max = 3;
+									break;
+							case "MISC":
+          $max = 5;
+									break;
+							case "WAND":
+          $max = 5;
+									break;
+							case "POTIONS":
+          $max = 5;
+									break;
+							case "PSICRYSTAL":
+          $max = 2;
+									break;
+							case "SCROLL":
+          $max = 5;
+									break;
+							case "WEAPONA":
+          $max = 3;
+									break;
+							case "WEAPONA_SPEC":
+          $max = 3;
+									break;
+							case "WEAPONA_MAT":
+          $max = 3;
+									break;
+							case "WEAPONB":
+          $max = 3;
+									break;
+       }
+
+						/* Work out which global variable we need */
+       while ($number < $max){
+           $body2 = $body;
+           if ($body == "WEAPONA" and $number == 1){
+               $body2 = "WEAPONA";
+           }
+           if ($body == "WEAPONB" ){
+               $body2 = "WEAPONB";
+               $number = 2;
+           }
+           if ($body == "WEAPONB_SPEC"){
+               $body2 = "WEAPONB_SPEC";
+               $number = 2;
+           }
+           if ($body == "WEAPONB_MAT" ){
+               $body2 = "WEAPONB_MAT";
+               $number = 2;
+           }
+          $magic_item_v = "magic_" . $body2 . "_" . $number;
+          global $$magic_item_v;
+
+									/* Get magic item from global */
+          $magic_item = $$magic_item_v;
+          if ($magic_item != ""){
+             $magic_found = "Y";
+
+												$itemArray = array();
+
+												/* Get magic item details from DB */
+             $select2 = "SELECT magic_name, magic_desc, magic_value, magic_price_bonus from magic2 where magic_name = '$magic_item'" .
+                         "and mon_key_1 = '$key_1' order by magic_body";
+
+             $result2 = mysqli_query($link, $select2);
+
+              while ($row2 = mysqli_fetch_array($result2)){
+                 $itemArray['magic_desc'] = $row2['magic_desc'];
+                 $itemArray['magic_value'] = $row2['magic_value'];
+                 $itemArray['magic_price_bonus'] = $row2['magic_price_bonus'];
+
+															$total_value += $itemArray['magic_value'];
+
+                 if ($body == "PSICRYSTAL"){
+                    $itemArray['magic_item'] = "Psicrystal " . $itemArray['magic_item'];
+                 }
+                 if ($body == "ARMOUR"){
+                    $magic_item = $itemArray['magic_desc'];
+                    $itemArray['magic_desc'] =  $mon_armour;
+                 }
+                 if ($body == "SHIELD"){
+                    $magic_item = $itemArray['magic_desc'];
+                    $itemArray['magic_desc'] =  $mon_shield;
+                 }
+                 if ($body == "WEAPONA"){
+                    $magic_item = $itemArray['magic_desc'];
+                    $itemArray['magic_desc'] =  $mon_weap_p;
+                 }
+                 if ($body == "WEAPONB"){
+                    $magic_item = $itemArray['magic_desc'];
+                    $itemArray['magic_desc'] =  $mon_weap_s1;
+                 }
+                 if ($body == "WEAPONR"){
+                    $magic_item = $itemArray['magic_desc'];
+                    $itemArray['magic_desc'] =  $mon_weap_r;
+                 }
+
+															$itemArray['magic_item'] = $magic_item;
+              }
+											$magicItems[$body][$number] = $itemArray;
+		
+          }
+          $number += 1;
+       }
+   }
+
+   return $magicItems;
+}
+
+
+
 /* Returns the Monster Selection HTML */
 function getTemplateSelectionHTML($currentlySelected) {
         global  $wp_user, $key_1;
@@ -5226,6 +5441,7 @@ function buff_level($buff){
   return($html);
 //  echo $html;
 }
+/*
 function print_ecology(){
   global $mon_name, $mon_temp, $key_1;
   $html_org_desc = "";
@@ -5274,6 +5490,7 @@ function print_ecology(){
      }
   }
 }
+*/
 function formatattack(){
  global $wp_user, $attack, $user, $attack;
  global $crit_ch_p,$crit_p, $crit_ch_s1,$crit_s1,$crit_ch_s2,$crit_s2;
@@ -7220,6 +7437,7 @@ END;
 }
 Function speed($speed){
   global $armour_s30;
+
   if ($speed == 0 or $armour_s30 == 30){
      return($speed);
   }else{
@@ -7309,7 +7527,9 @@ Function  get_attr_bonus() {
    }
 }
 
-function add_BR ($html){
+
+/** CT - 12/9/18 - Not sure what this function is really trying to do. */
+function OLD_add_BR ($html){
    $html = str_replace("\\\n","</BR>",$html);
    $html = str_replace("\\n","</BR>",$html);
    $html = str_replace("\n","</BR>",$html);
@@ -7322,6 +7542,10 @@ function add_BR ($html){
    return($html);
 }
 
+/** CT - Replacement add_BR function **/
+function add_BR($html) {
+	return "<span class='add_br'>".$html."</span>";
+}
 
 
 

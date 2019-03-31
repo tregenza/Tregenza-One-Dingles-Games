@@ -73,8 +73,13 @@ if (IsSet($_SESSION['smon_name'])){
    $mon_temp2     = $_SESSION['smon_template2'];
  //  echo "user = $user" ;
 }
+
 $htmlp = "";
 $print = "";
+
+$htmlpBlock = "";
+$printBlock = "";
+
 $tem_type = "";
 $tem_type2 = "";
 $magic_WEAPONR_SPEC_1 = "";
@@ -88,9 +93,6 @@ if (isset($class2_level)){
    $class2_level = "";
 }
 
-//else{
-//   echo   '<P><A HREF="ddselmon.php">Monster Generator</A></P>';
-//}
 if (isSet($savemon_camp)){
    $savemon_camp_s = $savemon_camp;
    $savemon_sub_s = $savemon_sub;
@@ -134,23 +136,28 @@ if (is_page(1947)){
 //        echo $update;
 }
 
-$header = '<div style="border-top:1px solid rgb(0, 0, 0);border-bottom:1px solid rgb(0, 0, 0);margin-top:6px;margin-bottom:6px;width:100%"><font size="3">';
-//$htmlp. = '<p><font size="1" face="arial">';
-// $print = $mon_print;
-//$htmlp .= "<p><class='htmlPrint'>";
+$htmlpBlock = "";
+$printBlock = "";
+
+
+
 if ($savemon_camp != "" or $savemon_sub != ""){
-   $print = "Name " . $savemon_name . " (" . $savemon_camp . "/" . $savemon_sub . ")" .  "\n";
-   $htmlp .=  "<div><b>Name</b> " . $savemon_name . " (" . $savemon_camp . "/" . $savemon_sub . ")" .  "\n";
+   $printBlock = "Name " . $savemon_name . " (" . $savemon_camp . "/" . $savemon_sub . ")" .  "\n";
+   $htmlpBlock .=  wrapHTMLHighlight("Name") . $savemon_name . " (" . $savemon_camp . "/" . $savemon_sub . ")" .  "\n";
 }else{
-    $print = "Name " . $savemon_name . "\n";
-    $htmlp .=  "</BR></BR></div><div><b>Name</b> " . $savemon_name;
+    $printBlock = "Name " . $savemon_name . "\n";
+    $htmlpBlock .=  wrapHTMLHighlight("Name") . $savemon_name;
 }
-$htmlp .=  "</div></BR></div><div>";
+$htmlp .=  wrapHTMLBlock($htmlpBlock);
+$htmlpBlock = "";
+
 $print .=  $mon_name . " (" . $mon_size . " " . $mon_type . ")";
 if ($print_sub != ""){
    $print_sub = " " . $print_sub;
 }
-$htmlp .=  "<b>" . $mon_name;
+
+$htmlpBlock .=  wrapHTMLHighlight($mon_name);
+
 $cr_total = $cr + $cr_path;
 //echo "cr total $cr_total cr path $cr_path";
 if ($cr_total > 1){
@@ -176,99 +183,132 @@ if ($cr_total < 1){
   }
 }
 
+
+
 if ($mon_temp !=""){
    if ($mon_temp2 != ""){
        $print .=  $mon_temp . "/" . $mon_temp2 . "     CR " . $cr_total .   "\n";
-       $htmlp .=  " " . $mon_temp . "/" . $mon_temp2 .  "     CR " . $cr_total .   "</b>";
+       $htmlpBlock .=  wrapHTMLHighlight(" " . $mon_temp . "/" . $mon_temp2 .  "     CR " . $cr_total );
    }else{
        $print .=  $mon_temp . "     CR " . $cr_total .   "\n";
-       $htmlp .=  " " . $mon_temp . "     CR " . $cr_total .   "</b>";
+       $htmlpBlock .=  wrapHTMLHighlight(" " . $mon_temp . "     CR " . $cr_total );
    }
 }else{
    $print .= "               CR " . $cr_total . "\n";
-   $htmlp  .= "               CR " . $cr_total . "</b>";
+   $htmlpBlock  .= wrapHTMLHighlight(" CR " . $cr_total );
 }
-$htmlp .= "</BR></div><div>";
+
+$htmlp .=  wrapHTMLBlock($htmlpBlock);
+$htmlpBlock = "";
+
+
 //echo $mon_desc;
 if ($mon_desc == $mon_name or $mon_desc == "-" or $key_1 != "path"  or strlen($mon_desc) < 20 ) {
+
 }else{
-  $htmlp .= $mon_desc . "</BR></div><div>";
+  $htmlp .= wrapHTMLBlock($mon_desc);
+		$htmlpBlock = "";
 }
+
 $print .= "XP " . $xp . "\n";
-$htmlp .= "<b>XP</b> " . $xp . "</BR></div><div>";
+
+$htmlpBlock .= wrapHTMLHighlight("XP") . $xp ;
+$htmlp .= wrapHTMLBlock($htmlpBlock);
+$htmlpBlock = "";
+
+
 if ($tem_type != "" and ((($mon_type == 'Animal' or $mon_type == 'Vermin') and $tem_type == 'Magical beast') or $tem_type != 'Magical beast')){
    if ($tem_type2 != "" and ((($mon_type == 'Animal' or $mon_type == 'Vermin') and $tem_type2 == 'Magical beast') or $tem_type2 != 'Magical beast')){
-       $htmlp .= $mon_alignment .  " " . $mon_size . " " . $mon_type . " ($tem_type $tem_type2)" . $print_sub . "</BR></div><div>";
+       $htmlpBlock .= $mon_alignment .  " " . $mon_size . " " . $mon_type . " ($tem_type $tem_type2)" . $print_sub ;
    }else{
-      $htmlp .= $mon_alignment .  " " . $mon_size . " " . $mon_type . " ($tem_type)" . $print_sub . "</BR></div><div>";
+      $htmlpBlock .= $mon_alignment .  " " . $mon_size . " " . $mon_type . " ($tem_type)" . $print_sub ;
    }
 }else{
    if ($tem_type2 != "" and ((($mon_type == 'Animal' or $mon_type == 'Vermin') and $tem_type2 == 'Magical beast') or $tem_type2 != 'Magical beast')){
-       $htmlp .= $mon_alignment .  " " . $mon_size . " " . $mon_type . " ($tem_type $tem_type2)" . $print_sub . "</BR></div><div>";
+       $htmlpBlock .= $mon_alignment .  " " . $mon_size . " " . $mon_type . " ($tem_type $tem_type2)" . $print_sub ;
    }else{
-      $htmlp .= $mon_alignment .  " " . $mon_size . " " . $mon_type . $print_sub . "</BR></div><div>";
+      $htmlpBlock .= $mon_alignment .  " " . $mon_size . " " . $mon_type . $print_sub ;
    }
 }
+
+$htmlp .= wrapHTMLBlock($htmlpBlock);
+$htmlpBlock = "";
+
 $class1_tp = trim($class1_tp);
 $class2_tp = trim($class2_tp);
 $class3_tp = trim($class3_tp);
 if ($class1_tp != ""){
    $print .=  $class1_tp . " level " . $class1_level . " (skill points " . $class1_skill_points  . ") " . $class1_focus . "\n";
-   $htmlp .=  $class1_tp . " level " . $class1_level . " (skill points " . $class1_skill_points  . ") " . $class1_focus . "</BR></div><div>";
+   $htmlpBlock .=  $class1_tp . " level " . $class1_level . " (skill points " . $class1_skill_points  . ") " . $class1_focus ;
 }
 if ($domain_11 != "" ){
   if ($class1_tp == "Cleric"){
        $print .= "(Domains  $domain_11 and $domain_12) ";
-       $htmlp .= "(Domains  $domain_11 and $domain_12) ";
+       $htmlpBlock .= "(Domains  $domain_11 and $domain_12) ";
   }else{
      if ($class1_tp == "Wizard"){
         $print .=  "(School $domain_11  Prohibited  $domain_12 , $domain_13)";
-        $htmlp .=  "(School $domain_11  Prohibited  $domain_12 , $domain_13)";
+        $htmlpBlock .=  "(School $domain_11  Prohibited  $domain_12 , $domain_13)";
 
      }else{
         $print .= "($domain_11 $domain_12) ";
-        $htmlp .= "($domain_11 $domain_12) ";
+        $htmlpBlock .= "($domain_11 $domain_12) ";
      }
    }
    $print .= "\n";
-   $htmlp .= "</BR></div><div>";
 }
+
+$htmlp .= wrapHTMLBlock($htmlpBlock);
+$htmlpBlock = "";
+
 
 if ($class2_tp != ""){
      $print .=  $class2_tp . " level " . $class2_level . " (skill points " . $class2_skill_points  . ") " . $class2_focus . "\n";
-     $htmlp .=  $class2_tp . " level " . $class2_level . " (skill points " . $class2_skill_points  . ") " . $class2_focus . "</BR></div><div>";
+     $htmlpBlock .=  $class2_tp . " level " . $class2_level . " (skill points " . $class2_skill_points  . ") " . $class2_focus ;
+
+					$htmlp .= wrapHTMLBlock($htmlpBlock);
+					$htmlpBlock = "";
+					
 
      if ($domain_21 != "" ){
         if ($class2_tp != "Wizard"){
            if ($class2_tp == "Cleric"){
              $print .= "(Domains  $domain_21 and $domain_22)";
-             $htmlp .= "(Domains  $domain_21 and $domain_22)";
+             $htmlpBlock .= "(Domains  $domain_21 and $domain_22)";
            }else{
              $print .= "($domain_21 $domain_22)";
-             $htmlp .= "($domain_21 $domain_22)";
+             $htmlpBlock .= "($domain_21 $domain_22)";
            }
        }else{
           $print .=  "(School $domain_21  Prohibited  $domain_22 , $domain_23)";
-          $htmlp .=  "(School $domain_21  Prohibited  $domain_22 , $domain_23)";
+          $htmlpBlock .=  "(School $domain_21  Prohibited  $domain_22 , $domain_23)";
       }
-      $print .= "\n";
-      $htmlp .= "</BR></div><div>";
+
+					$htmlp .= wrapHTMLBlock($htmlpBlock);
+					$htmlpBlock = "";
+					
     }
 }
 if ($class3_tp != ""){
      $print .=  $class3_tp . " level " . $class3_level . " (skill points " . $class3_skill_points  . ") " . $class3_focus . "\n";
-     $htmlp .=  $class3_tp . " level " . $class3_level . " (skill points " . $class3_skill_points  . ") " . $class3_focus . "</BR></div><div>";
+     $htmlpBlock .=  $class3_tp . " level " . $class3_level . " (skill points " . $class3_skill_points  . ") " . $class3_focus  ;
+
+					$htmlp .= wrapHTMLBlock($htmlpBlock);
+					$htmlpBlock = "";
 
      if ($domain_31 != "" ){
         if ($class3_tp != "Wizard"){
           $print .= "(Domains  $domain_31 and $domain_32)";
-          $htmlp .= "(Domains  $domain_31 and $domain_32)";
+          $htmlpBlock .= "(Domains  $domain_31 and $domain_32)";
        }else{
           $print .=  "(School $domain_31  Prohibited  $domain_32 , $domain_33)";
-          $htmlp .=  "(School $domain_31  Prohibited  $domain_32 , $domain_33)";
+          $htmlpBlock .=  "(School $domain_31  Prohibited  $domain_32 , $domain_33)";
       }
       $print .= "\n";
-      $htmlp .= "</BR></div><div>";
+
+						$htmlp .= wrapHTMLBlock($htmlpBlock);
+						$htmlpBlock = "";
+						
     }
 }
 $initp = $init;
@@ -297,15 +337,19 @@ if ($sen_text >""){
    }
 }
 $print .=  "Init " . $initp . $print_init . "; Senses " . $print_sen;
-$htmlp .=  "<b>Init</b> " . $initp . $print_init . "; <b>Senses</b> " . $print_sen ;
+
+$htmlpBlock .=  wrapHTMLHighlight("Init") . $initp . $print_init . "; ".wrapHTMLHighlight("Senses") . $print_sen ;
+$htmlp .= wrapHTMLBlock($htmlpBlock);
+$htmlpBlock = "";
+
 if ($print_aura != ""){
-   $htmlp .= "</BR></div><div><b>Aura </b>". $print_aura;
+   $htmlp .= wrapHTMLBlock(wrapHTMLHighlight("Aura"). $print_aura);
 }
 
 $print .= "\n\n" . "DEFENSE \n";
-//$htmlp .= "</BR><i><u>" . "DEFENSE </u></i>";
-$htmlp .= $header . "<b> DEFENSE</b></font></div>";
-//$htmlp .= "</BR>";
+
+$htmlp .= wrapHTMLBlock(wrapHTMLHighlight("DEFENSE"));
+
 $magic_armour_d = round($magic_armour,0);
 
 
@@ -344,48 +388,69 @@ $ac_flat_d = round($ac_flat);
 
 //echo "AC_text = $AC_text";
 $ac_flat_d = round($ac_flat_d,0          );
-$htmlp .= "<b>AC</b> " . $mon_ac_d . ", Touch " . $ac_touch . ", flat footed " . $ac_flat_d;
+
+$htmlpBlock .= wrapHTMLHighlight("AC") . $mon_ac_d . ", Touch " . $ac_touch . ", flat footed " . $ac_flat_d;
+
 $print .= "AC: " . $mon_ac_d . " " . $magic_armour_d . " " . $mon_armour . ", " . $magic_shield_d . " " . $mon_shield . " $AC_text\n";
-$htmlp .= " (" . $magic_armour_d . " " . $mon_armour . ", " . $magic_shield_d . " " . $mon_shield . ") $AC_text</BR></div><div>";
+
+$htmlpBlock .= " (" . $magic_armour_d . " " . $mon_armour . ", " . $magic_shield_d . " " . $mon_shield . ") $AC_text";
+
+$htmlp .= wrapHTMLBlock($htmlpBlock);
+$htmlpBlock = "";
 
 
 if ($ac_desc != ""){
   $print .= "(" . $ac_desc .  ") \n";
-  $htmlp .= "(" . $ac_desc .  ") </BR></div><div>";
+
+  $htmlp .= wrapHTMLBlock("(" . $ac_desc .  ")");
+
 }
+
 $print .=  "AC flat footed :" . $ac_flat . ", Touch: " . $ac_touch . " \n";
 //$htmlp .=  "AC flat footed :" . $ac_flat . ", Touch: " . $ac_touch . "</BR>";
+
 $print .= "hp " . $total_hps. " ("  . $total_hd . ");" . $print_hp . "\n";
-$htmlp .= "<b>hp</b> " . $total_hps. " ("  . $total_hd . ");" . $print_hp . "</BR></div><div>";
+
+$htmlpBlock .= wrapHTMLHighlight("hp") . $total_hps. " ("  . $total_hd . ");" . $print_hp ;
+$htmlp .= wrapHTMLBlock($htmlpBlock);
+$htmlpBlock = "";
+
+
 if ($total_fort_sv >= 0){
  $print .= "Saves: Fort +" . $total_fort_sv;
- $htmlp .= "<b>Fort</b> +" . $total_fort_sv;
+ $htmlpBlock .= wrapHTMLhighlight("Fort"). "+" . $total_fort_sv;
 }else{
   $print .= "Saves: Fort " . $total_fort_sv;
-  $htmlp .= "<b>Fort</b> " . $total_fort_sv;
+  $htmlpBlock .= wrapHTMLhighlight("Fort") . $total_fort_sv;
 }
+
 if ($total_reflex_sv >= 0){
   $print .= ", Ref +" . $total_reflex_sv;
-  $htmlp .= ", <b>Ref</b> +" . $total_reflex_sv;
+  $htmlpBlock .= ", ".wrapHTMLHighlight("Ref")." +" . $total_reflex_sv;
 }else{
   $print .= ", Ref " . $total_reflex_sv;
-  $htmlp .= ", <b>Ref</b> " . $total_reflex_sv;
+  $htmlpBlock .= ", ".wrapHTMLHighlight("Ref") . $total_reflex_sv;
 }
 if ($total_will_sv >= 0){
   $print .= ", Will +" . $total_will_sv;
-  $htmlp .= ", <b>Will</b> +" . $total_will_sv;
+  $htmlpBlock .= ", ".wrapHTMLHighlight("Will")." +" . $total_will_sv;
 }else{
   $print .= ", Will " . $total_will_sv;
-  $htmlp .= ", <b>Will</b> " . $total_will_sv;
+  $htmlpBlock .= ", ".wrapHTMLHighlight("Will") . $total_will_sv;
 }
 $print .= " $save_text";
-$htmlp .= " $save_text";
+$htmlpBlock .= " $save_text";
+
 $print .= "\n";
-$htmlp .= "</BR></div>";
+
+$htmlp .= wrapHTMLBlock($htmlpBlock);
+$htmlpBlock = "";
+
+
 if ($print_def != ""){
    $print .= "Defensive Abilities " . $print_def;
    if ($htmlp_def ==""){
-      $htmlp .= "<b>Defensive Abilities</b> " . $print_def;
+      $htmlp .= wrapHTMLHighlight("Defensive Abilities") ." ". $print_def;
    }else{
       $htmlp .= $htmlp_def;
    }
@@ -393,7 +458,10 @@ if ($print_def != ""){
 
 $print .= "\n \n"  . "OFFENSE " . "\n";
 //$htmlp .= "</BR>"  . "<i><u>OFFENSE</u></i>" ;
-$htmlp .= $header . "<b> OFFENSE</b></font></div><div>";
+
+$htmlp .= wrapHTMLBlock(wrapHTMLHighlight("OFFENSE"));
+$htmlpBlock = "";
+
 //$htmlp .= "</BR>";
 if (isset($mon_speed_swim)){
 }else{
@@ -413,22 +481,24 @@ if (isset($mon_speed_burrow)){
 }
 //echo "Speed $speed_land ";
 $print .=  "Speed: " . $speed_land . "ft.";
-$htmlp .=  "<b>Speed</b> " . $speed_land;
+
+$htmlpBlock .=  wrapHTMLHighlight("Speed ") . $speed_land;
+
 if ($mon_speed_fly != "0" and $mon_speed_fly != ""){
     $print .=  ", fly " . $mon_speed_fly;
-    $htmlp .=  ", fly " . $mon_speed_fly . "ft.";
+    $htmlpBlock .=  ", fly " . $mon_speed_fly . "ft.";
 }
 if ($mon_speed_swim != "0" and $mon_speed_swim != ""){
     $print .=  ", swim " . $mon_speed_swim;
-    $htmlp .=  ", swim " . $mon_speed_swim. "ft.";
+    $htmlpBlock .=  ", swim " . $mon_speed_swim. "ft.";
 }
 if ($mon_speed_climb != "0" and $mon_speed_climb != ""){
     $print .=  ", climb " . $mon_speed_climb;
-    $htmlp .=  ", climb " . $mon_speed_climb. "ft.";
+    $htmlpBlock .=  ", climb " . $mon_speed_climb. "ft.";
 }
 if ($mon_speed_burrow != "0" and $mon_speed_burrow != ""){
     $print .=  ", burrow " . $mon_speed_burrow;
-    $htmlp .=  ", burrow " . $mon_speed_burrow. "ft.";
+    $htmlpBlock .=  ", burrow " . $mon_speed_burrow. "ft.";
 }
 if ($speed_text >""){
    if ($print_speed >""){
@@ -439,13 +509,17 @@ if ($speed_text >""){
 }
 if ($print_speed != ""){
  $print .=  ", " . $print_speed;
- $htmlp .=  ", " . $print_speed;
+ $htmlpBlock .=  ", " . $print_speed;
 }
 $print .= "\n";
-$htmlp .= "</BR></div><div>";
+
+$htmlp .= wrapHTMLBlock($htmlpBlock);
+$htmlpBlock = "";
+
 
 $print .= "Melee ";
-$htmlp .= "<b>Melee</b></BR></div><div>";
+$htmlp .= wrapHTMLBlock(wrapHTMLHighlight("Melee"));
+
 //echo "magic p = $magic_tohit_p";
 if ($magic_tohit_p != 0 or $magic_damage_p != 0){
 
@@ -503,16 +577,19 @@ if ($crit_ch_p == "" or $crit_ch_p == "20"){
 }
 if (substr($single_attack,0,1) == "-"){
     $print .= "Attack +" . $magic_p . $mon_weap_p . " " . $single_attack .  " (" . $damage_p . $crit_txt_p . ") $magic_WEAPONA_SPEC_1  \n";
-    $htmlp .= "<b>Single Attack</b>" . $magic_p . $mon_weap_p ." " . $single_attack . " (" . $damage_p . $crit_txt_p . ") $magic_WEAPONA_SPEC_1";
+    $htmlpBlock .= wrapHTMLHighlight("Single Attack ") . $magic_p . $mon_weap_p ." " . $single_attack . " (" . $damage_p . $crit_txt_p . ") $magic_WEAPONA_SPEC_1";
 }else{
     $print .= "Attack +" . $magic_p . $mon_weap_p . " +" . $single_attack .  " (" . $damage_p . $crit_txt_p . ") $magic_WEAPONA_SPEC_1  \n";
-    $htmlp .= "<b>Single Attack</b>" . $magic_p . $mon_weap_p ." +" . $single_attack . " (" . $damage_p . $crit_txt_p . ") $magic_WEAPONA_SPEC_1";
+    $htmlpBlock .= wrapHTMLHighlight("Single Attack") . $magic_p . $mon_weap_p ." +" . $single_attack . " (" . $damage_p . $crit_txt_p . ") $magic_WEAPONA_SPEC_1";
 }
 if ($print_attack != ""){
-   $htmlp .= "(" . $print_attack . ")</BR></div><div>";
-}else{
-   $htmlp .="</BR></div><div>";
+   $htmlpBlock .= "(" . $print_attack . ")";
 }
+
+$htmlp .= wrapHTMLBlock($htmlpBlock);
+$htmlpBlock = "";
+
+
 //echo "print $prnt_attack";
 //echo "magic2 " . $magic_p;
 if ($crit_ch_r != ""){
@@ -528,29 +605,31 @@ if ($crit_ch_r == "" or $crit_ch_r == "20"){
 
 if ($mon_weap_r != "None"){
     $print .=  "    or " . $magic_r . $mon_weap_r . " +" . $single_ranged . " (" . $damage_r .  $crit_txt_r .") $magic_WEAPONR_SPEC_1 $print_ranged \n";
-    $htmlp .=  "    or " . $magic_r . $mon_weap_r . " +" . $single_ranged . " (" . $damage_r .  $crit_txt_r .") $magic_WEAPONR_SPEC_1 $print_ranged </BR></div><div>";
-
+    $htmlpBlock .=  "    or " . $magic_r . $mon_weap_r . " +" . $single_ranged . " (" . $damage_r .  $crit_txt_r .") $magic_WEAPONR_SPEC_1 $print_ranged";
 }
+
+$htmlp .= wrapHTMLBlock($htmlpBlock);
+$htmlpBlock = "";
+
+
 $print .= "Full attack " . $magic_p . $mon_weap_p . " +" . $full_attack .   " (" . $damage_p . $crit_txt_p . ")$magic_WEAPONP_SPEC_1 \n";
 $x = formatattack();
-$htmlp_attacks = printattacks();
-$htmlp .= "</div><div><b>Full Attack</b></BR></div><div> " . $htmlp_attacks;
 
-//$htmlp .= "<b>Full Attack:</b></BR> +" . $full_attack . " "  . $magic_p . $mon_weap_p . " " . $damage_p . $crit_txt_p ."<BR>";
+$htmlp_attacks = printattacks();
+$htmlp .= wrapHTMLBlock(wrapHTMLHighlight("Full Attack")." " . $htmlp_attacks);
+
 
 if ($mon_weap_s1 != "No Melee"){
-//
   $print .= $print_secondary_attacks . "\n";
-//  $htmlp .= $htmlp_secondary_attacks . "</BR>";
 }
 if ($mon_weap_r != "None"){
     $print .=  "    or " .  $magic_r . $mon_weap_r . " +" . $ranged_attack . " (" . $damage_r . ") range " . $weap_range_r . " $magic_WEAPONR_SPEC_1  $print_ranged \n";
-    $htmlp .=  "    or " .  $magic_r . $mon_weap_r . " +" . $ranged_attack . " (" .  $damage_r . $crit_txt_r .") range " . $weap_range_r  ." $magic_WEAPONR_SPEC_1 $print_ranged </BR></div><div>";
-
+    $htmlpBlock .=  "    or " .  $magic_r . $mon_weap_r . " +" . $ranged_attack . " (" .  $damage_r . $crit_txt_r .") range " . $weap_range_r  ." $magic_WEAPONR_SPEC_1 $print_ranged";
 }
+
 if ($class1_tp == "Monk" or $class2_tp == "Monk") {
   $print .= "    or Flurry of blows +" . $flurry . " " . $flurry_damage ."\n";
-  $htmlp .= "    or Flurry of blows +" . $flurry . " " . $flurry_damage ."</BR></div><div>";
+  $htmlpBlock .= "    or Flurry of blows +" . $flurry . " " . $flurry_damage ;
 }
 //echo "reach text $reach_text";
 if ($reach_text >""){
@@ -561,23 +640,46 @@ if ($reach_text >""){
    }
 }
 $print .= "Space/Reach: " . $mon_space . "/" . $mon_reach ." " . $print_space . " $print_reach \n";
-$htmlp .= "<b>Space</b> " . $mon_space . "ft.; <b>Reach</b> " . $mon_reach ." " . $print_space . " $print_reach </BR></div><div>";
+
+$htmlp .= wrapHTMLBlock($htmlpBlock);
+$htmlpBlock = "";
+
+$htmlpBlock .= wrapHTMLHighlight("Space ") . $mon_space . "ft.; ".wrapHTMLHighlight("Reach")." " . $mon_reach ." " . $print_space . " $print_reach ";
 $print .= "Special Attacks "  . $print_special_attacks ;
+
+$htmlp .= wrapHTMLBlock($htmlpBlock);
+$htmlpBlock = "";
+
+/** What is this doing ??? */
 $htmlp_special_attacks = add_BR($htmlp_special_attacks);
 $htmlp_special_attacks = str_replace("\n","</BR></div><div>",$htmlp_special_attacks);
-//   $htmlp_special_qualities = str_replace("\r","</BR>",$htmlp_special_qualities);
-//   $htmlp_special_attacks = str_replace("\'","",$htmlp_special_attacks);
-//   $htmlp_special_qualities = str_replace(". ",".</BR>",$htmlp_special_qualities);
-//   $htmlp_special_attacks = str_replace(chr(30),"</BR>",$htmlp_special_attacks);
-//   $htmlp_special_attacks = str_replace(chr(10),"</BR>",$htmlp_special_attacks);
-//   $htmlp_special_attacks = str_replace(chr(155),"</BR>",$htmlp_special_attacks);
-$htmlp .= "<b>Special Attacks</b></BR></div><div> "  . $htmlp_special_attacks ;
+
+
+$htmlpBlock .= wrapHTMLHighlight("Special Attacks");
+$htmlp .= wrapHTMLBlock($htmlpBlock);
+$htmlpBlock = "";
+
+$htmlp .= wrapHTMLBlock($htmlp_special_attacks);
+
 //echo "Special Attacks: "  . $htmlp_special_attacks ;
 if ($print_spell_abil != "" or $htmlp_spell_abil != ""){
 //   echo "spell abil " . $htmlp_spell_abil;
    $print .= $print_spell_abil . "\n";
-   $htmlp .=  "<b>Spell-like Abilities</b></BR></div><div>";
-   $htmlp .= $htmlp_spell_abil;
+
+
+   $htmlpBlock .=  wrapHTMLBlock(wrapHTMLHighlight("Spell-like Abilities"), "dgStatsHeading");
+   $htmlp .= wrapHTMLBlock($htmlpBlock);
+			$htmlpBlock = "";
+
+			/* Strip spell abilities of BR tags and replaces with DIVs */	
+			$spell_abil_array = preg_split(":</?br>:is", $htmlp_spell_abil);
+			foreach ($spell_abil_array as $line) {
+					$htmlpBlock .= wrapHTMLBlock($line);
+			}
+   $htmlp .= wrapHTMLBlock($htmlpBlock);
+			$htmlpBlock = "";
+
+
 }else{
    $print .= "\n";
 }
@@ -586,39 +688,37 @@ if (($class1_spat != ""  or $class1_psi == "Y") or
      ($class3_spat != ""  or $class3_psi == "Y") or
      ($classm_spat != ""  or $classm_psi == "Y")){
     $print .= "\n Spells Known: " ."\n";
-    $htmlp .= "<b> Spells Known: " ."</b>";
-    $htmlp .= "</BR></div><div>";
+    $htmlpBlock .= wrapHTMLHighlight("Spells Known: ");
+   $htmlp .= wrapHTMLBlock($htmlpBlock);
+			$htmlpBlock = "";
 }
 if ($psi_pts > 0){
    $print .= "Power Points " . $psi_pts . "\n";
-   $htmlp .= "Power Points " . $psi_pts . "</BR></div><div>";
+   $htmlp .= wrapHTMLBlock("Power Points " . $psi_pts);
 }
 //echo " class1 spat = $class1_spat";
 //if (is_page(136)){
   if ($class1_spat != ""  or $class1_psi == "Y"){
    $print .= printSpells(1);
-   $htmlp .= "</BR></div><div>";
-   $htmlp .= $spell_html_print;
+
+   $htmlp .= wrapHTMLBlock($spell_html_print);
 
   }
   if ($class2_spat != "" or $class2_psi == "Y"){
-     $htmlp .= "</BR></div><div>";
      $print .= printSpells(2);
-     $htmlp .= $spell_html_print;
+     $htmlp .= wrapHTMLBlock($spell_html_print);
   }
   if ($class3_spat != "" or $class3_psi == "Y"){
      $print .= printSpells(3);
-     $htmlp .= "</BR></div><div>";
-     $htmlp .= $spell_html_print;
+     $htmlp .= wrapHTMLBlock($spell_html_print);
   }
   if ($classm_spat != "" or $classm_psi == "Y"){
      $print .= printSpells("m");
-     $htmlp .= "</BR></div>";
-     $htmlp .= $spell_html_print;
+     $htmlp .= wrapHTMLBlock($spell_html_print);
   }
 $print .= "\n" . "STATISTICS" . "\n";
-//$htmlp .= "<i><u>" . "STATISTICS" . "</u></i>";
-$htmlp .= $header . "<b> STATISTICS</b></font></div>";
+
+$htmlp .= wrapHTMLBlock(wrapHTMLHighlight("STATISTICS"));
 
 //$htmlp .= "</BR>";
 
@@ -626,51 +726,73 @@ $htmlp .= $header . "<b> STATISTICS</b></font></div>";
 //", Ref +" . $total_reflex_sv . ", Will +" . $total_will_sv . "\n";
 $print .= "Str " . $mon_str . disStats("str") . ", Dex " . $mon_dex . disStats("dex") . ", Con " . $mon_con . disStats("con") .
           ", Int " . $mon_int . disStats("int") .  ", Wis " . $mon_wis . disStats("wis"). ", Cha " . $mon_chr . disStats("chr") ."\n";
-$htmlp .= "<b>Str</b> " . $mon_str . disStats("str") . ", <b>Dex</b> " . $mon_dex . disStats("dex") . ", <b>Con</b> " . $mon_con . disStats("con") .
-          ", <b>Int</b> " . $mon_int . disStats("int") .  ", <b>Wis</b> " . $mon_wis . disStats("wis"). ", <b>Cha</b> " . $mon_chr . disStats("chr") ."</BR></div><div>";
 
+$htmlpBlock .= wrapHTMLHighlight("Str ") . $mon_str . disStats("str") . ", ".wrapHTMLHighlight("Dex ") . $mon_dex . disStats("dex") . ", ".wrapHTMLHighlight("Con ") . $mon_con . disStats("con") .
+          ", ".wrapHTMLHighlight("Int ") . $mon_int . disStats("int") .  ", ".wrapHTMLHighlight("Wis ") . $mon_wis . disStats("wis"). ", ".wrapHTMLHighlight("Cha ") . $mon_chr . disStats("chr") ;
+$htmlp .= wrapHTMLBlock($htmlpBlock);
+$htmlpBlock = "";
 
 $print  .= "Base Attack: " . $base_attack;
-$htmlp  .= "<b>Base Attack</b> " . $base_attack;
+
+$htmlpBlock  .= "<b>Base Attack</b> " . $base_attack;
 
 if ($key_1 == "path"){
   if ($base_cmb != $base_grapple){
       $print .= " CMB> $base_cmb (grapple $base_grapple) $print_CMB  CMD $base_cmd $print_CMD" . "\n";
-      $htmlp .= " <b>CMB</b> $base_cmb ;(<b>grapple</b> $base_grapple) $print_CMB  ;<b>CMD</b> $base_cmd $print_CMD " . "</BR></div><div>";
+      $htmlpBlock .= wrapHTMLHighlight(" CMB "). "$base_cmb ;(".wrapHTMLHighlight("grapple"). " $base_grapple) $print_CMB  ;".wrapHTMLHighlight("CMD")." $base_cmd $print_CMD " ;
   }else{
      $print .= " CMB $base_cmb $print_CMB  CMD $base_cmd $print_CMD" . "\n";
-     $htmlp .= " <b>CMB</b> $base_cmb $print_CMB;  <b>CMD</b> $base_cmd $print_CMD" . "</BR></div><div>";
+     $htmlpBlock .= wrapHTMLHighlight(" CMB"). "$base_cmb $print_CMB; ".wrapHTMLHighlight("CMD"). " $base_cmd $print_CMD" ;
   }
 }else{
-  $htmlp  .= " Grapple " . $base_grapple .  "$print_CMB $print_CMD  </BR></div><div>";
+  $htmlpBlock  .= " Grapple " . $base_grapple .  "$print_CMB $print_CMD  ";
 }
 
+$htmlp .= wrapHTMLBlock($htmlpBlock);
+$htmlpBlock = "";
+
+
 $print .= "Feats: \n" . $print_feat . "\n";
-$htmlp_feat = add_BR($htmlp_feat);
-$htmlp .= "<div><b>Feats</b> </BR></div><div>" . $htmlp_feat ;
 
+//$htmlp_feat = add_BR($htmlp_feat);
 
-$htmlp .= "</div><div>";
+$htmlp .= wrapHTMLBlock(wrapHTMLHighlight("Feats"));
+
+/* Strip BR tags and replaces with DIVs */	
+$htmlp_feat_array = preg_split(":</?br>:is", $htmlp_feat);
+foreach ($htmlp_feat_array as $line) {
+	$htmlpBlock .= wrapHTMLBlock($line);
+}
+$htmlp .= wrapHTMLBlock($htmlpBlock);
+$htmlpBlock = "";
+			
 $print .= "Skills " . $print_skill . "\n";
-$htmlp .= "<b>Skills</b> " . $htmlp_skill ."</BR></div><div>" ;
+$htmlp .= wrapHTMLBlock(wrapHTMLHighlight("Skills ") . $htmlp_skill ) ;
+
 $print .= "Languages: " . $monlang1;
-$htmlp .= "<b>Languages</b> " . $monlang1;
+
+$htmlpBlock .= wrapHTMLHighlight("Languages ") . $monlang1;
 $count = 1;
 while ($count < 6){
   $count += 1;
   $monlang_r = "monlang" . $count;
   if ($$monlang_r != ""){
      $print .= ", " . $$monlang_r;
-     $htmlp .= ", " . $$monlang_r;
+     $htmlpBlock .= ", " . $$monlang_r;
 //    echo $monlang_r . $$monlang_r;
   }
 }
+$htmlp .= wrapHTMLBlock($htmlpBlock);
+$htmlpBlock = "";
 
 $print .= "\n";
-$htmlp .= "</BR></div>";
+
 $print .= "\n" . "ECOLOGY" ."\n";
 //$htmlp .= "</BR><i><u>" . "ECOLOGY" ."</u></i>";
-$htmlp .= $header . "<b> ECOLOGY</b></font></div>";
+
+$htmlp .= wrapHTMLBlock(wrapHTMLHighlight("ECOLOGY"));
+$htmlpBlock = "";
+
 //$htmlp .= "</BR>";
 
 //if ($key_1 == "path"){
@@ -681,55 +803,95 @@ $htmlp .= $header . "<b> ECOLOGY</b></font></div>";
 $x = print_ecology();
 $print .= "Alignment " . $mon_alignment . "\n";
 //$htmlp .= "<b>Alignment:</b> " . $mon_alignment . "</BR>";
-$htmlp .= "<b>Environment</b> " . $mon_environment . "</BR></div><div>";
-$htmlp .= "<b>Organization</b> " . $html_org_desc . "</BR></div><div>";
-$htmlp .= "<b>Treasure</b> " . $html_treas_desc . "</BR></div>";
+
+$htmlp .= wrapHTMLBlock(wrapHTMLHighlight("Environment ") . $mon_environment );
+$htmlp .= wrapHTMLBlock(wrapHTMLHighlight("Organization ") . $html_org_desc);
+$htmlp .= wrapHTMLBlock(wrapHTMLHighlight("Treasure ") . $html_treas_desc) ;
+
 if ($htmlp_special_qualities !="" or $print_specdesc !=""){
    $print .= "\n SPECIAL ABILITIES \n " . $print_special_qualities . "\n" ;
-//$htmlp .= "<i><u>SPECIAL ABILITIES</u></i>" ;
-   $htmlp .= $header . "<b> SPECIAL ABILITIES</b></font></div><div>";
-//$htmlp .= "</BR>";
-   $htmlp_special_qualities = add_BR($htmlp_special_qualities);
-//   $htmlp_special_qualities = str_replace("\n","</BR>",$htmlp_special_qualities);
-//   $htmlp_special_qualities = str_replace("\r","</BR>",$htmlp_special_qualities);
-//   $htmlp_special_qualities = str_replace("\'","",$htmlp_special_qualities);
-//   $htmlp_special_qualities = str_replace(". ",".</BR>",$htmlp_special_qualities);
-//   $htmlp_special_qualities = str_replace(chr(30),"</BR>",$htmlp_special_qualities);
-//   $htmlp_special_qualities = str_replace(chr(10),"</BR>",$htmlp_special_qualities);
-//   $htmlp_special_qualities = str_replace(chr(155),"</BR>",$htmlp_special_qualities);
-//   $htmlp_special_qualities = str_replace("Great","xxx",$htmlp_special_qualities);
-   $htmlp .= $htmlp_special_qualities . "</BR></div><div>" ;
+   $htmlp .= wrapHTMLBlock(wrapHTMLHighlight("SPECIAL ABILITIES"));
+
+//   $htmlp_special_qualities = add_BR($htmlp_special_qualities);
+//   $htmlp .= $htmlp_special_qualities  ;
+
+		/* Strip BR tags and replaces with DIVs */	
+		$htmlp_special_qualities_array = preg_split(":</?br>:is", $htmlp_special_qualities);
+		foreach ($htmlp_special_qualities_array as $line) {
+			$htmlpBlock .= wrapHTMLBlock($line);
+		}
+		$htmlp .= wrapHTMLBlock($htmlpBlock);
+		$htmlpBlock = "";
+		
 }
+
+
 if ($print_specdesc != ""){
-   $print_specdesc = str_replace("\n","</BR></div><div>",$print_specdesc);
+
+/*   $print_specdesc = str_replace("\n","</BR></div><div>",$print_specdesc);
 //   $print_specdesc = str_replace("\r","</BR>",$print_specdesc);
    $print_specdesc = str_replace("\'","",$print_specdesc);
 
    $htmlp .= $print_specdesc;
-}
+*/
 
-//if ($psi_cmb > 0){
-//   $print .= print_psi_combat();
-//}
-//$print .= "Class Specials: " . $print_class_special . "\n";
-// display buiff alwats as ins stats 29/04/18
-//if (is_page(203) or is_page(1947)){
-//  }else{
+//var_dump($print_specdesc);
+
+		$htmlp .= wrapHTMLBlock($print_specdesc,"dgSpecDesc");
+		$htmlpBlock = "";
+
+}
    if ($print_buff != ""){
      $print .=  "Buffing spells pre-cast: \n" . $print_buff;
-     $htmlp .=  "<div><b>Buffing spells pre-cast:</b></BR></div><div>" . $htmlp_buff . "</BR></div><div>";
+
+     $htmlp .=  wrapHTMLBlock(wrapHTMLHighlight("Buffing spells pre-cast:"));
+				 $htmlp .= wrapHTMLBlock($htmlp_buff,"dgSpellsPreBuff");
    }
-//}
 
 
-//}else{
-//   $print .= "Spells: ". $print_spell ."\n";
-//}
-//magic items
-//if (is_page (136)){
-$print .= printMagic();
-$htmlp .= $magic_html_print;
-//}
+/*   *******   SHITTY CODE  AHEAD   *******  */
+/*  The printMagic function sets globals!!!! for the magic_html_print and others */
+//$print .= printMagic();
+
+//$htmlp .= wrapHTMLBlock(urlencode($magic_html_print), "dgMagicPrint");
+
+$magicItems = getMagicItems();
+
+
+$htmlp .= "  MAGIC ITEMS HERE !!!!! ";
+$htmlp .= var_export($magicItems,1);
+
+$htmlp .= wrapHTMLblock(wrapHTMLHighlight("Magic Items (Max Value = ".$magicItems['Max Value']));
+
+foreach ($magicItems as $magicType) {
+
+	$htmlpSuperBlock = "";
+
+	foreach ($magicType as $magicItem) {
+		if ( isset($magicItem['magic_item'])) {
+	
+		 $htmlpBlock = "";
+			$htmlpBlock .= wrapHTMLHighlight($magicItem['magic_item'],"dgMagicItemName");	
+		
+			if (isset($magicItem['magic_desc'] ) ) {
+					$htmlpBlock .= wrapHTMLHighlight($magicItem['magic_desc'],"dgMagicItemDescription");	
+			}
+			$htmlpSuperBlock .= wrapHTMLblock($htmlpBlock);
+				
+		}
+		if ( isset($htmlpSuperBlock)) {
+			$htmlp .= wrapHTMLBlock($htmlpSuperBlock,"dgMagicItemType");
+
+		}
+
+	}
+
+}
+
+
+$htmlp .= wrapHTMLblock(wrapHTMLHighlight("Total Value = ".$magicItems['Total Value']));
+
+
 $update  = "UPDATE lastmon SET lastmon_mon_name = '$mon_name', lastmon_class1_tp = '$class1_tp', lastmon_class1_level = '$class1_level', " .
       "lastmon_class1_focus = '$class1_focus', lastmon_class2_tp = '$class2_tp', lastmon_class2_level = '$class2_level', lastmon_class2_focus = '$class2_focus', " .
       "lastmon_text = '$print'  WHERE lastmon_count = '$oldmon_key'";
@@ -748,35 +910,6 @@ if ($local == "paulds-1.vm.bytemark.co.uk"){
 ?>
 <?php
 ?>
-		<!-- Define Local CSS -->
-		<LINK href="./local.css" rel="stylesheet" type="text/css" media="all">
-		<!-- Define CSS for stats-->
-		<LINK href="./style-statsBlock.css" rel="stylesheet" type="text/css" media="all">
-		<!-- END CSS Set Up -->
-<?php
-/*
-<STYLE type="text/css">
-<!--
-.monPrint {
-	border: 1px solid #CCCCCC;
-        height: 1500px;
-       	width: 750px;
-}
-.htmlPrint {
-       font-family:"Times New Roman",Georgia,Serif;
-       font-size: 90%;
-       right:0px;
-}
-.headmon {
-    font-family:"Times New Roman",Georgia,Serif;
-    font-size: 12          0%;
-    text-align: left
-}
-p {font-size:90%}
-
-</STYLE>
-*/
-?>
 <?php
 //echo $_SERVER['HTTP_USER_AGENT'];
 //if (eregi("MSIE",$_SERVER['HTTP_USER_AGENT'])) {
@@ -786,44 +919,14 @@ p {font-size:90%}
 //}
 
 
-
-
-//	<BODY>
-//		<div id="titleBanner">
-//	</div>
-//  	<div id="content">
-
 ?>
+<!-- pathdisMonsterPrint monsterPlainText  -->
+<div class="monsterPlainText">
+<div class="monsterPlainTextStats">
 
+<?php  echo $htmlp ?>
 
-                	<div class="noPrint">
-<?php
-//echo "key1  $key_1";
-if ($key_1 == "dd35"){
-?>
-				<h1>D&D 3.5 Monster Generator</h1>
-<?php
-}else{
-?>
-                               	<h1>Pathfinder RPG Monster Generator</h1>
-<?php
-}
-?>
-
-
-				<h2>Plain Text Version</h2>
-<?php
-//echo $savemon_key;
-//include 'advert.php';
-?>
-	                </div>
-<div>
-
-<?php echo $htmlp ?>
-
-</div>
-
-<div>
+<div class="monsterPlainTextNotes">
 <p>
 <b>Descriptions/Notes</b>
 </p>
@@ -843,46 +946,22 @@ $rows = $line_count + $line_len + 1;
 ?>
 <TEXTAREA NAME="savemon_desc" class="desc" ROWS="<?php echo $rows?>" COLS="60" readonly><?php echo $savemon_desc ?> </TEXTAREA>
 </div>
+
+<!-- pathdisMonster - monsterPlainTextStats END -->
+</div>
+
 <?php
-//<TABLE BORDER="1" CELLPADDING="1">
-// <BR>
-// <TR>
-
-/*
-<TD><TEXTAREA class="monPrint" Name="monPrint">
-<?echo $print ?> </TEXTAREA>
-*/
-
-//</TR>
 if (!isset($print_indx)){
     $print_indx = "";
 }
 ?>
 
+<div class="monsterPlainTextOptions">
         <INPUT TYPE="hidden" NAME="print", VALUE="<?php echo $print?>"/>
         <INPUT TYPE="hidden" NAME="mon_print", VALUE="<?php echo $print?>"/>
         <INPUT TYPE="hidden" NAME="print_indx", VALUE="<?php echo $print_indx?>"/>
-	<INPUT class="button noPrint" TYPE="button" VALUE="Return" onClick="location.href='<?php echo $location?>'"/>
+				<INPUT class="button noPrint" TYPE="button" VALUE="Return" onClick="location.href='<?php echo $location?>'"/>
+</div>
 
-
-
-<?php
-//include 'paypal4.php';
-?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+</div>
+<!-- pathdisMonsterPrint monsterPlainText END -->

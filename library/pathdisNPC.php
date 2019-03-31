@@ -319,7 +319,7 @@ while ($count < 15){
 
 
 
-$speed_land = 0;
+/* $speed_land = 0; */
 $mon_str = 0;
 $mon_dex = 0;
 $mon_con = 0;
@@ -607,8 +607,8 @@ $speed_text = "";
 $print_specdesc = "";
 $AC_text = "";
 $print_init = "";
-$init_text = "";
-$sen_text = "";
+// $init_text = "";
+// $sen_text = "";
 $feat_text = "";
 $zombie = "";
 $class1_attg = "";
@@ -957,11 +957,27 @@ if (IsSet($_SESSION['smon_name']) or $_POST['savemon_key'] != ""){
 
 	extract($row, EXTR_OVERWRITE);
 
-	/*  Cast to int any vars which are varchar in the DB but hod numerics */
+	/* get speeds into an array */
+	$monSpeedArray = array('land'=>$row['mon_speed'], 'fly'=>$row['mon_speed_fly'], 
+																	'climb'=>$row['mon_speed_climb'], 'swim' => $row['mon_speed_swim'],
+																	'burrow' => $row['mon_speed_burrow'], 'base'=>$row['mon_speed'] ) ;
+
+	/* This is only for debugging, to make sure all references to speed are updated to the array */
+	/* start*/
+	if ( isset($mon_speed)) { unset($mon_speed); } 
+	if ( isset($mon_speed_fly)) { unset($mon_speed_fly); } 
+	if ( isset($mon_speed_climb)) { unset($mon_speed_climb); } 
+	if ( isset($mon_speed_swim)) { unset($mon_speed_swim); } 
+	if ( isset($mon_speed_burrow)) { unset($mon_speed_burrow); } 
+/* end */
+
+	/*  Cast to int any vars which are varchar in the DB but hold numerics */
 	$mon_con = (int)$mon_con;
 	$mon_cr = (int)$mon_cr;
-	$mon_ac_flat = (int)$mon_ac_flat;
-	$mon_speed_fly_save = $mon_speed_fly;
+	$mon_ac_flat = (int)$mon_ac_flat	;	
+//	$mon_speed_fly_save = $mon_speed_fly;
+
+
 //	echo $montype_skillp;
         $mon_skillp = $montype_skillp;
 	$mon_key_1 = $row[0];
@@ -1431,7 +1447,7 @@ if (IsSet($_SESSION['smon_name']) or $_POST['savemon_key'] != ""){
        $xskill ="";
     }
     // If can fly then fly is a class skill
-    if ($skill == "Fly" and  $mon_speed_fly > 1){
+    if ($skill == "Fly" and  $monSpeedArray['fly'] > 1){
        $xskill = "";
     }
 
@@ -1600,7 +1616,7 @@ if (IsSet($_SESSION['smon_name']) or $_POST['savemon_key'] != ""){
    }
 //    echo "int2 = $mon_int";
 //   echo "fly = $mon_speed_fly";
-   $mon_speed_fly_save = $mon_speed_fly;
+//   $mon_speed_fly_save = $mon_speed_fly;
 //   if ($mon_size_p == ""){
 //   }else{
 //      $_POST['mon_speed_fly'] = $mon_speed_fly;
@@ -1895,8 +1911,8 @@ $magic_shield = 0;
 $magic_armour = 0;
 $magic_skill_all = 0;
 $magic_armour_nac = 0;
-$htmlp_spell_abil = "";
-$htmlp_spell_abil_s = "";
+// $htmlp_spell_abil = "";
+// $htmlp_spell_abil_s = "";
 $print_aura = "";
 $print_attack = "";
 $print_ranged = "";
@@ -1907,7 +1923,7 @@ $print_specdesc = "";
 $AC_text = "";
 $save_text = "";
 $print_init = "";
-$sen_text = "";
+//$sen_text = "";
 $speed_text = "";
 $reach_text = "";
 $init_text = "";
@@ -1916,7 +1932,7 @@ $htmlp_def = "";
 
 //echo "level = $class1_level";
 
-$print_special_attacks_s = "";
+//$print_special_attacks_s = "";
 if ($buffx_level_1 == "" or  $buffx_level_1 == "0" ){
   $buffx_level_1 = $class1_level;
 }
@@ -4595,37 +4611,45 @@ if ($feat_armtp > 0 and $armour_cd > 10){
       $armour_cd_check = 1;
    }
 }
-//echo "mon_speed ";
+
+
+/*
+		TEST - Reduce speed for armour ????
+*/
+
 // speedmedmorm is a feat that allows normal speed in medium armor
 //reset fly speed
-$mon_speed_fly = $mon_speed_fly_save;
+
+//$mon_speed_fly = $mon_speed_fly_save;
 if ($speedmednorm == "Y" and $armour_cd_check < 4){
 
 }else{
-  $mon_speed_fly = speed($mon_speed_fly);
-  if ($mon_speed == 30){
-    $mon_speed = $armour_s30;
+  $monSpeedArray['fly'] = speed($monSpeedArray['fly']);
+  if ($monSpeedArray['land'] == 30){
+    $monSpeedArray['land'] = $armour_s30;
   }else{
-     if ($mon_speed == 20){
+     if ($monSpeedArray['land'] == 20){
        if ($mon_name == "Dwarf"){
-          $mon_speed = 20;
+          $monSpeedArray['land'] = 20;  /* <--- Redundent? */
        }else{
-          $mon_speed = $armour_s20;
+          $monSpeedArray['land'] = $armour_s20;
        }
      }else{
          if ($armour_s30 != 30){
-           $mon_speed = speed($mon_speed);
+           $monSpeedArray['land'] = speed($monSpeedArray['land']);
          }
      }
   }
 }
 // fleet is only for medium or light armour
 if ($armour_cd_check < 3){
-  $speed_land = $mon_speed + $speed;
+  $monSpeedArray['land'] = $monSpeedArray['land'] + $speed;
 }else{
-  $speed_land = $mon_speed;
+  $monSpeedArray['land'] = $monSpeedArray['base'];
 }
-$speed_land += $magic_speed;
+$monSpeedArray['land'] += $magic_speed;
+
+
 // echo "</BR> $mon_speed xx $armour_cd xx $armour_s30 xx $speed_land";
 
 //echo "levely $class1_level";
@@ -5250,6 +5274,10 @@ mysqli_close($link);
 $count = 0;
 $secondaryWeaponHTML = array();
 $secondaryWeaponHTMLCount = 0;
+
+$secondaryWeaponArray = array();
+
+/*
 $print_secondary_attacks = "";
 $print_special_attacks = "";
 $print_special_qualities = "";
@@ -5257,6 +5285,8 @@ $htmlp_special_attacks = "";
 $htmlp_special_qualities = "";
 $htmlp_special_qualities_s = "";
 $htmlp_secondary_attacks =  "";
+*/
+
 if ($extra_attack == "Add Extra Attack"){
    $add_extra_attack += 1;
 }
@@ -5301,6 +5331,7 @@ $x = addattacktemp($htmlx_primary_attacks,"P");
 While ($count < 10) {
 	$count = $count + 1;
 	$secondaryWeaponHTML[$count] = "";
+	$secondaryWeaponArray[$count] = array();
 	$name = "mon_weap_s" . $count;
 	$mon_weap_s = $$name;
 	$damage_v     = "damage_s" . $count;
@@ -5311,6 +5342,8 @@ While ($count < 10) {
 	$crit = $$crit_v;
         $crit_ch_v = "weap_crit_ch_s" . $count;
 	$crit_ch = $$crit_ch_v;
+	$crit_txt = "";
+
 	if ($crit_ch != ""){
            if ($crit == 2 or $crit == 0 or $crit == ""){
            $crit_txt =  "/" . $crit_ch . "-20";
@@ -5330,20 +5363,17 @@ While ($count < 10) {
 	if ($count <= $add_extra_attack or ($mon_weap_s != "No Melee" and $mon_weap_s !="")) {
 	   $secondaryWeaponHTML[$count] = '<p class="boxLabel">Off Hand/Other Attacks</p><p class="boxValue"><SELECT NAME="'.$name.'">';
 	   if ($attack >= 0){
-              if ($count == 1){
-	         $print_secondary_attacks .=  $mon_weap_s . " +" . $attack . " (" . $damage . " Crit(". $crit_ch . "-20)X". $crit . ")\n";
-	         $htmlx_secondary_attacks =   $mon_weap_s . " +" . $attack . " (" . $damage . $crit_txt . ")";
-	       }else{
-                 $print_secondary_attacks .=  $mon_weap_s . " +" . $attack . " (" . $damage . " Crit(". $crit_ch . "-20)X". $crit . ")\n";
-                 $htmlx_secondary_attacks =   $mon_weap_s . " +" . $attack . " (" . $damage . $crit_txt . ")";
-               }
-            }else{
-               $print_secondary_attacks .=  $mon_weap_s . $attack . " (" . $damage . $crit_txt . ")\n";
-               $htmlx_secondary_attacks =   $mon_weap_s . $attack .  " (" . $damage . $crit_txt. ")";
-            }
+      if ($count == 1){
+      				$htmlx_secondary_attacks =   $mon_weap_s . " +" . $attack . " (" . $damage . $crit_txt . ")";
+      }
+     }else{
+        $htmlx_secondary_attacks =   $mon_weap_s . $attack .  " (" . $damage . $crit_txt. ")";
+     }
+											
+					$sPrintArray = array("name" => $mon_weap_s, "attack" => $attack, "damage" => $damage , "crit" => $crit_txt, "other" => "" );
 
-            $htmlp_secondary_attacks .= $htmlx_secondary_attacks . "</BR>";
-            $x = addattacktemp($htmlx_secondary_attacks, "S");
+					$secondaryWeaponArray[$count] = $sPrintArray;	
+   			$x = addattacktemp($htmlx_secondary_attacks, "S");
 
 //    include 'includes/dd_db_conn.txt' ;
 		$link = getDBLink();
@@ -5410,13 +5440,17 @@ if ($flurry_of_blows == "Y"){
 	$monkHTML .= '</ul></li>';
 }
 
-//$x = specattr();
 
-// Monster Special Attacks
-//include 'includes/dd_db_conn.txt';
+/* 
+				Special Attacks
+*/
+
 
 $link = getDBLink();
 $monsterSpecialHTML = "";
+
+$specialAttackArray =  array();
+
 $mon_namex = $mon_name;
 if ($zombie_tem === 0 and $mon_int == 0){
    $mon_namex = "XXXX";
@@ -5469,7 +5503,10 @@ while ($row = mysqli_fetch_array($result)) {
     $speca_desc = trim($row['speca_desc']);
     if ($speca_desc != "" and $old_specatta !=  $row['monspec_name'] ){
        $old_specatta =  $row['monspec_name'];
+
        $print_specdesc .= "<b>" . $row['monspec_name'] . "</B>:" . $speca_desc . "</BR>";
+
+//       $print_specdesc .= wrapHTMLBlock(wrapHTMLHighlight( $row['monspec_name'] ). ":" . $speca_desc ,"dgSpecialDescription");
     }
     $DC_txt = " ";
 //    echo $$abil_atr_v . $abil_atr_v;
@@ -5487,18 +5524,23 @@ while ($row = mysqli_fetch_array($result)) {
        $$domain_v = $row['monspec_value'];
 //       echo "$domain_v $domain_m1";
     }
+
     $monsterSpecialHTML .= '<li class="specialAbility"><ul>';
     $monsterSpecialHTML .= '<li>'.$row['monspec_name']. $DC_txt . '</li>';
     $monsterSpecialHTML .= '<li class="small greyText">'.$row['monspec_value'] . '</li>';
     $monsterSpecialHTML .= '</ul></li>';
-    $print_special_attacks .= $row['monspec_name'] . "$DC_txt" . $row['monspec_value'] . ", \n";
+
+				$specialAttack = array('name'=> $row['monspec_name'], 'dc' => $DC_txt, 'desc' => $row['monspec_value'], 'type' => $specatta_type);
+				$specialAttackArray[] = $specialAttack;
+
+/*    $print_special_attacks .= $row['monspec_name'] . "$DC_txt" . $row['monspec_value'] . ", \n";
     if ($specatta_type != "SPELL"){
        if ($print_special_attacks_s != ""){
            $print_special_attacks_s .= ", ";
        }
        $print_special_attacks_s .= $row['monspec_name'] . "$DC_txt" . $row['monspec_value'] ;
     }
-
+*/
 
 
 
@@ -5583,15 +5625,12 @@ if ($htmlp_special_attacks != ""){
     $htmlp_special_attacks .= "</BR>";
 }
 
-//
-//
+/*
 
-//
-//
-//
+			Special Abilities
 
-// Monster Special Abilities
-//include 'includes/dd_db_conn.txt';
+*/
+
 $link = getDBLink();
 $specialAbilitiesHTML = "";
 $select = "SELECT monspec_name, monspec_value, specqual_abil, specqual_save, specqual_type, specq_desc from monspec2, specqual where monspec_tp = 'S' and (mon_name = '$mon_namex' or mon_name = '$mon_temp' or mon_name = '$mon_temp2') " .
@@ -5601,7 +5640,7 @@ $select = "SELECT monspec_name, monspec_value, specqual_abil, specqual_save, spe
 $result = mysqli_query($link, $select) ;
 //  echo "result " $result;
 $count = 0;
-$print_sen = "";
+// $print_sen = "";
 $print_sub = "";
 $print_def = "";
 
@@ -5610,6 +5649,8 @@ $print_speed = "";
 $print_spell_abil = "";
 $print_special_qualities = "";
 $print_space = "";
+
+$specialAbilitiesArray = array();
 
 $count_sen = $count_sub = $count_def = $count_hp = $count_speed = $count_spell_abil = 0;
 $count_special_qualities = $count_space = 0;
@@ -5631,291 +5672,97 @@ while ($row = mysqli_fetch_array($result)) {
     $specqual_save = $row['specqual_save'];
     $specqual_type = $row['specqual_type'];
     $specq_desc = trim($row['specq_desc']);
-    if ($specq_desc != "" and $specq_desc != " "){
-       $print_specdesc .= "<b>" . $row['monspec_name'] . "</B>:" . $specq_desc . "</BR>";
-    }
-    $DC_txt = " ";
 
+/*    if ($specq_desc != "" and $specq_desc != " "){
+       $print_specdesc .= "<b>" . $row['monspec_name'] . "</B>:" . $specq_desc . "</BR>";
+//       $print_specdesc .= wrapHTMLBlock(wrapHTMLHighlight( $row['monspec_name'] ). ":" . $specq_desc ,"dgSpecialDescription");
+    }
+*/
+
+				$DC_txt = " ";
+				$DC = null;
     if ($specqual_save !="" and $specqual_save != " "){
       if ($specqual_save == "LV"){
         $DC =  10 + round($spec_level /2 -0.5) + $$abil_atr_v;
       }else{
         $DC = 10 + $specqual_save + $$abil_atr_v;
       }
-      $DC_txt = " DC(" . $DC . ") ";
+//      $DC_txt = " DC(" . $DC . ") ";
     }
+
+
+				$specialAbiltiesArrayItem = array();
+				$specialAbiltiesArrayItem['specqual_abil'] = $specqual_abil;
+				$specialAbiltiesArrayItem['specqual_type'] = $specqual_type;
+				$specialAbiltiesArrayItem['specqual_desc'] = $specq_desc;
+				$specialAbiltiesArrayItem['monspec_name'] = $row['monspec_name'];
+				$specialAbiltiesArrayItem['monspec_value'] = $row['monspec_value'];
+//				$specialAbiltiesArrayItem['monspec_type'] = $row['monspec_type'];
+				$specialAbiltiesArrayItem['dc'] = $DC;
+
     $specialAbilitiesHTML .= '<li class="specialAbility"><ul>';
     $specialAbilitiesHTML .= '<li>'.$row['monspec_name']. $DC_txt .'</li>';
     $specialAbilitiesHTML .= '<li class="small greyText">'.$row['monspec_value'].'</li>';
     $specialAbilitiesHTML .= '</ul></li>';
+
     $monspec_name = $row['monspec_name'];
     $monspec_value = $row['monspec_value'];
-    $print_item = $monspec_name;
-    $htmlp_item = "<b>" . $monspec_name . "</b>";
- //   echo $htmlp_item . $specqual_type . " ";
-    if ($DC_txt != " "){
-       $print_item .= $DC_txt;
-       $htmlp_item .= trim($DC_txt);
-    }
-    if ($monspec_value != "" and $monspec_value != " "){
-       $print_item .=  " " . $monspec_value;
-       $htmlp_item .=  " " . $monspec_value;
-//       echo "<div>item = $htmlp_item</div>";
-    }
-    if ($specqual_type == "SEN"){
-        $count_sen += 1;
-        if ($count_sen > 1){
-           $print_sen .= ", ";
-        }
-        $print_sen .= $print_item;
-        if ($htmlp_special_qualities_s !=""){
-            $htmlp_special_qualities_s .= ", ";
-        }
-        $htmlp_special_qualities_s .= $print_item;
-    }
-    if ($specqual_type == "SUB"){
-        $count_sub += 1;
-        if ($count_sub > 1){
-           $print_sub .= ", ";
-        }
-        $print_sub .= $print_item;
-        if ($htmlp_special_qualities_s !=""){
-            $htmlp_special_qualities_s .= ", ";
-        }
-        $htmlp_special_qualities_s .= $print_item;
-    }
-    if ($specqual_type == "DEF"){
-        $count_def += 1;
-        if ($count_def > 1){
-           $print_def .= ", ";
-           $htmlp_def .= ", ";
-        }
-        $print_def .= $print_item ;
-        $htmlp_def .= $htmlp_item;
-        if ($htmlp_special_qualities_s !=""){
-            $htmlp_special_qualities_s .= ", ";
-        }
-        $htmlp_special_qualities_s .= $print_item;
-   //     echo $htmlp_def;
-    }
-    if ($specqual_type == "HP"){
-        $count_hp += 1;
-        if ($count_hp > 1){
-           $print_hp .= ", ";
-        }
-        $print_hp .= $print_item;  
-        if ($htmlp_special_qualities_s !=""){
-            $htmlp_special_qualities_s .= ", ";
-        }
-        $htmlp_special_qualities_s .= $print_item;
-    }
-    if ($specqual_type == "SPEED"){
-        $count_speed += 1;
-        if ($count_speed > 1){
-           $print_speed .= ", ";
-        }
-        $print_speed .= $print_item;
-        if ($htmlp_special_qualities_s !=""){
-            $htmlp_special_qualities_s .= ", ";
-        }
-        $htmlp_special_qualities_s .= $print_item;
-    }
-    if ($specqual_type == "ACTEXT"){
-       if ($AC_text != ""){
-           $AC_text .= ", ";
-       }else{
-           $AC_text = "; ";
-       }
-       $AC_text .= $print_item;
-    }
-    if ($specqual_type == "SPACE"){
-        $count_space += 1;
-        if ($count_space > 1){
-           $print_space .= ", ";
-        }
-        $print_space .= $print_item ;
-        if ($htmlp_special_qualities_s !=""){
-            $htmlp_special_qualities_s .= ", ";
-        }
-        $htmlp_special_qualities_s .= $print_item ;
-    }
-    if ($specqual_type == "AURA"){
-        $count_aura += 1;
-        if ($count_aura > 1){
-           $print_aura .= ", ";
-        }
-        if ($htmlp_special_qualities_s !=""){
-            $htmlp_special_qualities_s .= ", ";
-        }
-        $print_aura .= $print_item ;
-        $htmlp_special_qualities_s .= $print_item ;
-    }
-    if ($specqual_type == "SVTEXT"){
-        $count_svtext += 1;
-        if ($save_text != ""){
-           $save_text .= ", ";
-        }
-        if ($htmlp_special_qualities_s !=""){
-            $htmlp_special_qualities_s .= ", ";
-        }
-        $save_text .= $print_item ;
-        $htmlp_special_qualities_s .= $print_item ;
-    }
-    if ($specqual_type == "INIT"){
-        $count_init += 1;
-        if ($print_init != ""){
-           $print_init .= ", ";
-        }
-        if ($htmlp_special_qualities_s !=""){
-            $htmlp_special_qualities_s .= ", ";
-        }
-        $print_init .= $print_item ;
-        $htmlp_special_qualities_s .= $print_item ;
-    }
-    if ($specqual_type == "CMB"){
-        $count_CMB += 1;
-        if ($count_CMB > 1){
-           $print_CMB .= ", ";
-        }
-        if ($htmlp_special_qualities_s !=""){
-            $htmlp_special_qualities_s .= ", ";
-        }
-        $print_CMB .= $print_item ;
-        $htmlp_special_qualities_s .= $print_item ;
-    }
-    if ($specqual_type == "CMD"){
-        $count_CMD += 1;
-        if ($count_CMD > 1){
-           $print_CMD .= ", ";
-        }
-        if ($htmlp_special_qualities_s !=""){
-            $htmlp_special_qualities_s .= ", ";
-        }
-        $print_CMD .= $print_item ;
-        $htmlp_special_qualities_s .= $print_item ;
-    }
-    if ($specqual_type == "SPELL"){
-        $print_spell_abil .= $print_item . "\n";
-        if ($htmlp_spell_abil_s != ""){
-            $htmlp_spell_abil_s .= ", " ;
-        }
-        if ($htmlp_special_qualities_s !=""){
-            $htmlp_special_qualities_s .= ", ";
-        }
-        $htmlp_spell_abil_s .= $print_item ;
-        $htmlp_spell_abil .= $print_item . "</BR>";
-        $htmlp_special_qualities_s .= $print_item ;
-    }
-    if ($specqual_type == "" or $specqual_type == " "){
-        $count_special_qualities += 1;
-        if ($count_special_qualities > 1){
-           $print_special_qualities .= ", ";
-           $htmlp_special_qualities .= "</BR>";
-        }
-        if ($htmlp_special_qualities_s !=""){
-            $htmlp_special_qualities_s .= ", ";
-        }
-        $print_special_qualities .= $print_item ;
-        if ($DC_txt != ""){
-           $htmlp_special_qualities .= "<b>$monspec_name</b>$DC_txt $monspec_value" ;
-        }else{
-           $htmlp_special_qualities .= "<b>$monspec_name</b> $monspec_value" ;
-        }
-        $htmlp_special_qualities_s .= $print_item;
-    }
-}
-//classffeats 26/07/2011
-$x = count_feats();
-//  FEATS
-// Work out how many
-/*
-$mon_feats_calc = 0;
-if ($mon_level >0){
-   $mon_feats_calc = round(($mon_level- 1) / 2 - 0.49,0) + 1;
-}
-if ($tem_level >0){
-   $tem_feats_calc = round(($tem_level -1) / 2 - 0.49,0) + 1;
-}
-if ($mon_int == 0){
-   $mon_feats_calc = 0;
-   $tem_feats_calc = 0;
-}
-if ($mon_feats_calc  > ($mon_feats - $mon_free_feats)){
-   $mon_feats = $mon_feats_calc + $mon_free_feats;
-}
-if ($tem_feats_calc  > ($tem_feats - $tem_free_feats)){
-   $tem_feats = $tem_feats_calc + $tem_free_feats;
+
+			
+
+			if ( !empty($specialAbiltiesArrayItem['specqual_type'] && $specialAbiltiesArrayItem['specqual_type'] != " ")) {
+					$specialAbiltiesArray[$specialAbiltiesArrayItem['specqual_type']][] = $specialAbiltiesArrayItem;
+			} else {
+					$specialAbiltiesArray['other'][] = $specialAbiltiesArrayItem;
+			}
+
 }
 
-//echo "calc " . $mon_feats_calc . "free " . $mon_free_feats;
-if ($mon_name == "Human" and $zombie != "Y"){
-   $mon_feats = $mon_feats + 1;
-}
-if ($class1_tp != "" and $zombie !="Y"){
-   $gen_feats = round(($class1_level + $class2_level + $class3_level +1) / 2 - 0.49,0) + $mon_feats + $class_feats + $tem_feats;
-}else{
-   $gen_feats = $mon_feats + $tem_feats;
-}
-//echo "gen_feats $gen_feats";
-//echo "</BR> mon_feats = " . $mon_feats;
-//echo "</BR> tem_free_feats = " . $tem_free_feats;
-//echo "</BR> class_feats = " . $class_feats;
-//echo "</BR> class2_feat = " . $class2_feat;
- if ($zombie == "Y"){
-    $class1_feat = 0;
-    $class2_feat = 0;
- }
+/*  
 
-$max_feats = $mon_feats + $class1_feat + $class2_feat + $gen_feats + $class_feats;
+				Feats	
+
 */
-//echo "@".$max_feats."<br/>";
 
-// Get temp feats
-//include 'includes/dd_db_conn.txt' ;
+$x = count_feats();
+
+global $featsArray;
+$featsArray = array();
+
 $link = getDBLink();
-
 $select = "SELECT feattemp_feat, feattemp_class, feattemp_auto, feat_desc from feattemp, feats2 where feattemp_user = '$user'" .
          " and mon_key_1 = '$key_1' and feat_name = feattemp_feat " .
           "ORDER BY feattemp_class, feattemp_feat";
 
-// echo "</BR> SELECT = " . $select;
 $result = mysqli_query($link, $select) ;
 $count = 0;
 $old_class ="";
-$print_feat = "";
-$htmlp_feat = "";
-$htmlp_feat_s = "";
 if ($result){
   while ($row = mysqli_fetch_array($result)) {
+					$featRow = array();
+
      $feat_class = $row['feattemp_class'];
 
      if ($old_class != $feat_class){
         $count = 0;
+							$featsArray[$feat_class] = array(); 
      }
      $count = $count + 1;
      $old_class = $feat_class;
+
      $featv = "feat_" . $feat_class . $count;
      $$featv = $row['feattemp_feat'] ;
+
      $autov   = "feat_auto_" . $feat_class . $count;
      $$autov = $row['feattemp_auto'];
-     $feat_desc = $row["feat_desc"];
-     $print_feat .= $row['feattemp_feat'] . ": " . $feat_desc .  "," . "\n";
-     if ($htmlp_feat != ""){
-        $htmlp_feat .= ",</BR></div><div>";
-        $htmlp_feat_s .= ", ";
-     }
-     $htmlp_feat .= $row['feattemp_feat'];
-     $htmlp_feat_s .= $row['feattemp_feat'];
-     if ($feat_desc != ""){
-        $htmlp_feat .= ": " . $feat_desc ;
-     }
-//     echo "</BR>" .  $featv . " " . $$featv;
-  }
-  if ($htmlp_feat != ""){
-     $htmlp_feat .= "</BR></div><div>";
-     $htmlp_feat_s .= "; ";
+
+					$featRow['feat'] = $row['feattemp_feat'];
+					$featRow['feat_desc'] = $row["feat_desc"];
+					$featsArray[$feat_class][] = $featRow;
+
   }
 }
+
 
 // Build up HTML
 $featsHTML = array();
@@ -6449,6 +6296,9 @@ if ($skill_spent < 0){
 }
 $print_skill ="";
 $htmlp_skill ="";
+
+$skillArray = array();
+
 if ($armour_jump > 0){
 //  echo "armour_jump " . $armour_jump;
   $x = addjumpskillrb ($armour_jump);
@@ -6770,12 +6620,16 @@ while ($row = mysqli_fetch_array($resultSkill)) {
 	$skillsHTML2 .= '</TD>';
 	$skillsHTML2 .= '</TR>';
 	if ($rank > -1 or $skill_untrained != "N"){
-	   if ($htmlp_skill != ""){
+					$skillArrayEntry = array('skill'=>$skill, 'mod'=>$mod);
+
+/*		   if ($htmlp_skill != ""){
               $htmlp_skill .=", ";
               $print_skill .=", ";
            }
            $print_skill .= $skill . " " . $mod ;
 	   $htmlp_skill .= $skill . " " . $mod ;
+*/
+
 	   $skill_array_count = 0;
 //	   if ($wp_user == "admin"){
 //                echo $skill;
@@ -6788,14 +6642,28 @@ while ($row = mysqli_fetch_array($resultSkill)) {
                 $skill_array_count += 1;
                 $mod_x = $mod + $skill_race_val;
 
+															$skillArrayEntry['skilltext'] =	"($skill $skill_race_text $mod_x)	";
+/*
                 $print_skill .= "($skill $skill_race_text $mod_x)" ;
 	        $htmlp_skill .= "($skill $skill_race_text $mod_x)" ;
+*/
+
               }
            }
 	   if ($skill == "Perception"){
-                $print_sen .= "; " . $skill . " +" . $mod ;
+						if ( !isset($specialAbiltiesArray['SEN'])) {
+								$specialAbiltiesArray['SEN'] = array();
+						}
+						$specialAbiltiesArray['SEN'][] = array("specqual_abil" => $skill, "specqual_desc" => $mod, "specqual_type" => "SEN");
+//                $print_sen .= "; " . $skill . " +" . $mod ;
+												
            }
        }
+
+	if (isset($skillArrayEntry) && sizeof($skillArrayEntry > 0 ) ) {
+		$skillArray[] = $skillArrayEntry;
+	}	
+
 }
 if ($skill_changed == "Y"){
    $skill_changed_old = $skill_changed;
@@ -7209,13 +7077,15 @@ if ($class1_tp !="" or $class2_tp != "" or $class3_tp != ""){
       $classSpecialsOneHTML .= '<TD class="classSpecialValue">'.$spec_no.'</TD>';
       $classSpecialsOneHTML .= '</TR>';
       if ($spec_display == "A"){
-         $print_special_attacks .= "\n" . $spec. " " . $spec_desc;
-         $htmlp_special_attacks .= "<b>" .$spec. "</b> " . $spec_desc;
+										$specialAttack = array('name' => $spec, 'desc'=>$spec_desc, 'spec_no'=>$spec_no, 'type' => "class");
+										$specialAttackArray[] = $specialAttack;
+//         $print_special_attacks .= "\n" . $spec. " " . $spec_desc;
+//         $htmlp_special_attacks .= "<b>" .$spec. "</b> " . $spec_desc;
          if ($spec_no != ""){
-             $print_special_attacks .=  " " . $spec_no;
-             $htmlp_special_attacks .=  " " . $spec_no;
+//             $print_special_attacks .=  " " . $spec_no;
+//             $htmlp_special_attacks .=  " " . $spec_no;
          }
-         $htmlp_special_attacks .= "</BR>";
+//         $htmlp_special_attacks .= "</BR>";
       }
           //      echo "sa" . $htmlp_special_attacks;
       if ($spec_display == "Q"){
@@ -7317,11 +7187,14 @@ if ($new_animal_comp_level > 0){
 //        echo "var status = document.getElementById('status')";
 //echo 'alert("calling dddisplayNPCForm")';
 //echo '</script>';
+
+
 require_once(locate_template('library/dddisplayNPCForm.php'));
 
-?>
 /* Redundent??? handled by theme ??? */
 /*
+?>
+
 <script>
 if(typeof(urchinTracker)!='function')document.write('<sc'+'ript src="'+
 'http'+(document.location.protocol=='https:'?'s://ssl':'://www')+

@@ -1,4 +1,9 @@
+<!-- Toolpage 199 Start -->
 <?php
+
+/* Toolpage-199 - Display Pathfinder Monster Print / Plain Text */
+
+
  global $wp_user, $user_id, $paid_user, $key_1, $savemon_key;
 /*   monsters saved */
 //echo "XXXXXXXXXX in 199";
@@ -69,15 +74,6 @@ EOF;
     $savemon_camp = $savemon_camp_s;
     $savemon_sub = $savemon_sub_s;
     $savemon_name = $savemon_name_s;
-/*
-                            parse_str($savemon_monster,$monster_a);
-                            foreach ($monster_a as $k => $v) {
-                               $v = trim($v) ;
-                               $v = str_replace("¬", "+", $v);
-                               $$k = $v ;
-//        echo $k .  "= " .$v . "<BR></BR>";
-                            }
-*/
 
     if ($key_1 == "path"){
 
@@ -91,4 +87,7 @@ EOF;
  //  require( $workingPath."/ddsaveedit.php");
    include(locate_template('library/ddsaveedit.php'));
 }
+
+*/
 ?>
+<!-- Toolpage 199 End -->

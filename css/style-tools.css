@@ -4,6 +4,12 @@ Additional CSS for Dingle's Games Tools
 
 */
 
+/***************************************************
+
+		Sitewide CSS
+
+***************************************************/
+
 .advert {
 	min-height: 5rem;
 	width: 100%;
@@ -11,20 +17,19 @@ Additional CSS for Dingle's Games Tools
 }
 
 
-/***  CSS for Toolpages ***/
+/***************************************************
 
-/* NOTE To PAUL : The CSS for the Toolpages is a complete bodge to work around the 
-																	broken / outdated HTMl the code generates. It is heavily dependent
-																	on the existing page layout and any alterations to the HTML may have
-																	unexpected results.
-*/
+			CSS for all  any Toolpages 
 
-/*****   TEMP *****/
+***************************************************/
+
+
+/* TEMP */
 #intro {
 		display: none;
 }
 
-/** Page structure Modifications **/
+/* Page structure Modifications */
 body.page-template-toolpagev2 .tregenza_one_block_entrydate {
 	display: none;
 }
@@ -42,65 +47,25 @@ body.page-template-toolpagev2 .tregenza_one_block_entrytags {
 }
 
 
-
-/*  Basic general layout stuff */
-body.page-template-toolpagev2 form {
+/***** Error Messages ******/
+#dgToolsFormWrapper .error {
 }
-
-/* ID elements appearing on one or more pages */
-#monsterClassSelection {
-	margin: 1em 0em;
-
-	flex: 0 0 100%;
-
-	flex-flow: column nowrap;
-
-}
-#monsterClassSelection > div:nth-of-type(1) {
-	/* intro text */
-	display: block;
-}
-
-#monsterClassSelection > div {
-	flex: 0 0 100%;
-	margin: 0.25rem 0;
-
-	display: flex;
-	flex-flow: row nowrap;
-}
-
-#monsterClassSelection > div > div {
-		flex: 0 0 10rem;
-}
-
-#monsterClassSelection > div:nth-of-type(10) {
-		/* initial stats */
-		flex: 0 0 100%;
-		
+#dgToolsFormWrapper .error span.dgToolsMSG {
 		display: block;
-		width: 100%;
-}
-#monsterClassSelection > div:nth-of-type(10) > div:nth-of-type(1) {
-		display: block;
-}
-#monsterClassSelection > div:nth-of-type(10) > div:nth-of-type(2) {
-		display: block;
-		
-}
-#monsterClassSelection > div:nth-of-type(10) > div:nth-of-type(2) > p {
-		display: block;		
-		width: 100%;
-}
-#monsterClassSelection > div:nth-of-type(10) > div:nth-of-type(2) > p > input {
-		box-shadow: none;
-		display: inline-block;
-		width: 1rem;
-
+		background-color: #AA0000;
+		color: white;
+		font-weight: 400;		
+		padding: 0.1rem;
+		margin: 0.25rem;
+		text-align: center;
 }
 
-/**** DG Tools Form Layout ****/
+.tregenza_one_dg_form .dgError {
+		background-color: #aa0000;
+}
 
-/* DG Form Formating */
+/*****		dgTool Generic form CSS for Select / Generate / Result pages  ******/
+
 .tregenza_one_dg_form {	
 	font-size: 1rem;
 }
@@ -117,11 +82,6 @@ body.page-template-toolpagev2-php .tregenza_one_dg_form  ul  li {	 /* Extra spec
 }
 
 
-.tregenza_one_dg_form .greyText {	
-		font-weight: 300;
-		color: #777777;
-}
-
 .tregenza_one_dg_form   select {	
 	width: 10rem;
 	font-size: 1rem;
@@ -131,61 +91,234 @@ body.page-template-toolpagev2-php .tregenza_one_dg_form  ul  li {	 /* Extra spec
 	min-width: 3rem;
 }
 
-.tregenza_one_dg_form  .statsHeader {	
-	background-color: #111111;
-	color: #ffffff;
-	line-height: 2rem;
-	font-weight: 300;
+.tregenza_one_dg_form > .dgBlockOfRows {
+	margin: 0.5rem;
+	width: 100%;
+	max-width: 40rem;
 }
 
-
-.tregenza_one_dg_form  p.boxLabel , .tregenza_one_dg_form p.bigBoxLabel {	
-	font-weight: 300;
-	font-style: italic;
-	padding-bottom: 0.1rem;
-	margin-bottom: 0.1rem;
-	border-bottom: #777777 1px solid;
-
-}
-.tregenza_one_dg_form  p.boxValue {	
-	text-align: right;
-}
-
-.tregenza_one_dg_form  p.boxValue > input {	
-	display: inline-block;
-}
-.tregenza_one_dg_form  p.boxValue + * {	
-	margin-top: 0.5rem;
-}
-.tregenza_one_dg_form  .boxDetail p {	
+.tregenza_one_dg_form > .dgBlockOfRows > .dgBlockLabel {
+		width: 100%;
+		display: block;
+		padding: 0.25rem;
 		font-size: 1rem;
-		color: #777777;
-		line-height: auto;
+		color: black;
+		font-weight: 700;
+		border-top: 1px solid black;
+}
+
+
+.tregenza_one_dg_form > .dgBlockOfRows > .dgRow {
+	width: 100%;
+	margin-bottom: 0.25rem;
+}
+
+/* Default Label / Value  Formating */
+.tregenza_one_dg_form  .dgLabel {
+		margin-right: 0.25rem;
+		min-width: 5rem;
+
+		font-weight: 300;
+		color:  #999999;
+}
+.tregenza_one_dg_form  .dgLabel:after  {
+		content: ":";
+		margin-right: 0.5rem;
+}
+
+.tregenza_one_dg_form  .dgValue {
+		margin-right: 0.25rem;
+}
+/* Default Label / Value DIVs Formating */
+.tregenza_one_dg_form  div.dgLabel {
+		width: 100%;	
+}
+
+.tregenza_one_dg_form  div.dgValue {
+		width: 100%;	
+}
+
+
+
+
+.tregenza_one_dg_form > .dgBlockOfRows > .dgRowNoLabel.dgRow > span.dgValue {
+		margin: 0 auto;
+		display: block;
+		text-align: center;
+}
+
+.tregenza_one_dg_form > .dgBlockOfRows > .dgRowTable  {
+		width: 100%;
+}
+.tregenza_one_dg_form > .dgBlockOfRows > .dgRowTable > .dgRowTableHeaders {
+}
+.tregenza_one_dg_form > .dgBlockOfRows > .dgRowTable > .dgRowTableHeaders > span.dgRowTableHeader{
+		background-color: #777777;
+		color: white;
+		font-weight: 400;
+		padding: 0.25rem 0.25rem;
+		margin-right: 0.25rem;
+		width: 10rem;
+}
+
+
+
+/***************************************************
+
+	CSS for NPC Select / Generate / Result
+
+******************************************************/
+
+/* Button Hide / Display  */
+#dgToolsFormWrapper.dgType_SELECT.dgTool_NPC .dgButtonsRecalc {
+		display: none;
+} 
+#dgToolsFormWrapper.dgType_SELECT.dgTool_NPC .dgButtonsPrint {
+		display: none;
+} 
+#dgToolsFormWrapper.dgType_SELECT.dgTool_NPC .dgButtonsEdit {
+		display: none;
+} 
+#dgToolsFormWrapper.dgType_SELECT.dgTool_NPC .dgNPCGenerator .dgButtonsLoad {
+		display: none;
+} 
+#dgToolsFormWrapper.dgType_SELECT.dgTool_NPC .dgNPCGeneratorLoadSave .dgButtonsGenerate {
+		display: none;
+} 
+
+
+#dgToolsFormWrapper.dgType_GENERATE.dgTool_NPC .dgButtonsGenerate {
+		display: none;
+} 
+#dgToolsFormWrapper.dgType_GENERATE.dgTool_NPC .dgButtonsEdit {
+		display: none;
+} 
+#dgToolsFormWrapper.dgType_GENERATE.dgTool_NPC .dgButtonsLoad {
+		display: none;
+} 
+#dgToolsFormWrapper.dgType_RESULT.dgTool_NPC .dgButtonsGenerate {
+		display: none;
+} 
+#dgToolsFormWrapper.dgType_RESULT.dgTool_NPC .dgButtonsRecalc {
+		display: none;
+} 
+#dgToolsFormWrapper.dgType_RESULT.dgTool_NPC .dgButtonsPrint {
+		display: none;
+} 
+#dgToolsFormWrapper.dgType_RESULT.dgTool_NPC .dgButtonsLoad {
+		display: none;
+} 
+
+/***************************************************
+
+	CSS for NPC Select 
+
+******************************************************/
+
+.dgNPCSelectLetters {
+		margin: 1rem 0 0 0;
+		width: 100%;
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: center;
+		align-content: space-around;
+		align-items: stretch;
+}
+
+.dgNPCSelectLetters input[type="button"] {
+		/* Monster Selection letter buttons */
+	margin: 0.5rem;
+	width: 2rem;
+	height: 2rem;
+	flex: 0 0 auto;
+	min-width: 0;
+}
+
+.dgSavedNPCS {
+}
+
+.dgSavedNPCS .dgSavedNPC {
+		border: 1px solid #aaaaaa;
+		margin: 0.25rem;
+		padding: 0.25rem;
+}
+
+.dgSavedNPCS .dgSavedNPC .dgValue {
 		margin: 0;
-		padding: 0;
 }
-.tregenza_one_dg_form  .small li {	
-		font-size: 1rem;
-		line-height: normal;
-		margin: 0;
-		padding: 0 0 0.25rem 0;
-		border-bottom: #aaaaaa 1px solid;
-}
-.tregenza_one_dg_form  .small li:last-of-type  {	
-	border-bottom: none;
-}
+.dgSavedNPCS .dgSavedNPC input[type="radio"] {
 	
-.tregenza_one_dg_form  .box span select {	
-	font-size: 0.75rem;
-	display: inline-block;
-	width: 8rem;
 }
-.tregenza_one_dg_form  .box span input[type=text] {	
-	font-size: 0.75rem;
-	line-height: normal;
-	padding: 0 2px;
-	display: inline-block;
+
+/***************************************************
+
+	CSS for NPC Generate 
+
+******************************************************/
+
+.dgType_GENERATE .dgNPCStatsHeader {
+		width: 100%;
+		line-height: 2rem;
 }
+.dgType_GENERATE .dgNPCStatsHeader .dgNPCRaceTemplates  {
+		text-align: center;
+		font-weight: bold;
+		font-size: 1.6rem;
+}
+.dgType_GENERATE .dgNPCStatsHeader .dgNPCClassLevel {
+		text-align: center;
+		font-weight: bold;
+		font-size: 1.4rem;
+}
+.dgType_GENERATE .dgNPCStatsHeader .dgNPCClassLevel select {
+		width: 2rem;
+}
+
+/***************************************************
+
+	CSS for NPC Result
+
+******************************************************/
+
+.dgType_RESULT  {
+		font-family: verdana;
+		line-height: 1rem;
+		font-size: 1rem;
+}
+.dgType_RESULT .dgLabel {
+		font-weight: bold;
+		color: #111111;
+		font-size: 11pt;
+}
+.dgType_RESULT .dgValue {
+		font-size: 11pt;
+}
+.dgType_RESULT .dgValue {
+
+.dgType_RESULT .dgNPCStatsHeader .dgNPCRaceCR  {
+		text-align: left;
+		font-weight: bold;
+		font-size: 1rem;
+}
+.dgType_RESULT .dgNPCStatsHeader .dgNPCClassLevel {
+		text-align: center;
+		font-weight: bold;
+		font-size: 1.6rem;
+}
+.dgType_RESULT .dgNPCStatsHeader .dgNPCClassLevel select {
+		width: 2rem;
+}
+
+
+
+/***************************************************
+
+	OLD CSS to be replaced / junked
+
+******************************************************/
+
+
+
 
 
 .tregenza_one_dg_form  ul.stats > li > ul {	
@@ -234,48 +367,6 @@ body.page-template-toolpagev2-php .tregenza_one_dg_form  ul  li {	 /* Extra spec
 	margin-left: 2rem;
 }
 
-.tregenza_one_dg_form .monsterLetters {
-		margin: 1rem 0 0 0;
-		width: 100%;
-		display: flex;
-		flex-flow: row wrap;
-		justify-content: center;
-		align-content: space-around;
-		align-items: stretch;
-}
-
-.tregenza_one_dg_form .monsterLetters input[type="button"] {
-		/* Monster Selection letter buttons */
-	margin: 0.5rem;
-	width: 2rem;
-	height: 2rem;
-	flex: 0 0 auto;
-	min-width: 0;
-}
-
-.tregenza_one_dg_form .monsterTypeSelection > input {
-	margin: 0.5rem auto;
-}
-.tregenza_one_dg_form .monsterTypeSelection .monsterTemplateSelection {
-	margin-top: 0.5rem;
-	width: 100%;
-}
-
-
-.tregenza_one_dg_form #monsterTypeLabel {
-		/* Monster Selection monster type */
-		flex: 0 0 100%;
-		max-width: 100%;
-		text-align: center;		
-}
-.tregenza_one_dg_form #monsterTypeLabel > select[name="mon_name"] {
-		margin: 1.5rem;
-}
-
-
-.tregenza_one_dg_form #monsterTypeLabel > select[name="mon_tem"], .tregenza_one_dg_form #monsterTypeLabel > select[name="mon_tem2"] { 
-		margin: 0.25rem 1.5rem;
-}
 
 
 
@@ -466,4 +557,130 @@ body.page-id-1947 .formResults .formResultsRow p  {
 body.page-id-1947 .formResults .formResultsRow p button  {
 	margin-top: 0.5rem;
 	width: 4rem;
+}
+
+
+
+
+
+/*  NPC / Monster Plain Text */
+
+.dgNPCOutput  {
+	margin: 0.25rem 0 0 0;
+/*	border: 1px solid #aaaaaa;*/
+	border-radius: 0.25rem;
+	padding: 0.5rem;
+	background-color: rgba(0, 0, 0, 0.15);
+	box-sizing: border-box;
+}
+
+/* Top level blocks of the NPC Stats */
+.dgNPCOutput > .dgNPCMain {
+	flex: 1 1 auto;
+	margin-bottom: 0.5rem;
+	background-color: white;
+	padding: 0.25rem;
+
+/*	display: flex;
+	flex-flow: row wrap;
+	justify-content: flex-start;
+	align-content: center;*/
+
+}	
+
+.dgNPCOutput .dgBlock {
+	margin-top: 0.25rem;	
+	padding: 0 0rem 0 0rem;
+}
+.dgNPCOutput .dgNPCBlockHeader {
+		padding: 0rem 0rem 0rem 0.25rem;
+		background-color: #111111;
+		color: white;
+		font-size: 1rem;
+		line-height: 1.25rem;
+		font-weight: 700;
+		text-transform: uppercase; 
+}
+.dgNPCOutput .dgNPCHighlight {
+	font-weight: 700;	
+}
+.dgNPCOutput .dgNPCLineHeader {
+	display: inline-block;
+	width: 10rem;
+}
+.dgNPCOutput .dgNPCLineHeader:empty {
+		display: none;
+}
+
+
+.dgNPCOutput .dgNPCValueAlign {
+	margin-left: 10rem;
+	padding: 0 0.25rem 0 0.25rem;
+}
+.dgNPCOutput .dgNPCParaHeader {
+	
+}
+
+.dgNPCOutput .dgNPCValue {
+	display: inline-block;
+	padding: 0 0.25rem 0 0.25rem;
+	min-width: 10rem;
+	min-height: 1.25rem;
+	width: calc(100% - 11rem);
+}
+
+.dgNPCOutput .dgNPCValue:empty {
+		display: none;
+}
+
+.dgNPCOutput .dgNPCSubValue {
+	display: inline-block;
+	padding: 0 0.25rem 0 0.25rem;
+}
+
+.dgNPCOutput .dgNPCSubValue:empty {
+		display: none;
+}
+
+
+
+
+.dgNPCOutput .dgNPCNaturalSize, .dgNPCOutput .dgNPCNaturalSize > * {
+	min-width: 2rem;
+	width: auto;
+	margin-right: 1rem;
+} 
+.dgNPCOutput .dgNPCSense > .dgNPCLineHeader {
+	width: auto;
+	margin-right: 1rem;
+}
+
+
+.dgNPCOutput .dgNPCSpecialEntry {
+}
+.dgNPCOutput .dgNPCSpecialEntryName {
+		font-weight: 700;
+		margin-right: 1rem;
+}
+.dgNPCOutput .dgNPCSpecialEntryValue {
+}
+
+.dgNPCOutput .dgNPCSpecialEntry:empty, .dgNPCOutput .dgNPCSpecialEntryName:empty, .dgNPCOutput .dgNPCSpecialEntryValue:empty {
+	display: none;
+}
+
+.dgNPCOutput .dgNPCWeaponName, .dgNPCOutput .dgNPCWeaponAttack, .dgNPCOutput .dgNPCWeaponDamage, .dgNPCOutput .dgNPCWeaponCrit, .dgNPCOutput .dgNPCWeaponOther {
+	display: inline-block;
+	margin-right: 0.25rem;
+}
+.dgNPCOutput .dgNPCWeaponName:empty, .dgNPCOutput .dgNPCWeaponAttack:empty, .dgNPCOutput .dgNPCWeaponDamage:empty, .dgNPCOutput .dgNPCWeaponCrit:empty, .dgNPCOutput .dgNPCWeaponOther:empty {
+	display: none;
+}
+.dgNPCOutput .dgNPCSaves {
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+}
+
+.dgNPCOutput .dgNPCSecondaryWeapon {
+	margin-right: 0.5rem;
 }

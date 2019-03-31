@@ -80,6 +80,7 @@ if ( 'comments.php' == basename( $_SERVER['SCRIPT_FILENAME'] ) ) {
 }
 
 ?>
+<!-- Template Parts / Entry / Coments - dgtools -->
 <section id="comments" class="tregenza_one_block tregenza_one_block_comments">
 	<?php 
 		if ( have_comments() ) { 
@@ -136,7 +137,9 @@ if ( 'comments.php' == basename( $_SERVER['SCRIPT_FILENAME'] ) ) {
 			<?php 
 				} 
 			?>
+<!-- Template Parts / Entry / Coments - END -->
 			</section>
+
 	<?php 
 		}
  
