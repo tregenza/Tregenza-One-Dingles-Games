@@ -173,44 +173,5 @@ doDGDisplay($dgTools, 0);
 echo '</div>';
 
 
-/* LAST THING */
-/* Set a session variable */
-// $_SESSION['dgTools'] = $dgTools;
-
-
-/*
-switch ($meta['page_status']) {
-	case PAGE_NEW : 
-		// Select Monster page but not vetted
-		$msg = vetSelectMonsterForm();
-				// NPC Form
-		require_once(locate_template('library/ddglobal.php'));
-		require_once(locate_template('library/pathdisNPC.php'));
-		break;
-	case PAGE_VETTED :
-		// Valid NPC
-		if (isset($_POST["print_ind"])) {
-				// Output 
-			require_once(locate_template('library/dgNPCOutput.php'));
-	 } else {
-				// NPC Form
-			require_once(locate_template('library/ddglobal.php'));
-			require_once(locate_template('library/pathdisNPC.php'));
-		}	
-		break;
-	default:
-		// Not Vetted - Either brand new Select Monster or the vetting failed
-		// Select Monster Stage
-		dgLoad($meta, "dgNPCSelectFunctions");
-		dgLoad($meta, "dgNPCSelect");
-		break;	
-}
-
-*/
-
-
-
-
-
 ?>
 <!-- Toolpage 2858 END -->
