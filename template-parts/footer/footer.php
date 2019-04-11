@@ -32,7 +32,6 @@
 		<footer id="footer" role="contentinfo" class="clear blockVariable">
 		 <!-- Footer - wp_footer  -->
 		<?php 
-var_dump($_SESSION['dgTEST']);
 			wp_footer(); 
 		?>
 		 <!-- Footer - wp_footer END  -->
