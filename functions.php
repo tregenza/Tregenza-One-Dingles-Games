@@ -52,40 +52,40 @@ header('X-XSS-Protection: 0');			/* <--- This is needed to prevent Chrome error 
 /* 
 		Define Constants 
 */
-define (PATHFINDER, "path");  /* Pathfinder rules ver 1 */
-define (PATHFINDER2, "path2");  /* Pathfinder rules ver 2 */
-define (DD35, "dd35");  /* D&D 3.5 */
+define ("PATHFINDER", "path");  /* Pathfinder rules ver 1 */
+define ("PATHFINDER2", "path2");  /* Pathfinder rules ver 2 */
+define ("DD35", "dd35");  /* D&D 3.5 */
 		
-define (PAGE_STATUS_NEW, "NEW");   /* First time the page has been loaded */
-define (PAGE_STATUS_VETTED, "VETTED");  /* Page contents have been vetted */
-define (PAGE_STATUS_UNKNOWN, "UNKNOWN");  /*  Page contents need to vetted */
-define (PAGE_STATUS_ERROR, "ERROR");  /*  Something is wrong with the data */
+define ("PAGE_STATUS_NEW", "NEW");   /* First time the page has been loaded */
+define ("PAGE_STATUS_VETTED", "VETTED");  /* Page contents have been vetted */
+define ("PAGE_STATUS_UNKNOWN", "UNKNOWN");  /*  Page contents need to vetted */
+define ("PAGE_STATUS_ERROR", "ERROR");  /*  Something is wrong with the data */
 
-define (PAGE_TYPE_SELECT, "SELECT");		/* Initial Selection Screen */
-define (PAGE_TYPE_LOAD, "LOAD");		/* Load saveed data */
-define (PAGE_TYPE_GENERATE, "GENERATE");		/* Main screen for editing data */
-define (PAGE_TYPE_RESULT, "RESULT");		/* Display results only screen */
+define ("PAGE_TYPE_SELECT", "SELECT");		/* Initial Selection Screen */
+define ("PAGE_TYPE_LOAD", "LOAD");		/* Load saveed data */
+define ("PAGE_TYPE_GENERATE", "GENERATE");		/* Main screen for editing data */
+define ("PAGE_TYPE_RESULT", "RESULT");		/* Display results only screen */
 
-define (PAGE_TOOL_NPC, "NPC");				/* NPC / Monster Generator */
-define (PAGE_TOOL_TREASURE, "TREASURE");				/* Treasure Generator */
-define (PAGE_TOOL_ENCOUNTER, "ENCOUNTER");				/* Enconunter Generator */
-define (PAGE_TOOL_ANIMAL, "ANIMAL");				/* Enconunter Generator */
+define ("PAGE_TOOL_NPC", "NPC");				/* NPC / Monster Generator */
+define ("PAGE_TOOL_TREASURE", "TREASURE");				/* Treasure Generator */
+define ("PAGE_TOOL_ENCOUNTER", "ENCOUNTER");				/* Enconunter Generator */
+define ("PAGE_TOOL_ANIMAL", "ANIMAL");				/* Enconunter Generator */
 
 
-define (PAGE_NEW, "NEW");
-define (PAGE_VETTED, "VETTED");
-define (PAGE_UNVETTED, "UNVETTED");
-define (PAGE_UNKNOWN, "UNKOWN");					/* ??? Still needed ??? */
+define ("PAGE_NEW", "NEW");
+define ("PAGE_VETTED", "VETTED");
+define ("PAGE_UNVETTED", "UNVETTED");
+define ("PAGE_UNKNOWN", "UNKOWN");					/* ??? Still needed ??? */
 
 		
-define (OUTPUT_HTML, "HTML");
-define (OUTPUT_TEXT, "TEXT");
-define (OUTPUT_SHORT_TEXT, "SHORT TEXT");
+define ("OUTPUT_HTML", "HTML");
+define ("OUTPUT_TEXT", "TEXT");
+define ("OUTPUT_SHORT_TEXT", "SHORT TEXT");
 		
-define (PAID_USER, True);
-define (FREE_USER, False);
+define ("PAID_USER", True);
+define ("FREE_USER", False);
 		
-define (MSG_ALL_OK, "");
+define ("MSG_ALL_OK", "");
 		
 /* 
 		Load all dgGlobal files from dgLibrary 
