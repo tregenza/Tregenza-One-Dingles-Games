@@ -12,7 +12,7 @@
 		extract($args);
 
 //		$pageID = get_the_ID();
-		$template = locate_template('dglibrary/page/toolpage-'.GENERIC_PAGE_ID.'.php' );
+		$template = locate_template('dgLibrary/page/toolpage-'.GENERIC_PAGE_ID.'.php' );
 		if (!empty($template)) {
 				require_once($template);
 		} else {
