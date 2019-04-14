@@ -52,6 +52,8 @@ header('X-XSS-Protection: 0');			/* <--- This is needed to prevent Chrome error 
 /* 
 		Define Constants 
 */
+define ("GENERIC_PAGE_ID", "2858");		/* Page ID used in dglibrary/page/ */
+
 define ("PATHFINDER", "path");  /* Pathfinder rules ver 1 */
 define ("PATHFINDER2", "path2");  /* Pathfinder rules ver 2 */
 define ("DD35", "dd35");  /* D&D 3.5 */
