@@ -256,8 +256,6 @@ if ( !function_exists("getNonEliteStatsHTML") ) {
 						LOADING SAVES  -<<<<<<   NEEDS DOING
 
 */
-if ( !function_exists("getSaveSelectionHTML") ) {
-
 	function getSaveSelectionHTML($currentlySelected) {
 	 //       $currentlySelected = "";
 	        global $user_id, $wp_user;
@@ -351,14 +349,6 @@ if ( !function_exists("getSaveSelectionHTML") ) {
 	
 	}
 
-}
-
-
-
-
-
-
-if ( !function_exists("getFocusSelectHTML") ) {
 
 	function getFocusSelectHTML($dgTools, $refNo) {
 
@@ -369,10 +359,6 @@ if ( !function_exists("getFocusSelectHTML") ) {
 			return $html;
 	}
 
-}
-
-
-if ( !function_exists("getDomainsHTML")) {
 
 	function getDomainsHTML($dgTools, $refNo) {
 			$html = "";
@@ -382,10 +368,7 @@ if ( !function_exists("getDomainsHTML")) {
 			
 			return $html;
 	}
-}
 
-
-if ( !function_exists("getDomainContentsHTML") ) {
 
 	function getDomainContentsHTML($dgTools, $refNo, $fieldNo) {
 /*			
@@ -401,10 +384,6 @@ if ( !function_exists("getDomainContentsHTML") ) {
 			return $div;
 		
 	}
-
-}
-
-if ( !function_exists("getClassSubTypeOptionsHTML") ) {
 
 	/* Returns the options HTML for class sub-types, e.g. Cleric Domains  */
 	
@@ -433,14 +412,6 @@ if ( !function_exists("getClassSubTypeOptionsHTML") ) {
 	
 		return $html;
 	}
-}
-
-
-
-
-
-
-if ( !function_exists("getDomainSelectionHTML") ) {
 
 	/* Returns the HTML for Cleric Domains selection */
 	
@@ -468,10 +439,8 @@ if ( !function_exists("getDomainSelectionHTML") ) {
 	
 		return $html;
 	}
-}
 
 
-if ( !function_exists("getPsionSelectionHTML") ) {
 	
 	function getPsionSelectionHTML($currentlySelected) {
 	
@@ -496,9 +465,6 @@ if ( !function_exists("getPsionSelectionHTML") ) {
 	
 		return $html;
 	}
-	
-	
-}
 
 
 function getBloodlineSelectionHTML($currentlySelected) {
@@ -575,6 +541,7 @@ function getOracleCurseSelectionHTML($currentlySelected) {
 
 	return $html;
 }
+
 function getBloodragerSelectionHTML($currentlySelected) {
 
 //	$html = '<SELECT type="hidden"  NAME="domain_'.$classNumber. $domainNumber . '" class="classSelect" ID="class_tp_'.$classNumber.'">';
@@ -747,6 +714,8 @@ function getRangerSelectionHTML($currentlySelected) {
 
 	return $html;
 }
+
+
 function getRogueSelectionHTML($currentlySelected) {
 
 //	$html = '<SELECT type="hidden"  NAME="domain_'.$classNumber. $domainNumber . '" class="classSelect" ID="class_tp_'.$classNumber.'">';
@@ -771,6 +740,8 @@ function getRogueSelectionHTML($currentlySelected) {
 
 	return $html;
 }
+
+
 function getDruidSelectionHTML($currentlySelected) {
 
 //	$html = '<SELECT type="hidden"  NAME="domain_'.$classNumber. $domainNumber . '" class="classSelect" ID="class_tp_'.$classNumber.'">';
@@ -795,6 +766,8 @@ function getDruidSelectionHTML($currentlySelected) {
 
 	return $html;
 }
+
+
 function getDruidDomainSelectionHTML($currentlySelected) {
 
 //	$html = '<SELECT type="hidden"  NAME="domain_'.$classNumber. $domainNumber . '" class="classSelect" ID="class_tp_'.$classNumber.'">';
@@ -819,6 +792,8 @@ function getDruidDomainSelectionHTML($currentlySelected) {
 
 	return $html;
 }
+
+
 function getBardSelectionHTML($currentlySelected) {
 
 //	$html = '<SELECT type="hidden"  NAME="domain_'.$classNumber. $domainNumber . '" class="classSelect" ID="class_tp_'.$classNumber.'">';
@@ -867,6 +842,8 @@ function getBarbarianSelectionHTML($currentlySelected) {
 
 	return $html;
 }
+
+
 function getAlchemistSelectionHTML($currentlySelected) {
 
 //	$html = '<SELECT type="hidden"  NAME="domain_'.$classNumber. $domainNumber . '" class="classSelect" ID="class_tp_'.$classNumber.'">';
@@ -891,6 +868,8 @@ function getAlchemistSelectionHTML($currentlySelected) {
 
 	return $html;
 }
+
+
 function getFighterSelectionHTML($currentlySelected) {
 
 //	$html = '<SELECT type="hidden"  NAME="domain_'.$classNumber. $domainNumber . '" class="classSelect" ID="class_tp_'.$classNumber.'">';
@@ -915,6 +894,8 @@ function getFighterSelectionHTML($currentlySelected) {
 
 	return $html;
 }
+
+
 function getMonkSelectionHTML($currentlySelected) {
 
 //	$html = '<SELECT type="hidden"  NAME="domain_'.$classNumber. $domainNumber . '" class="classSelect" ID="class_tp_'.$classNumber.'">';
@@ -939,6 +920,8 @@ function getMonkSelectionHTML($currentlySelected) {
 
 	return $html;
 }
+
+
 function getGunslingerSelectionHTML($currentlySelected) {
 
 //	$html = '<SELECT type="hidden"  NAME="domain_'.$classNumber. $domainNumber . '" class="classSelect" ID="class_tp_'.$classNumber.'">';
@@ -963,6 +946,8 @@ function getGunslingerSelectionHTML($currentlySelected) {
 
 	return $html;
 }
+
+
 function getSummonerSelectionHTML($currentlySelected) {
 
 //	$html = '<SELECT type="hidden"  NAME="domain_'.$classNumber. $domainNumber . '" class="classSelect" ID="class_tp_'.$classNumber.'">';
@@ -987,6 +972,8 @@ function getSummonerSelectionHTML($currentlySelected) {
 
 	return $html;
 }
+
+
 function getSchoolSelectionHTML($currentlySelected) {
 
 //	$html = '<SELECT type="hidden"  NAME="domain_'.$classNumber. $domainNumber . '" class="classSelect" ID="class_tp_'.$classNumber.'">';
@@ -1083,7 +1070,6 @@ function getLoadSavesHTML($dgTools) {
 							$count++;
 				}
 		}
-
 
 		$html = wrapHTMLBlock($monsterBlocks, "dgSavedNPCS");
 		return $html;

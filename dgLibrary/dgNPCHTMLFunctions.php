@@ -7,8 +7,6 @@ or more stages of the Select -> Generate -> Result process
 */
 
 /* Returns the HTML for class level selection */
-if (!function_exists(getClassLevelHTML) ) {
-
 	function getClassLevelHTML( $dgTools, $classNumber, $displayOnly = 0) {
 		$max = calcMaxLevel($dgTools, $classNumber);	
 		$npcNo = getCurrentNPCNo($dgTools);
@@ -38,7 +36,6 @@ if (!function_exists(getClassLevelHTML) ) {
 		return $html;
 	
 	}
-}
 
 
 /* Max allowable level for class */
@@ -638,7 +635,7 @@ function getNPCFeatsHTML($dgTools) {
 
 		$npcNo = getCurrentNPCNo($dgTools);
 
-		if ( !empty(dgTools['NPCsArray'][$npcNo]['feats']) &&
+		if ( !empty($dgTools['NPCsArray'][$npcNo]['feats']) &&
 						!empty($dgTools['NPCsArray'][$npcNo]['feats']['active']) ) {
 				$feats = $dgTools['NPCsArray'][$npcNo]['feats']['active'];
 		}

@@ -4,7 +4,7 @@
  Description:  Dingles Games  - A child theme of Tregenza-One
  Author:       Chris Tregenza
  Template:     Tregenza-One
- Version:      0.6.0.6
+ Version:      0.6.0.7
  
  GitHub Theme URI: https://github.com/tregenza/Tregenza-One-Dingles-Games/
 
@@ -25,6 +25,11 @@ nav.woocommerce-breadcrumb {
 body.woocommerce-account .woocommerce-MyAccount-content > * {
 	display: none;
 }
+body.woocommerce-account .woocommerce-MyAccount-content > .dgSavedNPCS {
+	display: block;
+}
+
+
 body.woocommerce-account.woocommerce-orders .woocommerce-MyAccount-content > * {
 	display: block;
 } 

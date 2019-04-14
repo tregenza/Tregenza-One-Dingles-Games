@@ -198,6 +198,7 @@ if (!function_exists("initNewNPC") ) {
 /* 
 	Get session dgTools and merge it into current version 
 */
+/*
 function mergeSessionDGTools($dgTools) {
 	$result = $dgTools;
 
@@ -208,7 +209,7 @@ function mergeSessionDGTools($dgTools) {
 
 	return $result;
 }
-
+*/
 
 /*
 	Get encoded dgTools and merge into current version 

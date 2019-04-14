@@ -116,8 +116,15 @@ add_filter('woocommerce_add_to_cart_redirect', 'tregenza_one_add_redirect');
   * Get new endpoint content
   */
  function saved_monsters_endpoint_content() {
-		require_once(locate_template('library/ddmonsterFunctions.php'));
-		require_once(locate_template('library/ddsaveedit.php'));
+			require_once(locate_template('dgLibrary/dgUtilityFunctions.php'));	
+			require_once(locate_template('dgLibrary/dgUtilityDataFunctions.php'));	
+			require_once(locate_template('dgLibrary/dgUtilityHTMLFunctions.php'));			
+
+			$dgTools = initDGTools();
+			dgLoad($dgTools, "dgNPCDataFunctions");
+			dgLoad($dgTools, "dgNPCSelectHTMLFunctions");
+			$html =  getLoadSavesHTML($dgTools);
+			echo $html;
  }
  add_action( 'woocommerce_account_saved_monsters_endpoint', 'saved_monsters_endpoint_content' );
 

@@ -567,7 +567,11 @@ function getNPCGenerateHTML($dgTools) {
 		$cssBlockTag = "dgNPCMagicItems";
 		$blockLabel = "Magic Items";
 
-		$items = $dgTools['NPCsArray'][$npcNo]['items'];
+		if ( !empty($dgTools['NPCsArray'][$npcNo]['items'])) {
+				$items = $dgTools['NPCsArray'][$npcNo]['items'];
+		} else {
+				$items = "";	
+		}
 
 		/* Weapons */
 		$cssTag = "dgNPCMagicItemWepPrime";

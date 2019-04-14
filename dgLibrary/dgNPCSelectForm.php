@@ -11,8 +11,6 @@
 	doDGDisplay - Display the form 
 
 */
-if ( !function_exists("doDGDisplay")) {
-
 	function doDGDisplay( $dgTools ) {
 	
 		if ( sizeof(empty($dgTools['NPCsArray']) ==0 )) {
@@ -24,13 +22,9 @@ if ( !function_exists("doDGDisplay")) {
 	
 	}
 
-}
-
-
 /*
 		Main logic for displaying NPC select form.
 */
-if ( !function_exists("displayForm") ) {
 	
 	function displayForm($dgTools) {
 	
@@ -48,9 +42,6 @@ if ( !function_exists("displayForm") ) {
 
 			echo $html;
 	}
-	
-}
-
 
 function getNPCSelectHTML($dgTools) {
 	
