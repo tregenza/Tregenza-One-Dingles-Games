@@ -27,9 +27,9 @@
 		Load utility functions needed by the tools
 
 */
-require_once(locate_template('dglibrary/dgUtilityFunctions.php'));	
-require_once(locate_template('dglibrary/dgUtilityDataFunctions.php'));	
-require_once(locate_template('dglibrary/dgUtilityHTMLFunctions.php'));	
+require_once(locate_template('dgLibrary/dgUtilityFunctions.php'));	
+require_once(locate_template('dgLibrary/dgUtilityDataFunctions.php'));	
+require_once(locate_template('dgLibrary/dgUtilityHTMLFunctions.php'));	
 
 
 $dgTools = initDGTools();
@@ -38,7 +38,7 @@ $dgTools = initDGTools();
 
 
 /* Enqueue placeholder JS (so we can added to it later) */
-wp_enqueue_script( 'dgJS', get_stylesheet_directory_uri() .'/dglibrary/dgPlaceholder.js', null, null, true );
+wp_enqueue_script( 'dgJS', get_stylesheet_directory_uri() .'/dgLibrary/dgPlaceholder.js', null, null, true );
 
 
 
@@ -121,19 +121,19 @@ switch ($dgTools['meta']['page_tool']) {
 				dgLoad($dgTools, "dgNPCSelectHTMLFunctions");
 				dgLoad($dgTools, "dgNPCSelectForm");
 				dgLoad($dgTools, "dgNPCHTMLFunctions");
-				loadDynamicJSFile($dgTools, 'dglibrary/dgNPCSelectJs.php');
+				loadDynamicJSFile($dgTools, 'dgLibrary/dgNPCSelectJs.php');
 				break;
 			case PAGE_TYPE_GENERATE:
   			dgLoad($dgTools, "dgNPCGenerateHTMLFunctions");
 				dgLoad($dgTools, "dgNPCGenerateForm");
 				dgLoad($dgTools, "dgNPCHTMLFunctions");
-//				loadDynamicJSFile($dgTools, 'dglibrary/dgNPCGenerateJs.php');
+//				loadDynamicJSFile($dgTools, 'dgLibrary/dgNPCGenerateJs.php');
 				break;
 			case PAGE_TYPE_RESULT:
 //				dgLoad($dgTools, "dgNPCResultHTMLFunctions");
 				dgLoad($dgTools, "dgNPCResultForm");
 				dgLoad($dgTools, "dgNPCHTMLFunctions");
-//				loadDynamicJSFile($dgTools, 'dglibrary/dgNPCResultJs.php');
+//				loadDynamicJSFile($dgTools, 'dgLibrary/dgNPCResultJs.php');
 				break;
 			default:
 					error_log("Invalid Page Type in TOOLPAGE");
